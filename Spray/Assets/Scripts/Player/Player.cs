@@ -52,4 +52,13 @@ public class Player : MonoBehaviour
         _rigidbody.velocity = speed;
     }
 
+    public void Shoot(bool start)
+    {
+
+    }
+
+    public void Knockout(Vector3 direction, float force)
+    {
+        _rigidbody.AddForce(direction * force);
+    }
 }
