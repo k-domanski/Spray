@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-
+        //might be invoke two times on start
+        _player.Shoot(context.ReadValueAsButton());
     }
 
     public void OnAim(InputAction.CallbackContext context)
