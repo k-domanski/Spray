@@ -13,6 +13,12 @@ public class BloodFX : MonoBehaviour
     {
         _particleSystem.Emit(1);
     }
+    public void CastInDirection(float damage, Vector3 direction)
+    {
+        var emitParams = new ParticleSystem.EmitParams();
+        _particleSystem.transform.forward = direction;
+        _particleSystem.Emit(emitParams, _particleCount);
+    }
     [ContextMenu("Emit")]
     public void Emit()
     {

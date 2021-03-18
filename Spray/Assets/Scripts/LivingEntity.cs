@@ -26,18 +26,18 @@ public class LivingEntity : MonoBehaviour
     #endregion
 
     #region Events
-    public UnityEvent<LivingEntity> onDamageTaken;
+    public UnityEvent<float, Vector3> onDamageTaken;
     public UnityEvent<LivingEntity> onDeath;
     public UnityEvent<float, float> onHealthChanged;
     #endregion
 
     #region Public
-    public void DealDamage(float damage)
+    public void DealDamage(float damage, Vector3 impactDirection)
     {
         if (currentHealth > 0)
         {
             currentHealth -= damage;
-            onDamageTaken?.Invoke(this);
+            onDamageTaken?.Invoke(damage, impactDirection);
         }
 
         if (currentHealth <= 0)
