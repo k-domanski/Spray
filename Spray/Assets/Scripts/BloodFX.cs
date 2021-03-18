@@ -8,6 +8,22 @@ public class BloodFX : MonoBehaviour
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private int _particleCount;
     #endregion
+
+    #region Messages
+    void OnParticleTrigger()
+    {
+        ParticleSystem.ColliderData colliderData;
+        var particles = new List<ParticleSystem.Particle>();
+        var count = _particleSystem.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, particles, out colliderData);
+        // colliderData.
+        for (int i = 0; i < count; ++i)
+        {
+            var particle = particles[i];
+            // particle.position;
+        }
+    }
+    #endregion
+
     #region Public
     public void CastEffect(LivingEntity entity)
     {

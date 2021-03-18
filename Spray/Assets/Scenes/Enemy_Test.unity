@@ -489,6 +489,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946967708}
   m_CullTransparentMesh: 1
+--- !u!1 &953814948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 953814950}
+  - component: {fileID: 953814949}
+  m_Layer: 0
+  m_Name: SplatController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &953814949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953814948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b59272fa76ada142995c795b73c692e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _splatPrefab: {fileID: 7336280873651831253, guid: 293a4d33e29cf7440b60c7ed599ffd6c, type: 3}
+  _sizeRange: {x: 0.1, y: 0.5}
+--- !u!4 &953814950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953814948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &959195902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,9 +1310,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4818598674194455561, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: TriggerModule.primitives.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8205023790079611738, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
       propertyPath: m_Name
       value: BloodFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743524953416450299, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: onParticleCollision.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743524953416450299, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: onParticleCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743524953416450299, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: onParticleCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 953814949}
+    - target: {fileID: 8743524953416450299, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: onParticleCollision.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743524953416450299, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: onParticleCollision.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaceSplat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743524953416450299, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: onParticleCollision.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SplatController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743524953416450299, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: onParticleCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
