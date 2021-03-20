@@ -18,12 +18,13 @@ public class Player : MonoBehaviour
     public Rigidbody _rigidbody { get; private set; }
     private PlayerController _playerController;
     private SimpleShooting _simpleShooting;
-
+    private AudioSource _audio;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _playerController = GetComponent<PlayerController>();
         _simpleShooting = GetComponent<SimpleShooting>();
+        _audio = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -54,6 +55,11 @@ public class Player : MonoBehaviour
         Vector3 speed = Vector3.MoveTowards(_rigidbody.velocity, direction * _maxMovementSpeed, _acceleration * deltaTime);
 
         _rigidbody.velocity = speed;
+
+        if (_rigidbody.velocity.magnitude > 0.1f && !_audio.isPlaying)
+            _audio.Play();
+        else if (_audio.isPlaying && _rigidbody.velocity.magnitude < 0.1f)
+            _audio.Pause();
     }
 
     public void Shoot(bool start)
