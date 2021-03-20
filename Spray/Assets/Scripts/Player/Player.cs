@@ -31,17 +31,19 @@ public class Player : MonoBehaviour
 
     public void LookAt(Vector3 direction, float deltaTime)
     {
-        float angle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
+        //float angle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
 
-        float dir = angle > 0f ? 1f : angle < 0f ? -1f : 0f;
+        //float dir = angle > 0f ? 1f : angle < 0f ? -1f : 0f;
 
-        //Quaternion rotation = Quaternion.Euler(Vector3.up * _maxRotationSpeed * deltaTime * dir);
+        ////Quaternion rotation = Quaternion.Euler(Vector3.up * _maxRotationSpeed * deltaTime * dir);
 
-        float speed = _maxRotationSpeed * deltaTime;
+        //float speed = _maxRotationSpeed * deltaTime;
 
-        Quaternion rotation = Quaternion.Euler(Vector3.up * (Mathf.Abs(angle) < speed ? angle : (speed * dir)));
+        //Quaternion rotation = Quaternion.Euler(Vector3.up * (Mathf.Abs(angle) < speed ? angle : (speed * dir)));
 
-        _rigidbody.MoveRotation(_rigidbody.rotation * rotation);
+        //_rigidbody.MoveRotation(_rigidbody.rotation * rotation);
+
+        _rigidbody.rotation = Quaternion.RotateTowards(_rigidbody.rotation, Quaternion.LookRotation(direction.normalized, Vector3.up), deltaTime * _maxRotationSpeed);
     }
 
     public void Move(Vector3 direction, float deltaTime)
