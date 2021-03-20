@@ -14,16 +14,24 @@ public class Player : MonoBehaviour
     [SerializeField] private float _maxRotationSpeed;
     [SerializeField] private float _maxMovementSpeed;
     [SerializeField] private float _acceleration;
+    public bool isShooting = false;
 
     public Rigidbody _rigidbody { get; private set; }
     private PlayerController _playerController;
+    private GunController _gunController;   
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _playerController = GetComponent<PlayerController>();
+        _gunController = GetComponentInChildren<GunController>();
     }
+    private void Update()
+    {
+        if (isShooting)
+            _gunController.Shoot(_playerController.aimDirection);
 
+    }
     private void Start()
     {
         _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
@@ -54,7 +62,7 @@ public class Player : MonoBehaviour
 
     public void Shoot(bool start)
     {
-
+        _gunController.Shoot(_playerController.aimDirection);
     }
 
     public void Knockout(Vector3 direction, float force)
