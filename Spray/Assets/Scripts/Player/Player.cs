@@ -17,11 +17,13 @@ public class Player : MonoBehaviour
 
     public Rigidbody _rigidbody { get; private set; }
     private PlayerController _playerController;
+    private SimpleShooting _simpleShooting;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _playerController = GetComponent<PlayerController>();
+        _simpleShooting = GetComponent<SimpleShooting>();
     }
 
     private void Start()
@@ -56,7 +58,10 @@ public class Player : MonoBehaviour
 
     public void Shoot(bool start)
     {
-
+        if (start)
+        {
+            _simpleShooting.Fire();
+        }
     }
 
     public void Knockout(Vector3 direction, float force)
