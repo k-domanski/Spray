@@ -10,10 +10,13 @@ using Vector3 = UnityEngine.Vector3;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
-    [Header("Player movement")]
-    [SerializeField] private float _maxRotationSpeed;
-    [SerializeField] private float _maxMovementSpeed;
-    [SerializeField] private float _acceleration;
+    [SerializeField] private PlayerSettings _playerSettings;
+    // [Header("Player movement")]
+    // [SerializeField] private float _maxRotationSpeed;
+    // [SerializeField] private float _maxMovementSpeed;
+    // [SerializeField] private float _acceleration;
+
+    public PlayerSettings playerSettings => _playerSettings;
 
     public Rigidbody _rigidbody { get; private set; }
     private PlayerController _playerController;
@@ -34,12 +37,14 @@ public class Player : MonoBehaviour
 
     public void LookAt(Vector3 direction, float deltaTime)
     {
-        _rigidbody.rotation = Quaternion.RotateTowards(_rigidbody.rotation, Quaternion.LookRotation(direction.normalized, Vector3.up), deltaTime * _maxRotationSpeed);
+        _rigidbody.rotation = Quaternion.RotateTowards(_rigidbody.rotation,
+                                                       Quaternion.LookRotation(direction.normalized, Vector3.up),
+                                                       deltaTime * _playerSettings.maxRotationSpeed);
     }
 
     public void Move(Vector3 direction, float deltaTime)
     {
-        Vector3 speed = Vector3.MoveTowards(_rigidbody.velocity, direction * _maxMovementSpeed, _acceleration * deltaTime);
+        Vector3 speed = Vector3.MoveTowards(_rigidbody.velocity, direction * _playerSettings.maxSpeed, _playerSettings.acceleration * deltaTime);
 
         _rigidbody.velocity = speed;
 
