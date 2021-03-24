@@ -22,17 +22,28 @@ public class Player : MonoBehaviour
     private PlayerController _playerController;
     private SimpleShooting _simpleShooting;
     private AudioSource _audio;
+    private GunController _gunController;
+    private bool _isShooting = false;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _playerController = GetComponent<PlayerController>();
         _simpleShooting = GetComponent<SimpleShooting>();
         _audio = GetComponent<AudioSource>();
+        _gunController = GetComponentInChildren<GunController>();
     }
 
     private void Start()
     {
         _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+    }
+
+    private void Update()
+    {
+        if(_isShooting)
+        {
+            _gunController.Shoot(_playerController.aimDirection);
+        }
     }
 
     public void LookAt(Vector3 direction, float deltaTime)
@@ -56,10 +67,11 @@ public class Player : MonoBehaviour
 
     public void Shoot(bool start)
     {
-        if (start)
-        {
-            _simpleShooting.Fire();
-        }
+        _isShooting = start;
+        //if(start)
+        //{
+        //    _simpleShooting.Fire();
+        //}
     }
 
     public void Knockout(Vector3 direction, float force)
