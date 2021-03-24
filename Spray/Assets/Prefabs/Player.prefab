@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5020966971749737456}
   - component: {fileID: 5020966971749737457}
   - component: {fileID: 5020966971749737467}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9048511b0d504fa4ca17a567f52696f9, type: 2}
+  - {fileID: 2100000, guid: 49d242a277a02ad40b893da043b97c80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 5020966972500500205}
   - component: {fileID: 5020966972500500206}
   - component: {fileID: 5020966972500500207}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lookDirection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9048511b0d504fa4ca17a567f52696f9, type: 2}
+  - {fileID: 2100000, guid: 49d242a277a02ad40b893da043b97c80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
