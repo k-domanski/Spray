@@ -43,7 +43,9 @@ public class RaycastBullets : MonoBehaviour
             var livingEntity = hitInfo.transform.GetComponent<LivingEntity>();
             if(livingEntity != null)
             {
-                livingEntity.DealDamage(_damage, _direction);
+                var dir = (livingEntity.transform.position - transform.position).normalized;
+                dir.y = 0.0f;
+                livingEntity.DealDamage(_damage, dir);
             }
 
             distance = hitInfo.distance;

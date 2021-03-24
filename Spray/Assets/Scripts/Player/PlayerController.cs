@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        _player.isShooting = !context.canceled;
+        _player.Shoot(!context.canceled);
         //might be invoke two times on start
         //_player.Shoot(context.ReadValueAsButton());
     }
