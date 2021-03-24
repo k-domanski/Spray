@@ -3,23 +3,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class CameraController : MonoBehaviour
 {
+    #region Properties
+    [SerializeField] private CameraSettings _settings;
     [SerializeField] private Player _player;
     [SerializeField] private float _smoothTime;
     [SerializeField] private float _maxSpeed;
-    [SerializeField] private Vector3 _cameraOffset;
+    #endregion
+
+    #region Private
     private Camera _camera;
     private Vector3 vel = Vector3.zero;
+    private Vector3 _offset;
+    #endregion
 
-    private void Awake()
+    #region Messages
+    void Awake()
     {
         _camera = Camera.main;
+        SetupCamera();
     }
 
-    private void LateUpdate()
+    void Update()
     {
-        Vector3 pos = Vector3.SmoothDamp(_camera.transform.position, _player.transform.position + _cameraOffset, ref vel, _smoothTime, _maxSpeed, Time.deltaTime);
+        SetupCamera();
+
+        var cameraPos = _camera.transform.position;
+        var playerPos = _player.transform.position;
+#if UNITY_EDITOR
+        Vector3 pos = playerPos + _offset;
+#else
+        Vector3 pos = Vector3.SmoothDamp(cameraPos, playerPos + _offset, ref vel, _settings.smoothTime, _settings.maxSpeed, Time.deltaTime);
+#endif
         _camera.transform.position = pos;
     }
+    #endregion
+
+    #region Private Methods
+    private void SetupCamera()
+    {
+        _camera.orthographicSize = _settings.orthographicSize;
+
+        var distance = _settings.distance;
+
+        _offset.x = Mathf.Sin(_settings.azimuth) * distance;
+        _offset.z = Mathf.Cos(_settings.azimuth) * distance;
+        _offset.y = Mathf.Sin(_settings.elevation) * distance;
+
+        _camera.transform.forward = -_offset.normalized;
+    }
+    #endregion
 }

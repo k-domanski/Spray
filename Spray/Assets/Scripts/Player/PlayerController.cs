@@ -18,7 +18,10 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
 
         _player = GetComponent<Player>();
     }
-
+    void Start()
+    {
+        InputManager.instance.SetCallbacks(this);
+    }
     private void FixedUpdate()
     {
         _player.LookAt(aimDirection, Time.fixedDeltaTime);
