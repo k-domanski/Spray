@@ -1147,11 +1147,6 @@ PrefabInstance:
       objectReference: {fileID: 2055061809}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c00c34e374aab74faaf6837b2432393, type: 3}
---- !u!1 &314833159 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5020966972500500201, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
-  m_PrefabInstance: {fileID: 1827066556}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &374162265
 Mesh:
   m_ObjectHideFlags: 0
@@ -1908,21 +1903,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5020966971749737458, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
   m_PrefabInstance: {fileID: 1827066556}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &532227618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532227611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5cad169559ace04c929f35324939380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shootPos: {fileID: 314833159}
-  _bullet: {fileID: 1445242090846572801, guid: 6768b924a530e0643988cc8ce4b977ff, type: 3}
-  _force: 50
 --- !u!82 &532227619
 AudioSource:
   m_ObjectHideFlags: 0

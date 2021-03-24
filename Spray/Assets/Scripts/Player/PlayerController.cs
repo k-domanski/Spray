@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
     private Player _player;
     private Camera _camera;
     private Vector2 _lastStickOffset = Vector3.forward;
+    private Vector3 _aimOffset = Vector3.forward;
+    private Vector3 _moveOffset = Vector3.zero;
     #endregion
 
     private void Awake()
@@ -32,17 +34,18 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
     {
         InputManager.instance.SetCallbacks(this);
     }
-    private void FixedUpdate()
+    private void Update()
     {
-
-        _player.LookAt(AdjustToCamera(aimDirection), Time.fixedDeltaTime);
-        _player.Move(AdjustToCamera(moveDirection), Time.fixedDeltaTime);
+        aimDirection = AdjustToCamera(_aimOffset);
+        moveDirection = AdjustToCamera(_moveOffset);
+        _player.LookAt(aimDirection, Time.deltaTime);
+        _player.Move(moveDirection, Time.deltaTime);
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 dir = context.ReadValue<Vector2>();
-        moveDirection = new Vector3(dir.x, 0f, dir.y);
+        _moveOffset = new Vector3(dir.x, 0f, dir.y);
     }
 
     public void OnShoot(InputAction.CallbackContext context)
@@ -64,7 +67,8 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
         {
             _lastStickOffset = stickOffset;
         }
-        aimDirection = new Vector3(stickOffset.x, 0f, stickOffset.y).normalized;
+        // aimDirection = new Vector3(stickOffset.x, 0f, stickOffset.y).normalized;
+        _aimOffset = new Vector3(stickOffset.x, 0f, stickOffset.y).normalized;
     }
 
     public void OnMouse(InputAction.CallbackContext context)
@@ -79,7 +83,8 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
 
             var m = _camera.transform.worldToLocalMatrix;
             Vector3 dir = m * delta.normalized;
-            aimDirection = dir.normalized;
+            // aimDirection = dir.normalized;
+            _aimOffset = dir.normalized;
 
 #if UNITY_EDITOR
             Debug.DrawLine(ray.origin, ray.origin + ray.direction * hit.distance, Color.red);
