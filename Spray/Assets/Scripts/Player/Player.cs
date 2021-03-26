@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(_isShooting)
+        if (_isShooting)
         {
             _gunController.Shoot(_playerController.aimDirection);
         }
@@ -55,9 +55,21 @@ public class Player : MonoBehaviour
 
     public void Move(Vector3 direction, float deltaTime)
     {
-        Vector3 speed = Vector3.MoveTowards(_rigidbody.velocity, direction * _playerSettings.maxSpeed, _playerSettings.acceleration * deltaTime);
+        var currentVelocity = _rigidbody.velocity;
+        var currentDirection = currentVelocity.normalized;
+        var desiredDirection = direction.normalized;
 
-        _rigidbody.velocity = speed;
+        // Re-mapping from dot product [-1, 1] range to [0, 1] range
+        var t = (Vector3.Dot(currentDirection, desiredDirection) + 1.0f) / 2.0f;
+        // Applying boost based on 'turn sharpness'
+        var accelerationBoost = Mathf.Lerp(_playerSettings.accelerationBoost, 1.0f, t);
+
+        var acceleration = _playerSettings.acceleration * accelerationBoost;
+
+        Vector3 desiredVelocity = Vector3.MoveTowards(currentVelocity, direction * _playerSettings.maxSpeed, acceleration * deltaTime);
+
+
+        _rigidbody.velocity = desiredVelocity;
 
         if (_rigidbody.velocity.magnitude > 0.1f && !_audio.isPlaying)
             _audio.Play();

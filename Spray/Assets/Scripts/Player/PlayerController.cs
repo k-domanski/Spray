@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
     {
         InputManager.instance.SetCallbacks(this);
     }
-    private void Update()
+    private void FixedUpdate()
     {
         aimDirection = AdjustToCamera(_aimOffset);
         moveDirection = AdjustToCamera(_moveOffset);
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
 
     public void OnCameraRotate(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.performed)
         {
             cameraRotationDirection = context.ReadValue<float>();
             _cameraController.RotateCamera(cameraRotationDirection);

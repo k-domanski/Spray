@@ -63,7 +63,7 @@ public class @MainControlls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e2502aeb-c38b-40e7-9a75-1b0ba1968e98"",
-                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -215,7 +215,7 @@ public class @MainControlls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""Negative"",
                     ""id"": ""e242d756-2108-4d9a-84ba-f05ac8f0562e"",
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
@@ -226,7 +226,7 @@ public class @MainControlls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""Positive"",
                     ""id"": ""f6b3d3d9-b1a1-400e-9a68-7956c16ccc71"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
