@@ -6,22 +6,13 @@ public class BloodFX : MonoBehaviour
 {
     #region Properties
     [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private ParticleCollision _particleCollision;
     [SerializeField] private int _particleCount;
+    public ParticleCollision particleCollision => _particleCollision;
     #endregion
 
+
     #region Messages
-    void OnParticleTrigger()
-    {
-        ParticleSystem.ColliderData colliderData;
-        var particles = new List<ParticleSystem.Particle>();
-        var count = _particleSystem.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, particles, out colliderData);
-        // colliderData.
-        for (int i = 0; i < count; ++i)
-        {
-            var particle = particles[i];
-            // particle.position;
-        }
-    }
     #endregion
 
     #region Public
@@ -44,6 +35,11 @@ public class BloodFX : MonoBehaviour
         _particleSystem.transform.forward = new Vector3(x, 0, z);
         // var rotation = Quaternion.FromToRotation(_particleSystem.transform.up, Vector3.)
         _particleSystem.Emit(emitParams, _particleCount);
+    }
+    public void SetMaterial(Material material)
+    {
+        var renderer = _particleSystem.GetComponent<ParticleSystemRenderer>();
+        renderer.material = material;
     }
     #endregion
 }
