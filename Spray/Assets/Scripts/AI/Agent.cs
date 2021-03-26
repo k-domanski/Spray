@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,7 +24,7 @@ public class Agent : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Pursuit();
+
     }
 
     public void SetDestination(Vector3 destination)

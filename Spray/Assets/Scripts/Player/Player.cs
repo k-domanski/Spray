@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _acceleration;
 
     public Rigidbody _rigidbody { get; private set; }
+    public Vector3 velocity => _rigidbody.velocity;
     private PlayerController _playerController;
     private SimpleShooting _simpleShooting;
     private AudioSource _audio;
