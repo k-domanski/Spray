@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2487453089657557038}
   - component: {fileID: 2487453089657557037}
   - component: {fileID: 2487453089657557036}
+  - component: {fileID: 2737279705301810801}
   - component: {fileID: 2487453089657557035}
   - component: {fileID: 2487453089657557040}
   m_Layer: 7
@@ -29,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2487453089657557034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.01, y: 2.97, z: -0.01}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2866763556144577560}
@@ -99,6 +100,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2737279705301810801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2487453089657557034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b4a9dd1e387d6e4bae465a90bf0ba2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _visualData: {fileID: 0}
+  _bloodFX: {fileID: 2487453089657557035}
 --- !u!114 &2487453089657557035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 8825231522133241336}
+  _particleCollision: {fileID: 4751756274334789898}
   _particleCount: 3
 --- !u!114 &2487453089657557040
 MonoBehaviour:
@@ -204,6 +220,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4818598674194455561, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818598674194455561, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818598674194455561, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818598674194455561, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
       propertyPath: TriggerModule.primitives.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -255,3 +283,14 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4818598674194455561, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
   m_PrefabInstance: {fileID: 4082122432315634161}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4751756274334789898 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8743524953416450299, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+  m_PrefabInstance: {fileID: 4082122432315634161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2d28588a199fc4f9855770ca3cddb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -9,6 +9,7 @@ public class Systems : DontDestroyBehaviour<Systems>
     public static AudioManager audioManager => instance._audioManager;
     public static SceneManager sceneManager => instance._sceneManager;
     public static InputManager inputManager=> instance._inputManager;
+    public static DecalSystem decalSystem => instance._decalSystem;
     #endregion
     #region Properties
     [Header("References")]
@@ -16,6 +17,7 @@ public class Systems : DontDestroyBehaviour<Systems>
     [SerializeField] private AudioManager _audioManager;
     [SerializeField] private SceneManager _sceneManager;
     [SerializeField] private InputManager _inputManager;
+    [SerializeField] private DecalSystem _decalSystem;
     #endregion
 
     #region Protected
