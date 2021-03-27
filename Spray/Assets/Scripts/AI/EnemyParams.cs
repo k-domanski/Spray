@@ -6,4 +6,6 @@ public class EnemyParams : ScriptableObject
     public float maxSpeed;
     public float stoppingDistance;
     public float mass;
+    public float maxQueueAhead;
+    public float maxQueueRadius;
 }
