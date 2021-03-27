@@ -622,6 +622,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1278689875 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4967989806723666377, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+  m_PrefabInstance: {fileID: 5020966972475751411}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1524084694
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,6 +763,26 @@ PrefabInstance:
       propertyPath: _shotAudio
       value: 
       objectReference: {fileID: 45884920}
+    - target: {fileID: 954813361116936351, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: _muzzlePoint
+      value: 
+      objectReference: {fileID: 1278689875}
+    - target: {fileID: 2767243311934661042, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767243311934661042, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: ShapeModule.type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767243311934661042, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767243311934661042, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5020966971749737458, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -772,7 +797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5020966971749737460, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.059999943
+      value: -0.05999994
       objectReference: {fileID: 0}
     - target: {fileID: 5020966971749737460, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -809,6 +834,26 @@ PrefabInstance:
     - target: {fileID: 5020966971749737467, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: _cameraController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932848250147810906, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: lengthInSec
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932848250147810906, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808081203858394181, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808081203858394181, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808081203858394181, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}

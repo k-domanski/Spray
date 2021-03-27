@@ -18,7 +18,10 @@
             <e p="CameraSettings.cs" t="Include" />
           </e>
           <e p="DamageDealer.cs" t="Include" />
+          <e p="DecalSystem.cs" t="Include" />
           <e p="DontDestroyBehaviour.cs" t="Include" />
+          <e p="EnemyVisuals.cs" t="Include" />
+          <e p="EnemyVisualsData.cs" t="Include" />
           <e p="Extensions.cs" t="Include" />
           <e p="GameScene.cs" t="Include" />
           <e p="Input" t="Include">
@@ -33,7 +36,6 @@
             <e p="PlayerSettings.cs" t="Include" />
           </e>
           <e p="SimpleShooting.cs" t="Include" />
-          <e p="SplatController.cs" t="Include" />
           <e p="Systems" t="Include">
             <e p="ApplicationState.cs" t="Include" />
             <e p="AudioManager.cs" t="Include" />
