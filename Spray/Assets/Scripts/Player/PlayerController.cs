@@ -22,17 +22,9 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
 
     private void Awake()
     {
-        if (InputManager.instance != null)
-            InputManager.instance.SetCallbacks(this);
-        else
-            this.Delay(() => InputManager.instance.SetCallbacks(this), 0.001f);
-
+        Systems.inputManager.SetCallbacks(this);
         _player = GetComponent<Player>();
         _camera = Camera.main;
-    }
-    void Start()
-    {
-        InputManager.instance.SetCallbacks(this);
     }
     private void FixedUpdate()
     {

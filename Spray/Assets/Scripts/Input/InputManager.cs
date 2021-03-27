@@ -6,21 +6,9 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     private MainControlls _mainControlls;
-    public static InputManager instance { get; private set; } = null;
-
-    private void Awake()
+    public void Initialize()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
-        
-
         _mainControlls = new MainControlls();
-    }
-
-    private void Start()
-    {
         _mainControlls.Enable();
     }
 

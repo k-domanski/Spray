@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public PlayerSettings playerSettings => _playerSettings;
 
     public Rigidbody _rigidbody { get; private set; }
+    public Vector3 velocity => _rigidbody.velocity;
     private PlayerController _playerController;
     private SimpleShooting _simpleShooting;
     private AudioSource _audio;
