@@ -271,4 +271,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _splatPrefab: {fileID: 7336280873651831253, guid: 293a4d33e29cf7440b60c7ed599ffd6c, type: 3}
+  _bulletHolePrefab: {fileID: 7336280873651831253, guid: 239da17f4e8f06142869d189655b62ac, type: 3}
   _sizeRange: {x: 0.1, y: 0.5}
