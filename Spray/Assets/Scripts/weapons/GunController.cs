@@ -11,31 +11,28 @@ public class GunController : MonoBehaviour
     [SerializeField] private ParticleSystem _muzzleFlash;
     private bool _canShoot = true;
 
-    private void Start()
+    private void Awake()
     {
         _shotAudio = GetComponent<AudioSource>();
+        _muzzleFlash.gameObject.SetActive(false);
     }
 
     public void Shoot(Vector3 aimDirection)
     {
+        _muzzleFlash.gameObject.SetActive(true);
         if (_canShoot)
         {
             _canShoot = false;
             _shotAudio.Play();
-           
-           if (_muzzleFlash.isPlaying)
-            {
-                Debug.Log("Flash");
-                //_muzzleFlash.Stop();
-            }
-            _muzzleFlash.Emit(new ParticleSystem.EmitParams(), 10);
-            _muzzleFlash.gameObject.SetActive(true);
-            Debug.Log(_muzzleFlash.isEmitting);
-            _muzzleFlash.gameObject.SetActive(false);
             
             _weaponStats.CreateProjectile(_muzzlePoint.position, aimDirection);
-            this.Delay(() => { _canShoot = true; }, 1f / _weaponStats.fireRate);
+            this.Delay(()=>SetShooting(), 1f / _weaponStats.fireRate);
         }
-        
+    }
+
+    private void SetShooting()
+    {
+        _canShoot = true;
+        _muzzleFlash.gameObject.SetActive(false);
     }
 }

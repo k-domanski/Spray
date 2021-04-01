@@ -14,20 +14,22 @@ public class RaycastBullets : MonoBehaviour
     private float _speed;
     private float _duration;
     private bool _destroyNextFrame = false;
+    private LayerMask _layer;
 
     private void Awake()
     {
-        if(_trail != null)
+        if (_trail != null)
         {
             _trail.startWidth = transform.localScale.x;
         }
 
+        _layer = LayerMask.NameToLayer("Level");
         gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
     {
-        if(_destroyNextFrame)
+        if (_destroyNextFrame)
         {
             DestroyProjectile();
             return;
@@ -38,14 +40,20 @@ public class RaycastBullets : MonoBehaviour
 
         RaycastHit hitInfo;
 
-        if(Physics.Raycast(origin, _direction, out hitInfo, distance))
+        if (Physics.Raycast(origin, _direction, out hitInfo, distance))
         {
             var livingEntity = hitInfo.transform.GetComponent<LivingEntity>();
-            if(livingEntity != null)
+            if (livingEntity != null)
             {
                 var dir = (livingEntity.transform.position - transform.position).normalized;
                 dir.y = 0.0f;
                 livingEntity.DealDamage(_damage, dir);
+            }
+            else
+            {
+                // print(hitInfo.collider.gameObject.layer);
+                if (hitInfo.transform.gameObject.layer == _layer)
+                    Systems.decalSystem.PlaceBulletHole(hitInfo.point, hitInfo.normal);
             }
 
             distance = hitInfo.distance;

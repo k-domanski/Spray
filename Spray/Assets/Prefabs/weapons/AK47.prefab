@@ -94,7 +94,7 @@ MonoBehaviour:
   _weaponStats: {fileID: 11400000, guid: abb4872146c19d941b866383172cba2b, type: 2}
   _muzzlePoint: {fileID: 0}
   _shotAudio: {fileID: 5010219527906972234}
-  _muzzleFlash: {fileID: 1990565534234089456, guid: 4b3069eeb13305a4fb13a92d26639350, type: 3}
+  _muzzleFlash: {fileID: 7014782573037450720}
 --- !u!82 &5010219527906972234
 AudioSource:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ef880923ea885654d98f9c3998203d33, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0387d7127ca4706488635c23be0001e3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -329,5 +329,10 @@ PrefabInstance:
 --- !u!4 &4396126235123111959 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5171336199614118407, guid: 4b3069eeb13305a4fb13a92d26639350, type: 3}
+  m_PrefabInstance: {fileID: 8846876556607873552}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7014782573037450720 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1990565534234089456, guid: 4b3069eeb13305a4fb13a92d26639350, type: 3}
   m_PrefabInstance: {fileID: 8846876556607873552}
   m_PrefabAsset: {fileID: 0}
