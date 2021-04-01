@@ -23,10 +23,11 @@ public class GunController : MonoBehaviour
         if (_canShoot)
         {
             _canShoot = false;
-            _shotAudio.Play();
-            
+            if (_shotAudio != null)
+                _shotAudio.Play();
+
             _weaponStats.CreateProjectile(_muzzlePoint.position, aimDirection);
-            this.Delay(()=>SetShooting(), 1f / _weaponStats.fireRate);
+            this.Delay(() => SetShooting(), 1f / _weaponStats.fireRate);
         }
     }
 

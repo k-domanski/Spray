@@ -29,6 +29,8 @@ public class PursuitAction : Action
 
 
         enemy.velocity = Vector3.ClampMagnitude(enemy.velocity + steering, enemy.settings.maxSpeed);
+        if (enemy.velocity.magnitude > 0.5f)
+            enemy.transform.LookAt(enemy.transform.position + enemy.velocity.normalized);
     }
 
     private Vector3 Queue(Enemy enemy, Vector3 steering)
@@ -43,7 +45,7 @@ public class PursuitAction : Action
             breakForce -= velocity;
 
             //if (Vector3.Distance(enemy.transform.position, neighbour.transform.position) <= enemy.settings.maxQueueRadius)
-              //  enemy.velocity *= 0.3f;
+            //  enemy.velocity *= 0.3f;
         }
 
         return breakForce;

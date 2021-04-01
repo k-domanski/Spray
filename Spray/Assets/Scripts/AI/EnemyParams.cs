@@ -8,4 +8,6 @@ public class EnemyParams : ScriptableObject
     public float mass;
     public float maxQueueAhead;
     public float maxQueueRadius;
+    public float shootingRange;
+    public float maxRotationSpeed;
 }
