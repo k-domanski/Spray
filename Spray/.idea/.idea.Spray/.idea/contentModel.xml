@@ -8,10 +8,23 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="AI" t="Include">
+            <e p="Action.cs" t="Include" />
             <e p="Agent.cs" t="Include" />
+            <e p="AIManager.cs" t="Include" />
+            <e p="Decision.cs" t="Include" />
+            <e p="Enemy.cs" t="Include" />
             <e p="EnemyParams.cs" t="Include" />
+            <e p="OutOfRangeDecision.cs" t="Include" />
+            <e p="PursuitAction.cs" t="Include" />
+            <e p="SeekAction.cs" t="Include" />
+            <e p="ShootDecision.cs" t="Include" />
+            <e p="ShootingAction.cs" t="Include" />
+            <e p="State.cs" t="Include" />
+            <e p="StateController.cs" t="Include" />
             <e p="Target.cs" t="Include" />
+            <e p="Transition.cs" t="Include" />
           </e>
+          <e p="Bilboard.cs" t="Include" />
           <e p="BloodFX.cs" t="Include" />
           <e p="Camera" t="Include">
             <e p="CameraController.cs" t="Include" />
@@ -23,6 +36,7 @@
           <e p="EnemyVisuals.cs" t="Include" />
           <e p="EnemyVisualsData.cs" t="Include" />
           <e p="Extensions.cs" t="Include" />
+          <e p="FPSDisplay.cs" t="Include" />
           <e p="GameScene.cs" t="Include" />
           <e p="Input" t="Include">
             <e p="InputManager.cs" t="Include" />
