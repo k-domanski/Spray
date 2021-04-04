@@ -12,7 +12,7 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private float _speed;
     [SerializeField] private float _duration;
 
-    [Range(0, 1)]
+    //[Range(0, 1)]
     [SerializeField] private float _knockback;
 
     [Header("Recoil")]
