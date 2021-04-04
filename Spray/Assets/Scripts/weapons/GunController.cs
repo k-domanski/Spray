@@ -25,13 +25,14 @@ public class GunController : MonoBehaviour
     #endregion
 
     #region Public
-    public void Shoot(Vector3 aimDirection, float time)
+    public void Shoot(Vector3 aimDirection, float time = 0f)
     {
         if (_canShoot)
         {
             _muzzleFlash.gameObject.SetActive(true);
             _canShoot = false;
-            _shotAudio.Play();
+            if (_shotAudio != null)
+                _shotAudio.Play();
 
             var dir = CalculateRecoil(aimDirection, time);
             _weaponStats.CreateProjectile(_muzzlePoint.position, dir);
