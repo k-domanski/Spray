@@ -13,6 +13,7 @@ public class RaycastBullets : MonoBehaviour
     private Vector3 _direction;
     private float _speed;
     private float _duration;
+    private float _knockback;
     private bool _destroyNextFrame = false;
     private LayerMask _layer;
 
@@ -45,9 +46,11 @@ public class RaycastBullets : MonoBehaviour
             var livingEntity = hitInfo.transform.GetComponent<LivingEntity>();
             if (livingEntity != null)
             {
+                var enemy = hitInfo.transform.GetComponent<Enemy>();
                 var dir = (livingEntity.transform.position - transform.position).normalized;
                 dir.y = 0.0f;
                 livingEntity.DealDamage(_damage, dir);
+                enemy.Knockback(dir, _knockback);
             }
             else
             {
@@ -79,7 +82,7 @@ public class RaycastBullets : MonoBehaviour
         }
     }
 
-    public void Fire(Vector3 direction, float speed, float duration)
+    public void Fire(Vector3 direction, float speed, float duration, float knockback)
     {
         if (gameObject.activeSelf)
         {
@@ -89,6 +92,7 @@ public class RaycastBullets : MonoBehaviour
         _direction = direction;
         _speed = speed;
         _duration = duration;
+        _knockback = knockback;
         gameObject.SetActive(true);
         Destroy(gameObject, _duration);
     }

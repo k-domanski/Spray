@@ -10,4 +10,7 @@ public class EnemyParams : ScriptableObject
     public float maxQueueRadius;
     public float shootingRange;
     public float maxRotationSpeed;
+
+    [Header("Knockback")]
+    public float speedRecovery;
 }

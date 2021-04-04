@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     private AudioSource _audio;
     private GunController _gunController;
     private bool _isShooting = false;
+    private float _time = 0;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -43,7 +44,12 @@ public class Player : MonoBehaviour
     {
         if (_isShooting)
         {
-            _gunController.Shoot(_playerController.aimDirection);
+            _time += Time.deltaTime;
+            _gunController.Shoot(_playerController.aimDirection, _time);
+        }
+        else
+        {
+            _time = 0;
         }
     }
 

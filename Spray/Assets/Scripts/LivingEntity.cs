@@ -23,6 +23,7 @@ public class LivingEntity : MonoBehaviour
             onHealthChanged?.Invoke(oldHealth, value);
         }
     }
+
     #endregion
 
     #region Events
