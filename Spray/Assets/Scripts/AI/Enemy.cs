@@ -26,5 +26,14 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody.velocity = velocity;
+        //Debug.Log($"{velocity}");
+    }
+
+    public void Knockback(Vector3 direction, float power)
+    {
+        var amount = (power * settings.maxSpeed);
+        //_rigidbody.AddForce(amount * direction, ForceMode.VelocityChange);
+        //_rigidbody.AddForce(amount * direction, ForceMode.Impulse);
+        _rigidbody.AddForce(amount * -velocity, ForceMode.Impulse);
     }
 }
