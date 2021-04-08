@@ -5064,15 +5064,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1129154382302990664, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.06615776
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1129154382302990664, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.06615776
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1129154382302990664, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.06615776
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1129154382302990664, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5106,6 +5106,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2501172262349471450, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 1764025462}
     - target: {fileID: 2539172926316561900, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1

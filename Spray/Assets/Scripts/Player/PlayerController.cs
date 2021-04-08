@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 [RequireComponent(typeof(Player))]
 public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
@@ -7,9 +9,17 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
     #region Properties
     [SerializeField] private LayerMask _mouseHitLayer;
     [SerializeField] private CameraController _cameraController;
+    [SerializeField] private GameObject _gunPoint;
+    [SerializeField] private TextMeshProUGUI _weaponName;
     public Vector3 moveDirection { get; private set; } = Vector3.zero;
     public Vector3 aimDirection { get; private set; } = Vector3.forward;
     public float cameraRotationDirection { get; private set; } = 0.0f;
+    
+    //Weapon switching variables
+    public int totalWeapons = 1;
+    public int currentWeaponIndex = 0;
+    public GameObject[] guns;
+    public GameObject currentGun;
     #endregion
 
     #region Private
@@ -26,6 +36,24 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
         _player = GetComponent<Player>();
         _camera = Camera.main;
     }
+
+    private void Start()
+    {
+        totalWeapons = _gunPoint.transform.childCount;
+        guns = new GameObject[totalWeapons];
+
+        for (int i = 0; i < totalWeapons; i++)
+        {
+            guns[i] = _gunPoint.transform.GetChild(i).gameObject;
+            guns[i].SetActive(false);
+        }
+        
+        guns[1].SetActive(true);
+        currentGun = guns[1];
+        currentWeaponIndex = 1;
+        _weaponName.text = guns[1].name;
+    }
+
     private void FixedUpdate()
     {
         aimDirection = AdjustToCamera(_aimOffset);
@@ -96,6 +124,27 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
         {
             cameraRotationDirection = 0.0f;
             _cameraController.RotateCamera(cameraRotationDirection);
+        }
+    }
+
+    public void OnWeaponSwitch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (currentWeaponIndex < totalWeapons - 1)
+            {
+                guns[currentWeaponIndex].SetActive(false);
+                currentWeaponIndex += 1;
+                guns[currentWeaponIndex].SetActive(true);
+            }
+            else if (currentWeaponIndex > 0)
+            {
+                guns[currentWeaponIndex].SetActive(false);
+                currentWeaponIndex -= 1;
+                guns[currentWeaponIndex].SetActive(true);
+            }
+
+            _weaponName.text = guns[currentWeaponIndex].name;
         }
     }
 
