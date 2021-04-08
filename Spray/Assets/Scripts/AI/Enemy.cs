@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(StateController))]
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(LivingEntity))]
 public class Enemy : MonoBehaviour
 {
     public EnemyParams settings;
@@ -15,21 +16,37 @@ public class Enemy : MonoBehaviour
     public Vector3 velocity { get; set; } = Vector3.zero;
     public float speed => settings.maxSpeed - _speedReduction;
 
+    private LivingEntity _livingEntity;
+
     private float _speedReduction = 1.0f;
     private Coroutine _slowCoroutine;
+
 
     private void Awake()
     {
         stateController = GetComponent<StateController>();
         _rigidbody = GetComponent<Rigidbody>();
         gunController = GetComponent<GunController>();
+        _livingEntity = GetComponent<LivingEntity>();
     }
 
     private void Start()
     {
+        _livingEntity.maxHealth = settings.maxHealth;
+        _livingEntity.currentHealth = settings.maxHealth;
         _rigidbody.mass = settings.mass;
         _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
         target = FindObjectOfType<Player>();
+    }
+
+    private void OnEnable()
+    {
+        _livingEntity.onDeath.AddListener(Die);
+    }
+
+    private void OnDisable()
+    {
+        _livingEntity.onDeath.RemoveListener(Die);
     }
 
     private void FixedUpdate()
@@ -64,8 +81,10 @@ public class Enemy : MonoBehaviour
         _slowCoroutine = null;
     }
 
-    public void Die()
+    public void Die(LivingEntity entity)
     {
+        if(entity != _livingEntity)
+            return;
         Systems.aiManager.enemies.Remove(this);
         gameObject.SetActive(false);
     }

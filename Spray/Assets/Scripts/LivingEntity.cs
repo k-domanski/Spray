@@ -7,7 +7,11 @@ public class LivingEntity : MonoBehaviour
     #region Properties
     [SerializeField] private float _currentHealth;
     [SerializeField] private float _maxHealth;
-    public float maxHealth { get { return _maxHealth; } }
+    public float maxHealth
+    {
+        get => _maxHealth;
+        set => _maxHealth = value;
+    }
     public float currentHealth
     {
         get => _currentHealth;
