@@ -39,19 +39,19 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
 
     private void Start()
     {
-        totalWeapons = _gunPoint.transform.childCount;
-        guns = new GameObject[totalWeapons];
-
-        for (int i = 0; i < totalWeapons; i++)
-        {
-            guns[i] = _gunPoint.transform.GetChild(i).gameObject;
-            guns[i].SetActive(false);
-        }
-        
-        guns[1].SetActive(true);
-        currentGun = guns[1];
-        currentWeaponIndex = 1;
-        _weaponName.text = guns[1].name;
+        //totalWeapons = _gunPoint.transform.childCount;
+        //guns = new GameObject[totalWeapons];
+        //
+        //for (int i = 0; i < totalWeapons; i++)
+        //{
+        //    guns[i] = _gunPoint.transform.GetChild(i).gameObject;
+        //    guns[i].SetActive(false);
+        //}
+        //
+        //guns[1].SetActive(true);
+        //currentGun = guns[1];
+        //currentWeaponIndex = 1;
+        //_weaponName.text = guns[1].name;
     }
 
     private void FixedUpdate()
