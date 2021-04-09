@@ -10,6 +10,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private Transform _muzzlePoint;
     [SerializeField] private AudioSource _shotAudio;
     [SerializeField] private ParticleSystem _muzzleFlash;
+    public WeaponStats weaponStats => _weaponStats;
     #endregion
 
     #region Private

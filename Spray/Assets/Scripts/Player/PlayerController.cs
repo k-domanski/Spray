@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
     public Vector3 moveDirection { get; private set; } = Vector3.zero;
     public Vector3 aimDirection { get; private set; } = Vector3.forward;
     public float cameraRotationDirection { get; private set; } = 0.0f;
-    
+
     //Weapon switching variables
     public int totalWeapons = 1;
     public int currentWeaponIndex = 0;
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
             guns[i] = _gunPoint.transform.GetChild(i).gameObject;
             guns[i].SetActive(false);
         }
-        
+
         guns[1].SetActive(true);
         currentGun = guns[1];
         currentWeaponIndex = 1;
