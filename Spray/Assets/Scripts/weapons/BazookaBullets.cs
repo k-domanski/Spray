@@ -1,14 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-public class RaycastBullets : ProjectileBehaviourBase
+public class BazookaBullets : ProjectileBehaviourBase
 {
     [SerializeField] private TrailRenderer _trail;
     [SerializeField] private ParticleSystem _particle;
-    
-
+    [SerializeField] private GameObject _explosionPrefab;
+    [SerializeField] private float _explosionRange = 5f;
     private void Awake()
     {
         if (_trail != null)
@@ -62,21 +62,21 @@ public class RaycastBullets : ProjectileBehaviourBase
 
     public override void OnProjectileHit(RaycastHit hitInfo)
     {
-        var livingEntity = hitInfo.transform.GetComponent<LivingEntity>();
-        if (livingEntity != null)
+        var entitiesWithinRange = GetEntitiesInRange(hitInfo.point, _explosionRange);
+        foreach(LivingEntity entity in entitiesWithinRange)
         {
-            var enemy = hitInfo.transform.GetComponent<Enemy>();
-            var dir = (livingEntity.transform.position - transform.position).normalized;
-            dir.y = 0.0f;
-            livingEntity.DealDamage(_damage, dir);
-            if(enemy !=null)
-                enemy.Knockback(dir, _knockback);
+            var dir = (entity.transform.position - hitInfo.point).normalized;
+            dir.y = 0;
+            entity.DealDamage(_damage, dir);
         }
-        else
-        {
-            // print(hitInfo.collider.gameObject.layer);
-            if (hitInfo.transform.gameObject.layer == _layer)
-                Systems.decalSystem.PlaceBulletHole(hitInfo.point, hitInfo.normal);
-        }
+        var explo = Instantiate(_explosionPrefab, hitInfo.transform.position, Quaternion.identity);
+        explo.gameObject.SetActive(true);
+    }
+
+    private List<LivingEntity> GetEntitiesInRange(Vector3 center, float range)
+    {
+        var entities = FindObjectsOfType<LivingEntity>().
+            Where(t => Vector3.Distance(t.transform.position, center) < range).ToList();
+        return entities;
     }
 }

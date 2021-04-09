@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="WeaponStats", menuName ="Weapons/WeaponStats")]
 public class WeaponStats : ScriptableObject
 {
-    [SerializeField] private RaycastBullets _projectile;
+    [SerializeField] private ProjectileBehaviourBase _projectile;
     
     [SerializeField] private float _fireRate;
     [SerializeField] private int _damage;
@@ -28,7 +28,7 @@ public class WeaponStats : ScriptableObject
     public float fireRate { get =>_fireRate; } 
     public int damage { get =>_damage; } 
     public float knockback { get =>_knockback; } 
-    public RaycastBullets projectile { get =>_projectile; } 
+    public ProjectileBehaviourBase projectile { get =>_projectile; } 
 
     public bool hasRecoil { get => _hasRecoil; }
 
@@ -44,7 +44,7 @@ public class WeaponStats : ScriptableObject
         projectileObject.transform.localRotation = Quaternion.Lerp(projectileObject.transform.localRotation,
                                                                    targetRotation,
                                                                    1.0f);
-        var projectile = projectileObject.GetComponent<RaycastBullets>();
+        var projectile = projectileObject.GetComponent<ProjectileBehaviourBase>();
         projectile.damage = _damage;
         projectile.Fire(direction, _speed, _duration, _knockback);
     }

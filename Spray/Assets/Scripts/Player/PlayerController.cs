@@ -45,10 +45,10 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
         for (int i = 0; i < totalWeapons; i++)
         {
             guns[i] = _gunPoint.transform.GetChild(i).gameObject;
-            guns[i].SetActive(false);
+            //guns[i].SetActive(false);
         }
 
-        guns[1].SetActive(true);
+        //guns[1].SetActive(true);
         currentGun = guns[1];
         currentWeaponIndex = 1;
         _weaponName.text = guns[1].name;
