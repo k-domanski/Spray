@@ -10,22 +10,23 @@ using Vector3 = UnityEngine.Vector3;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
+    #region Properties
     [SerializeField] private PlayerSettings _playerSettings;
-    // [Header("Player movement")]
-    // [SerializeField] private float _maxRotationSpeed;
-    // [SerializeField] private float _maxMovementSpeed;
-    // [SerializeField] private float _acceleration;
-
     public PlayerSettings playerSettings => _playerSettings;
-
     public Rigidbody _rigidbody { get; private set; }
     public Vector3 velocity => _rigidbody.velocity;
+    #endregion
+
+    #region Private
     private PlayerController _playerController;
     private SimpleShooting _simpleShooting;
     private AudioSource _audio;
     private GunController _gunController;
     private bool _isShooting = false;
     private float _time = 0;
+    #endregion
+
+    #region Messages
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -52,7 +53,9 @@ public class Player : MonoBehaviour
             _time = 0;
         }
     }
+    #endregion
 
+    #region Public
     public void LookAt(Vector3 direction, float deltaTime)
     {
         _rigidbody.rotation = Quaternion.RotateTowards(_rigidbody.rotation,
@@ -73,8 +76,10 @@ public class Player : MonoBehaviour
 
         var acceleration = _playerSettings.acceleration * accelerationBoost;
 
-        Vector3 desiredVelocity = Vector3.MoveTowards(currentVelocity, direction * _playerSettings.maxSpeed, acceleration * deltaTime);
+        //TODO: Reduce speed here
+        var playerSpeed = _playerSettings.maxSpeed - GetSpeedReduction();
 
+        Vector3 desiredVelocity = Vector3.MoveTowards(currentVelocity, direction * playerSpeed, acceleration * deltaTime);
 
         _rigidbody.velocity = desiredVelocity;
 
@@ -97,4 +102,15 @@ public class Player : MonoBehaviour
     {
         _rigidbody.AddForce(direction * force);
     }
+    #endregion
+
+    #region Private Methods
+    private float GetSpeedReduction()
+    {
+        if(!_isShooting)
+            return _gunController.weaponStats.playerBaseSpeedReduction;
+
+        return _gunController.weaponStats.playerSpeedReductionWhileShooting;
+    }
+    #endregion
 }

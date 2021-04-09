@@ -299,6 +299,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 276180310807477474, guid: 4b3b3da30cc884d469d33fae5e9814bd, type: 3}
+      propertyPath: _maxCapacity
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 588323610619083950, guid: 4b3b3da30cc884d469d33fae5e9814bd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1209,11 +1213,6 @@ PrefabInstance:
       objectReference: {fileID: 2055061809}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c00c34e374aab74faaf6837b2432393, type: 3}
---- !u!198 &314074552 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2767243311934661042, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
-  m_PrefabInstance: {fileID: 1827066556}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &374162265
 Mesh:
   m_ObjectHideFlags: 0
@@ -3189,7 +3188,7 @@ PrefabInstance:
     - target: {fileID: 8301820846402503260, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
       propertyPath: _muzzleFlash
       value: 
-      objectReference: {fileID: 314074552}
+      objectReference: {fileID: 1598972810}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
 --- !u!1 &938973630
@@ -4554,6 +4553,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+--- !u!198 &1598972810 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1567396750995797720, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+  m_PrefabInstance: {fileID: 870888000}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1603944984
 Mesh:
   m_ObjectHideFlags: 0

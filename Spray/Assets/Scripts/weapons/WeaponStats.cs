@@ -19,7 +19,11 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private bool _hasRecoil;
     [Range(1f, 200f)]
     [SerializeField] private float _accuracy;
-    
+
+    [Header("Player related")]
+    [SerializeField] private float _playerBaseSpeedReduction;
+    [SerializeField] private float _playerSpeedReductionWhileShooting;
+
 
     public float fireRate { get =>_fireRate; } 
     public int damage { get =>_damage; } 
@@ -29,6 +33,8 @@ public class WeaponStats : ScriptableObject
     public bool hasRecoil { get => _hasRecoil; }
 
     public float accuracy { get => _accuracy; }
+    public float playerBaseSpeedReduction => _playerBaseSpeedReduction;
+    public float playerSpeedReductionWhileShooting => _playerSpeedReductionWhileShooting;
 
     public void CreateProjectile(Vector3 position, Vector3 direction)
     {
