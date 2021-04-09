@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class BazookaBullets : IProjectileBehaviour
+public class BazookaBullets : ProjectileBehaviourBase
 {
     [SerializeField] private TrailRenderer _trail;
     [SerializeField] private ParticleSystem _particle;
     [SerializeField] private GameObject _explosionPrefab;
-
+    [SerializeField] private float _explosionRange = 5f;
     private void Awake()
     {
         if (_trail != null)
@@ -62,7 +62,7 @@ public class BazookaBullets : IProjectileBehaviour
 
     public override void OnProjectileHit(RaycastHit hitInfo)
     {
-        var entitiesWithinRange = FindObjectsOfType<LivingEntity>().Where(t => Vector3.Distance(t.transform.position, hitInfo.point) < 5f).ToList();
+        var entitiesWithinRange = GetEntitiesInRange(hitInfo.point, _explosionRange);
         foreach(LivingEntity entity in entitiesWithinRange)
         {
             var dir = (entity.transform.position - hitInfo.point).normalized;
@@ -71,5 +71,12 @@ public class BazookaBullets : IProjectileBehaviour
         }
         var explo = Instantiate(_explosionPrefab, hitInfo.transform.position, Quaternion.identity);
         explo.gameObject.SetActive(true);
+    }
+
+    private List<LivingEntity> GetEntitiesInRange(Vector3 center, float range)
+    {
+        var entities = FindObjectsOfType<LivingEntity>().
+            Where(t => Vector3.Distance(t.transform.position, center) < range).ToList();
+        return entities;
     }
 }

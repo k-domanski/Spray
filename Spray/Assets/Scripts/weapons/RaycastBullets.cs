@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastBullets : IProjectileBehaviour
+public class RaycastBullets : ProjectileBehaviourBase
 {
     [SerializeField] private TrailRenderer _trail;
     [SerializeField] private ParticleSystem _particle;

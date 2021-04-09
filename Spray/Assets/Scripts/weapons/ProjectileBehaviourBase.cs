@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class IProjectileBehaviour : MonoBehaviour
+public abstract class ProjectileBehaviourBase : MonoBehaviour
 {
     public int damage { get => _damage; set { _damage = value; } }
 
