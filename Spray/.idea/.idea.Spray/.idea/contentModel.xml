@@ -50,6 +50,7 @@
             <e p="PlayerSettings.cs" t="Include" />
           </e>
           <e p="SimpleShooting.cs" t="Include" />
+          <e p="Spawner.cs" t="Include" />
           <e p="Systems" t="Include">
             <e p="ApplicationState.cs" t="Include" />
             <e p="AudioManager.cs" t="Include" />
@@ -59,7 +60,9 @@
             <e p="Systems.cs" t="Include" />
           </e>
           <e p="weapons" t="Include">
+            <e p="BazookaBullets.cs" t="Include" />
             <e p="GunController.cs" t="Include" />
+            <e p="ProjectileBehaviourBase.cs" t="Include" />
             <e p="RaycastBullets.cs" t="Include" />
             <e p="WeaponStats.cs" t="Include" />
           </e>
