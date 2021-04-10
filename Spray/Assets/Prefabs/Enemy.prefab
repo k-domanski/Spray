@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e9b249569a5c6a4893d348c275aa077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponStats: {fileID: 11400000, guid: abb4872146c19d941b866383172cba2b, type: 2}
+  _weaponStats: {fileID: 11400000, guid: ac3a8ab0a7ca8444b871125691898bfa, type: 2}
   _muzzlePoint: {fileID: 316268268246391510}
   _shotAudio: {fileID: 4767938239830560007}
   _muzzleFlash: {fileID: 7418973509067188909}
@@ -325,28 +325,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7217554813560272461, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7217554813560272461, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7217554813560272461, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7217554813560272461, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7217554813560272461, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.149
       objectReference: {fileID: 0}
     - target: {fileID: 7217554813560272461, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.855
       objectReference: {fileID: 0}
     - target: {fileID: 7217554813560272461, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
       propertyPath: m_LocalRotation.w

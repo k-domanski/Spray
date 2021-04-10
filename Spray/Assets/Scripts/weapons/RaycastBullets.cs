@@ -43,8 +43,7 @@ public class RaycastBullets : MonoBehaviour
 
         if (Physics.Raycast(origin, _direction, out hitInfo, distance))
         {
-            var livingEntity = hitInfo.transform.GetComponent<LivingEntity>();
-            if (livingEntity != null)
+            if (hitInfo.transform.TryGetComponent<LivingEntity>(out var livingEntity))
             {
                 var enemy = hitInfo.transform.GetComponent<Enemy>();
                 var dir = (livingEntity.transform.position - transform.position).normalized;

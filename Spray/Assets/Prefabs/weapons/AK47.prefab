@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponStats: {fileID: 11400000, guid: abb4872146c19d941b866383172cba2b, type: 2}
-  _muzzlePoint: {fileID: 0}
+  _muzzlePoint: {fileID: 274546802429592987}
   _shotAudio: {fileID: 5010219527906972234}
   _muzzleFlash: {fileID: 7014782573037450720}
 --- !u!82 &5010219527906972234
@@ -107,7 +107,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0387d7127ca4706488635c23be0001e3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -263,6 +263,26 @@ PrefabInstance:
     - target: {fileID: 776164009892377836, guid: 4b3069eeb13305a4fb13a92d26639350, type: 3}
       propertyPath: m_Name
       value: MuzzleFlash
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990565534234089456, guid: 4b3069eeb13305a4fb13a92d26639350, type: 3}
+      propertyPath: lengthInSec
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990565534234089456, guid: 4b3069eeb13305a4fb13a92d26639350, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990565534234089456, guid: 4b3069eeb13305a4fb13a92d26639350, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990565534234089456, guid: 4b3069eeb13305a4fb13a92d26639350, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680246634964103819, guid: 4b3069eeb13305a4fb13a92d26639350, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5171336199614118407, guid: 4b3069eeb13305a4fb13a92d26639350, type: 3}
       propertyPath: m_RootOrder

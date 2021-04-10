@@ -56,6 +56,8 @@ public class Enemy : MonoBehaviour
 
     public void Knockback(Vector3 direction, float power)
     {
+        if(!gameObject.activeInHierarchy)
+            return;
         _rigidbody.AddForce(power * -velocity.normalized, ForceMode.Impulse);
         if (_slowCoroutine == null)
         {
@@ -85,6 +87,7 @@ public class Enemy : MonoBehaviour
     {
         if(entity != _livingEntity)
             return;
+        StopAllCoroutines();
         Systems.aiManager.enemies.Remove(this);
         gameObject.SetActive(false);
     }

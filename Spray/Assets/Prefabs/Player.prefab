@@ -764,34 +764,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AK47
       objectReference: {fileID: 0}
-    - target: {fileID: 5010219527906972234, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
-      propertyPath: m_Volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5367893856096644301, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
-      propertyPath: _muzzlePoint
-      value: 
-      objectReference: {fileID: 4967989806723666377}
-    - target: {fileID: 6914236291688124571, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
-      propertyPath: m_RenderAlignment
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014782573037450720, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
-      propertyPath: lengthInSec
-      value: 0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014782573037450720, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
-      propertyPath: LightsModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014782573037450720, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014782573037450720, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 7217554813560272461, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -841,11 +813,6 @@ PrefabInstance:
 --- !u!4 &2528592418083971615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7217554813560272461, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
-  m_PrefabInstance: {fileID: 5133745911340438610}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4967989806723666377 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 274546802429592987, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
   m_PrefabInstance: {fileID: 5133745911340438610}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5380969369460549197

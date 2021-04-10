@@ -19,7 +19,8 @@ public class GunController : MonoBehaviour
     #region Messages
     private void Awake()
     {
-        _shotAudio = GetComponent<AudioSource>();
+        if (_shotAudio == null)
+            _shotAudio = GetComponent<AudioSource>();
         _muzzleFlash.gameObject.SetActive(false);
     }
     #endregion
@@ -36,7 +37,7 @@ public class GunController : MonoBehaviour
 
             var dir = CalculateRecoil(aimDirection, time);
             _weaponStats.CreateProjectile(_muzzlePoint.position, dir);
-            this.Delay(()=>SetShooting(), 1f / _weaponStats.fireRate);
+            this.Delay(() => SetShooting(), 1f / _weaponStats.fireRate);
         }
     }
     #endregion
