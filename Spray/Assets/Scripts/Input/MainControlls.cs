@@ -60,9 +60,9 @@ public class @MainControlls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""WeaponSwitch"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""f6ada947-e88b-49cc-a1f2-b9f7d22970e8"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -245,37 +245,37 @@ public class @MainControlls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""28259079-6b1e-4385-8190-a81ac019a84b"",
-                    ""path"": ""1DAxis"",
+                    ""name"": """",
+                    ""id"": ""407f4e4b-8b1c-45ae-9f1b-9e98f8e1019e"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""WeaponSwitch"",
-                    ""isComposite"": true,
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""6989c0ef-6099-416e-ab56-907002d85b54"",
-                    ""path"": ""<Keyboard>/1"",
+                    ""name"": """",
+                    ""id"": ""285f0b04-20dd-4dfd-a5d5-4a1109f1b862"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""WeaponSwitch"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""d9756035-49dc-471f-8891-3787e6ea556c"",
-                    ""path"": ""<Keyboard>/2"",
+                    ""name"": """",
+                    ""id"": ""2bcfb8aa-249c-46df-855d-0d9abb77c72a"",
+                    ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""WeaponSwitch"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 }
             ]
         }

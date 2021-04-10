@@ -528,6 +528,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c88f8975e4f0bf4dad61c668fdbb120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &122814979 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 954813361116936351, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+  m_PrefabInstance: {fileID: 1827066556}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9b249569a5c6a4893d348c275aa077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &224170830
 Mesh:
   m_ObjectHideFlags: 0
@@ -4736,6 +4747,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+--- !u!114 &1548367381 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5367893856096644301, guid: f8dbecc53b4dacd4b9f7f157a15ddbb4, type: 3}
+  m_PrefabInstance: {fileID: 1681316085}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9b249569a5c6a4893d348c275aa077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &1598972810 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1567396750995797720, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
@@ -5126,6 +5148,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8dbecc53b4dacd4b9f7f157a15ddbb4, type: 3}
+--- !u!114 &1689511078 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8588755703038638670, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+  m_PrefabInstance: {fileID: 1827066556}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1764025459
 GameObject:
   m_ObjectHideFlags: 0
@@ -5414,6 +5447,22 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5020966971749737457, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: _weaponName
+      value: 
+      objectReference: {fileID: 1689511078}
+    - target: {fileID: 5020966971749737457, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: _guns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020966971749737457, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: _guns.Array.data[0]
+      value: 
+      objectReference: {fileID: 122814979}
+    - target: {fileID: 5020966971749737457, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: _guns.Array.data[1]
+      value: 
+      objectReference: {fileID: 1548367381}
     - target: {fileID: 5020966971749737458, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_Name
       value: Player
