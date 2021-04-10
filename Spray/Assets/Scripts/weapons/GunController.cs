@@ -10,6 +10,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private Transform _muzzlePoint;
     [SerializeField] private AudioSource _shotAudio;
     [SerializeField] private ParticleSystem _muzzleFlash;
+    public WeaponStats weaponStats => _weaponStats;
     #endregion
 
     #region Private
@@ -26,6 +27,16 @@ public class GunController : MonoBehaviour
     #endregion
 
     #region Public
+    public void Equip()
+    {
+        gameObject.SetActive(true);
+        SetShooting();
+    }
+    public void Unequip()
+    {
+        _muzzleFlash.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+    }
     public void Shoot(Vector3 aimDirection, float time = 0f)
     {
         if (_canShoot)

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="WeaponStats", menuName ="Weapons/WeaponStats")]
 public class WeaponStats : ScriptableObject
 {
-    [SerializeField] private RaycastBullets _projectile;
+    [SerializeField] private ProjectileBehaviourBase _projectile;
     
     [SerializeField] private float _fireRate;
     [SerializeField] private int _damage;
@@ -19,16 +19,22 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private bool _hasRecoil;
     [Range(1f, 200f)]
     [SerializeField] private float _accuracy;
-    
+
+    [Header("Player related")]
+    [SerializeField] private float _playerBaseSpeedReduction;
+    [SerializeField] private float _playerSpeedReductionWhileShooting;
+
 
     public float fireRate { get =>_fireRate; } 
     public int damage { get =>_damage; } 
     public float knockback { get =>_knockback; } 
-    public RaycastBullets projectile { get =>_projectile; } 
+    public ProjectileBehaviourBase projectile { get =>_projectile; } 
 
     public bool hasRecoil { get => _hasRecoil; }
 
     public float accuracy { get => _accuracy; }
+    public float playerBaseSpeedReduction => _playerBaseSpeedReduction;
+    public float playerSpeedReductionWhileShooting => _playerSpeedReductionWhileShooting;
 
     public void CreateProjectile(Vector3 position, Vector3 direction)
     {
@@ -38,7 +44,7 @@ public class WeaponStats : ScriptableObject
         projectileObject.transform.localRotation = Quaternion.Lerp(projectileObject.transform.localRotation,
                                                                    targetRotation,
                                                                    1.0f);
-        var projectile = projectileObject.GetComponent<RaycastBullets>();
+        var projectile = projectileObject.GetComponent<ProjectileBehaviourBase>();
         projectile.damage = _damage;
         projectile.Fire(direction, _speed, _duration, _knockback);
     }
