@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692634
+  m_Name: pb_Mesh-1434
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -303,6 +303,14 @@ PrefabInstance:
       propertyPath: _maxCapacity
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 276180310807477474, guid: 4b3b3da30cc884d469d33fae5e9814bd, type: 3}
+      propertyPath: _sizeRange.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 276180310807477474, guid: 4b3b3da30cc884d469d33fae5e9814bd, type: 3}
+      propertyPath: _sizeRange.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 588323610619083950, guid: 4b3b3da30cc884d469d33fae5e9814bd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -359,7 +367,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692706
+  m_Name: pb_Mesh-1506
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -545,7 +553,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692550
+  m_Name: pb_Mesh-1350
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -709,7 +717,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692562
+  m_Name: pb_Mesh-1362
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1230,7 +1238,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692466
+  m_Name: pb_Mesh-1266
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1394,7 +1402,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692478
+  m_Name: pb_Mesh-1278
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1607,6 +1615,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5886428415618419807, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
 --- !u!1 &432861416
@@ -1710,7 +1722,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692574
+  m_Name: pb_Mesh-1374
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1923,6 +1935,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yellow Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
 --- !u!43 &496852646
@@ -1931,7 +1947,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692694
+  m_Name: pb_Mesh-1494
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2096,6 +2112,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4532758239329103861, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+      propertyPath: _weaponStats
+      value: 
+      objectReference: {fileID: 11400000, guid: ac3a8ab0a7ca8444b871125691898bfa, type: 2}
     - target: {fileID: 5886428415618419802, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2143,6 +2163,10 @@ PrefabInstance:
     - target: {fileID: 5886428415618419807, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
       propertyPath: m_Name
       value: Blue Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886428415618419807, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
@@ -2201,6 +2225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
 --- !u!1001 &630595199
@@ -2258,6 +2286,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SplatController
       objectReference: {fileID: 0}
+    - target: {fileID: 5899515840678548367, guid: 659677a2eea9f644aa9fdf80e7ed1f1e, type: 3}
+      propertyPath: _sizeRange.x
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 659677a2eea9f644aa9fdf80e7ed1f1e, type: 3}
 --- !u!43 &633761462
@@ -2266,7 +2298,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692526
+  m_Name: pb_Mesh-1326
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2439,7 +2471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &677675053
 Transform:
   m_ObjectHideFlags: 0
@@ -2464,7 +2496,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692454
+  m_Name: pb_Mesh-1254
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2677,6 +2709,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yellow Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
 --- !u!43 &737918924
@@ -2685,7 +2721,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692490
+  m_Name: pb_Mesh-1290
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2849,7 +2885,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692742
+  m_Name: pb_Mesh-1542
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3061,7 +3097,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692538
+  m_Name: pb_Mesh-1338
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3274,6 +3310,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4532758239329103861, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+      propertyPath: _weaponStats
+      value: 
+      objectReference: {fileID: 11400000, guid: ac3a8ab0a7ca8444b871125691898bfa, type: 2}
     - target: {fileID: 5886428415618419802, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -3321,6 +3361,10 @@ PrefabInstance:
     - target: {fileID: 5886428415618419807, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
       propertyPath: m_Name
       value: Blue Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886428415618419807, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8301820846402503260, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
       propertyPath: _shotAudio
@@ -3381,7 +3425,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692670
+  m_Name: pb_Mesh-1470
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3593,7 +3637,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692598
+  m_Name: pb_Mesh-1398
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3757,7 +3801,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692502
+  m_Name: pb_Mesh-1302
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3970,6 +4014,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yellow Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
 --- !u!1001 &1291741516
@@ -4027,6 +4075,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
 --- !u!43 &1334145628
@@ -4035,7 +4087,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692622
+  m_Name: pb_Mesh-1422
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4199,7 +4251,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692514
+  m_Name: pb_Mesh-1314
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4363,7 +4415,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692646
+  m_Name: pb_Mesh-1446
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4532,7 +4584,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692730
+  m_Name: pb_Mesh-1530
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4745,6 +4797,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
 --- !u!114 &1548367381 stripped
@@ -4769,7 +4825,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692658
+  m_Name: pb_Mesh-1458
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4933,7 +4989,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692586
+  m_Name: pb_Mesh-1386
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5314,6 +5370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: b731299a8db696940939a8df5f953aba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b731299a8db696940939a8df5f953aba, type: 3}
 --- !u!1001 &1827066556
@@ -5579,7 +5639,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692682
+  m_Name: pb_Mesh-1482
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5743,7 +5803,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692718
+  m_Name: pb_Mesh-1518
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5907,7 +5967,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1692610
+  m_Name: pb_Mesh-1410
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6120,6 +6180,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: b731299a8db696940939a8df5f953aba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b731299a8db696940939a8df5f953aba, type: 3}
 --- !u!1001 &2132207799
@@ -6176,6 +6240,10 @@ PrefabInstance:
     - target: {fileID: 505518373132354958, guid: b731299a8db696940939a8df5f953aba, type: 3}
       propertyPath: m_Name
       value: Red Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: b731299a8db696940939a8df5f953aba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b731299a8db696940939a8df5f953aba, type: 3}

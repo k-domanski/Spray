@@ -9,13 +9,18 @@ public class BazookaBullets : ProjectileBehaviourBase
     [SerializeField] private ParticleSystem _particle;
     [SerializeField] private GameObject _explosionPrefab;
     [SerializeField] private float _explosionRange = 5f;
+    private GameObject _explosion;
+    
+    /*Debug projectile radius gizmo*/
+    private Vector3 origintest;
+    /*-----------------------------*/
+    
     private void Awake()
     {
         if (_trail != null)
         {
             _trail.startWidth = transform.localScale.x;
         }
-
         _layer = LayerMask.NameToLayer("Level");
         gameObject.SetActive(false);
     }
@@ -30,19 +35,28 @@ public class BazookaBullets : ProjectileBehaviourBase
 
         Vector3 origin = transform.position + _direction * (transform.localScale.x / 2.0f);
         float distance = _speed * Time.fixedDeltaTime;
+        
+        /*Debug projectile radius gizmo*/
+        origintest = origin;
+        /*-----------------------------*/
 
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(origin, _direction, out hitInfo, distance))
+        if (Physics.SphereCast(origin,_raycastRadius, _direction, out hitInfo, distance))
         {
             OnProjectileHit(hitInfo);
-
             distance = hitInfo.distance;
             _destroyNextFrame = true;
         }
-
         transform.Translate(_direction * distance, Space.World);
     }
+
+    /*Debug projectile radius gizmo*/
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(origintest, _raycastRadius);
+    }
+    /*-----------------------------*/
 
     private void DestroyProjectile()
     {
@@ -58,6 +72,7 @@ public class BazookaBullets : ProjectileBehaviourBase
         {
             Destroy(this.gameObject);
         }
+        Destroy(_explosion, 0.2f);
     }
 
     public override void OnProjectileHit(RaycastHit hitInfo)
@@ -69,8 +84,8 @@ public class BazookaBullets : ProjectileBehaviourBase
             dir.y = 0;
             entity.DealDamage(_damage, dir);
         }
-        var explo = Instantiate(_explosionPrefab, hitInfo.transform.position, Quaternion.identity);
-        explo.gameObject.SetActive(true);
+        _explosion = Instantiate(_explosionPrefab, hitInfo.point, Quaternion.identity);
+        _explosion.gameObject.SetActive(true);
     }
 
     private List<LivingEntity> GetEntitiesInRange(Vector3 center, float range)

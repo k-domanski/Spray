@@ -11,6 +11,7 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private int _damage;
     [SerializeField] private float _speed;
     [SerializeField] private float _duration;
+    [SerializeField] private float _projectileRaycastRadius;
 
     //[Range(0, 1)]
     [SerializeField] private float _knockback;
@@ -23,6 +24,8 @@ public class WeaponStats : ScriptableObject
     [Header("Player related")]
     [SerializeField] private float _playerBaseSpeedReduction;
     [SerializeField] private float _playerSpeedReductionWhileShooting;
+
+    [SerializeField] private string _ownerLayer;
 
 
     public float fireRate { get =>_fireRate; } 
@@ -45,7 +48,9 @@ public class WeaponStats : ScriptableObject
                                                                    targetRotation,
                                                                    1.0f);
         var projectile = projectileObject.GetComponent<ProjectileBehaviourBase>();
+        projectile.raycastRadius = _projectileRaycastRadius;
         projectile.damage = _damage;
+        projectile.ownerLayer = LayerMask.NameToLayer(_ownerLayer);
         projectile.Fire(direction, _speed, _duration, _knockback);
     }
 }

@@ -300,7 +300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1081714908757465703, guid: 55be8b7f3c9764541bd19007d732651a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55be8b7f3c9764541bd19007d732651a, type: 3}
@@ -319,6 +319,10 @@ PrefabInstance:
     - target: {fileID: 3666564383040089781, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
       propertyPath: m_Name
       value: AK47
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666564383040089781, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7217554813560272461, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
       propertyPath: m_RootOrder
