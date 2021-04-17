@@ -1607,6 +1607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5886428415618419807, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
 --- !u!1 &432861416
@@ -1923,6 +1927,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yellow Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
 --- !u!43 &496852646
@@ -2144,6 +2152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5886428415618419807, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
 --- !u!1001 &601744319
@@ -2200,6 +2212,10 @@ PrefabInstance:
     - target: {fileID: 505518373132354958, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
       propertyPath: m_Name
       value: Green Enemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
@@ -2439,7 +2455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &677675053
 Transform:
   m_ObjectHideFlags: 0
@@ -2676,6 +2692,10 @@ PrefabInstance:
     - target: {fileID: 505518373132354958, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
       propertyPath: m_Name
       value: Yellow Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
@@ -3321,6 +3341,10 @@ PrefabInstance:
     - target: {fileID: 5886428415618419807, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
       propertyPath: m_Name
       value: Blue Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886428415618419807, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8301820846402503260, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
       propertyPath: _shotAudio
@@ -3970,6 +3994,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yellow Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
 --- !u!1001 &1291741516
@@ -4026,6 +4054,10 @@ PrefabInstance:
     - target: {fileID: 505518373132354958, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
       propertyPath: m_Name
       value: Green Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
@@ -4745,6 +4777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
 --- !u!114 &1548367381 stripped
@@ -5237,7 +5273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764025459}
   m_LocalRotation: {x: 0.27984816, y: -0.3647052, z: 0.1159169, w: 0.88047624}
-  m_LocalPosition: {x: 10.737669, y: 19.17767, z: -17.817669}
+  m_LocalPosition: {x: 10.737669, y: 18.17767, z: -17.817669}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5313,6 +5349,10 @@ PrefabInstance:
     - target: {fileID: 505518373132354958, guid: b731299a8db696940939a8df5f953aba, type: 3}
       propertyPath: m_Name
       value: Red Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: b731299a8db696940939a8df5f953aba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b731299a8db696940939a8df5f953aba, type: 3}
@@ -5477,7 +5517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5020966971749737460, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5020966971749737460, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6120,6 +6160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: b731299a8db696940939a8df5f953aba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b731299a8db696940939a8df5f953aba, type: 3}
 --- !u!1001 &2132207799
@@ -6176,6 +6220,10 @@ PrefabInstance:
     - target: {fileID: 505518373132354958, guid: b731299a8db696940939a8df5f953aba, type: 3}
       propertyPath: m_Name
       value: Red Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 505518373132354958, guid: b731299a8db696940939a8df5f953aba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b731299a8db696940939a8df5f953aba, type: 3}

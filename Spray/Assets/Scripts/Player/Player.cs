@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     #region Properties
     [SerializeField] private PlayerSettings _playerSettings;
     [SerializeField] private TextMeshProUGUI _weaponName;
-    [SerializeField]private List<GunController> _guns;
+    [SerializeField] private List<GunController> _guns;
     public PlayerSettings playerSettings => _playerSettings;
     public Rigidbody _rigidbody { get; private set; }
     public Vector3 velocity => _rigidbody.velocity;
@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     private SimpleShooting _simpleShooting;
     private AudioSource _audio;
     private GunController _currentWeapon;
+    private Animator _animator;
     private bool _isShooting = false;
     private float _time = 0;
     private int _weaponIndex;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
         _playerController = GetComponent<PlayerController>();
         _simpleShooting = GetComponent<SimpleShooting>();
         _audio = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
 
         _currentWeapon = mainWeapon;
         mainWeapon.Equip();
@@ -91,7 +93,7 @@ public class Player : MonoBehaviour
         var playerSpeed = _playerSettings.maxSpeed - GetSpeedReduction();
 
         Vector3 desiredVelocity = Vector3.MoveTowards(currentVelocity, direction * playerSpeed, acceleration * deltaTime);
-
+        AdjustAnimation(desiredDirection, transform.forward);
         _rigidbody.velocity = desiredVelocity;
 
         if (_rigidbody.velocity.magnitude > 0.1f && !_audio.isPlaying)
@@ -129,10 +131,21 @@ public class Player : MonoBehaviour
     #region Private Methods
     private float GetSpeedReduction()
     {
-        if(!_isShooting)
+        if (!_isShooting)
             return _currentWeapon.weaponStats.playerBaseSpeedReduction;
 
         return _currentWeapon.weaponStats.playerSpeedReductionWhileShooting;
+    }
+    private void AdjustAnimation(Vector3 moveDirection, Vector3 lookDirection)
+    {
+        moveDirection.y = 0.0f;
+        moveDirection.Normalize();
+        lookDirection.y = 0.0f;
+        lookDirection.Normalize();
+        var x = Vector3.Cross(lookDirection, moveDirection).y;
+        var y = Vector3.Dot(moveDirection, lookDirection);
+        _animator.SetFloat("Horizontal", x);
+        _animator.SetFloat("Vertical", y);
     }
     #endregion
 }
