@@ -25,11 +25,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe5cd05a-afd0-42e7-8011-8d2641d2be67" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Spray/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Spray/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Spray/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Spray/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Spray/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Spray/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="fe5cd05a-afd0-42e7-8011-8d2641d2be67" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,7 +96,7 @@
       <workItem from="1617790775083" duration="3532000" />
       <workItem from="1617873539710" duration="2632000" />
       <workItem from="1618059181146" duration="1156000" />
-      <workItem from="1618662710151" duration="7005000" />
+      <workItem from="1618662710151" duration="8100000" />
     </task>
     <servers />
   </component>

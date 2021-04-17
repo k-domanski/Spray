@@ -2470,7 +2470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677675052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1841129608}
@@ -2492,6 +2492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3bb770c6e438543981a0de5ae86f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveMultiplayer: 1
   waves:
   - name: Blue Wave
     enemy: {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}

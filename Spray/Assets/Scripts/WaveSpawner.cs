@@ -17,11 +17,11 @@ public class WaveSpawner : MonoBehaviour
     {
         public string name;
         public Enemy enemy;
-        
         public int count;
         public float rate;
     }
 
+    public float waveMultiplier = 1.0f;
     public Wave[] waves;
     private int _nextWave = 0;
 
@@ -79,6 +79,7 @@ public class WaveSpawner : MonoBehaviour
 
         if (_nextWave + 1 > waves.Length - 1)
         {
+            waveMultiplier += 1.5f;
             _nextWave = 0;
             Debug.Log("Completed all waves! Looping...");
         }
@@ -106,7 +107,7 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log("Spawning wave: " + _wave.name);
         state = SpawnState.SPAWNING;
 
-        for (int i = 0; i < _wave.count; i++)
+        for (int i = 0; i < _wave.count * waveMultiplier; i++)
         {
             SpawnEnemy(_wave.enemy);
             yield return new WaitForSeconds(1f / _wave.rate);
