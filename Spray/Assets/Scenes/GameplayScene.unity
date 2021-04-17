@@ -2155,7 +2155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5886428415618419807, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
@@ -2454,13 +2454,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 677675053}
+  - component: {fileID: 677675054}
   m_Layer: 0
   m_Name: Spawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &677675053
 Transform:
   m_ObjectHideFlags: 0
@@ -2469,7 +2470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677675052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1841129608}
@@ -2479,6 +2480,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &677675054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677675052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b3bb770c6e438543981a0de5ae86f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - name: Blue Wave
+    enemy: {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+    count: 5
+    rate: 2
+  - name: Yellow Wave
+    enemy: {fileID: 1679871354761440918, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
+    count: 4
+    rate: 1
+  - name: Red Wave
+    enemy: {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
+    count: 3
+    rate: 0.5
+  spawnPoints:
+  - {fileID: 1841129608}
+  - {fileID: 755339491}
+  - {fileID: 864336785}
+  - {fileID: 1011689715}
+  timeBetweenWaves: 2
+  waveCountdown: 0
 --- !u!43 &681867132
 Mesh:
   m_ObjectHideFlags: 0
@@ -3070,7 +3103,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755339490}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0e1ef03157a48f4587f7176149cdb6f, type: 3}
   m_Name: 
@@ -3282,7 +3315,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864336784}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0e1ef03157a48f4587f7176149cdb6f, type: 3}
   m_Name: 
@@ -3610,7 +3643,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011689714}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0e1ef03157a48f4587f7176149cdb6f, type: 3}
   m_Name: 
@@ -4066,7 +4099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 505518373132354958, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
@@ -5277,7 +5310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 505518373132354958, guid: b731299a8db696940939a8df5f953aba, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b731299a8db696940939a8df5f953aba, type: 3}
@@ -5388,7 +5421,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841129607}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0e1ef03157a48f4587f7176149cdb6f, type: 3}
   m_Name: 
