@@ -47,11 +47,11 @@ public class DecalSystem : MonoBehaviour
             renderer.material = material;
         }
 
-        if(_decalLimit)
-        {        
-            _decals.Enqueue(instance.gameObject);
-            ++_stored;
-        }
+        // if(_decalLimit)
+        // {        
+        //     _decals.Enqueue(instance.gameObject);
+        //     ++_stored;
+        // }
     }
     public void PlaceBulletHole(Vector3 position, Vector3 facingDirection)
     {
