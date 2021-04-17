@@ -339,6 +339,7 @@ MonoBehaviour:
   _muzzlePoint: {fileID: 316268268246391510}
   _shotAudio: {fileID: 5613164622250683464}
   _muzzleFlash: {fileID: 7418973509067188909}
+  _placeBulletHoles: 0
 --- !u!1001 &282781176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -346,6 +347,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2487453089657557039}
     m_Modifications:
+    - target: {fileID: 1274167016, guid: 55be8b7f3c9764541bd19007d732651a, type: 3}
+      propertyPath: _placeBulletHoles
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1081714908757465700, guid: 55be8b7f3c9764541bd19007d732651a, type: 3}
       propertyPath: m_RootOrder
       value: 1

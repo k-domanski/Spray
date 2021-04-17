@@ -7,7 +7,9 @@ public abstract class ProjectileBehaviourBase : MonoBehaviour
     /* TODO: move to a struct */
     public int damage { get => _damage; set { _damage = value; } }
     public LayerMask ownerLayer { get => _ownerLayer; set { _ownerLayer = value; } }
-    public float raycastRadius{ get => _raycastRadius; set { _raycastRadius = value; } }
+    public float raycastRadius { get => _raycastRadius; set { _raycastRadius = value; } }
+    public bool placeBulletHole { get; set; } = true;
+
 
     protected int _damage;
     protected Vector3 _direction;

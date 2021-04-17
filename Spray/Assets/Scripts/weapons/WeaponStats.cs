@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="WeaponStats", menuName ="Weapons/WeaponStats")]
+[CreateAssetMenu(fileName = "WeaponStats", menuName = "Weapons/WeaponStats")]
 public class WeaponStats : ScriptableObject
 {
     [SerializeField] private ProjectileBehaviourBase _projectile;
-    
+
     [SerializeField] private float _fireRate;
     [SerializeField] private int _damage;
     [SerializeField] private float _speed;
@@ -28,10 +28,10 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private string _ownerLayer;
 
 
-    public float fireRate { get =>_fireRate; } 
-    public int damage { get =>_damage; } 
-    public float knockback { get =>_knockback; } 
-    public ProjectileBehaviourBase projectile { get =>_projectile; } 
+    public float fireRate { get => _fireRate; }
+    public int damage { get => _damage; }
+    public float knockback { get => _knockback; }
+    public ProjectileBehaviourBase projectile { get => _projectile; }
 
     public bool hasRecoil { get => _hasRecoil; }
 
@@ -39,7 +39,7 @@ public class WeaponStats : ScriptableObject
     public float playerBaseSpeedReduction => _playerBaseSpeedReduction;
     public float playerSpeedReductionWhileShooting => _playerSpeedReductionWhileShooting;
 
-    public void CreateProjectile(Vector3 position, Vector3 direction)
+    public void CreateProjectile(Vector3 position, Vector3 direction, bool placeBulletHole = true)
     {
         var projectileObject = GameObject.Instantiate(_projectile.gameObject, position, Quaternion.identity);
 
@@ -48,6 +48,7 @@ public class WeaponStats : ScriptableObject
                                                                    targetRotation,
                                                                    1.0f);
         var projectile = projectileObject.GetComponent<ProjectileBehaviourBase>();
+        projectile.placeBulletHole = placeBulletHole;
         projectile.raycastRadius = _projectileRaycastRadius;
         projectile.damage = _damage;
         projectile.ownerLayer = LayerMask.NameToLayer(_ownerLayer);

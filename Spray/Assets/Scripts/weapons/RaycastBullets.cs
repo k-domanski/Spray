@@ -7,7 +7,6 @@ public class RaycastBullets : ProjectileBehaviourBase
 {
     [SerializeField] private TrailRenderer _trail;
     [SerializeField] private ParticleSystem _particle;
-
     /*Debug projectile radius gizmo*/
     private Vector3 origintest;
     /*-----------------------------*/
@@ -40,9 +39,9 @@ public class RaycastBullets : ProjectileBehaviourBase
 
 
         RaycastHit hitInfo;
-        if (Physics.SphereCast(origin,_raycastRadius, _direction, out hitInfo, distance))
+        if (Physics.SphereCast(origin, _raycastRadius, _direction, out hitInfo, distance))
         {
-            if(hitInfo.transform.gameObject.layer != _ownerLayer)
+            if (hitInfo.transform.gameObject.layer != _ownerLayer)
             {
                 OnProjectileHit(hitInfo);
                 distance = hitInfo.distance;
@@ -82,13 +81,13 @@ public class RaycastBullets : ProjectileBehaviourBase
             var dir = (livingEntity.transform.position - transform.position).normalized;
             dir.y = 0.0f;
             livingEntity.DealDamage(_damage, dir);
-            if(hitInfo.transform.TryGetComponent<Enemy>(out var enemy))
+            if (hitInfo.transform.TryGetComponent<Enemy>(out var enemy))
                 enemy.Knockback(dir, _knockback);
         }
         else
         {
             // print(hitInfo.collider.gameObject.layer);
-            if (hitInfo.transform.gameObject.layer == _layer)
+            if (placeBulletHole && hitInfo.transform.gameObject.layer == _layer)
                 Systems.decalSystem.PlaceBulletHole(hitInfo.point, hitInfo.normal);
         }
     }

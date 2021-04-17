@@ -28,6 +28,7 @@ public class ParticleCollision : MonoBehaviour
             var pos = collisions[i].intersection;
             var normal = collisions[i].normal;
             onParticleCollision?.Invoke(pos, normal);
+            // print($"Collision: [{pos.x}, {pos.y}, {pos.z}]");
         }
     }
     #endregion
