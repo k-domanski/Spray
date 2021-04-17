@@ -9,7 +9,9 @@ public class PursuitAction : Action
             return;
 
         var targetPosition = enemy.target.transform.position;
+        targetPosition.y = 0f;
         var position = enemy.transform.position;
+        position.y = 0f;
 
         Vector3 distance = targetPosition - position;
         var predictionStep = distance.magnitude / enemy.settings.maxSpeed;

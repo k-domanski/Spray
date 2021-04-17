@@ -8,10 +8,11 @@ class SeekAction : Action
         var maxSpeed = enemy.settings.maxSpeed / 2f;
 
         Vector3 desiredVelocity = enemy.target.transform.position - enemy.transform.position;
+        desiredVelocity.y = 0f;
         float distance = desiredVelocity.magnitude;
 
         if (distance < enemy.settings.stoppingDistance)
-            desiredVelocity = desiredVelocity.normalized * maxSpeed * (distance / enemy.settings.stoppingDistance);
+            desiredVelocity = desiredVelocity.normalized * maxSpeed * ((distance - 1f) / enemy.settings.stoppingDistance);
         else
             desiredVelocity = desiredVelocity.normalized * maxSpeed;
 

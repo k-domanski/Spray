@@ -51,12 +51,14 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rigidbody.velocity = velocity * _speedReduction;
+        var vel = Vector3.Lerp(_rigidbody.velocity, velocity * _speedReduction, 0.5f);
+        vel.y = _rigidbody.velocity.y;
+        _rigidbody.velocity = vel;
     }
 
     public void Knockback(Vector3 direction, float power)
     {
-        if(!gameObject.activeInHierarchy)
+        if (!gameObject.activeInHierarchy)
             return;
         _rigidbody.AddForce(power * -velocity.normalized, ForceMode.Impulse);
         if (_slowCoroutine == null)
@@ -65,7 +67,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-             StopCoroutine(SlowdownCoroutine());
+            StopCoroutine(SlowdownCoroutine());
             _slowCoroutine = null;
         }
     }
@@ -77,7 +79,7 @@ public class Enemy : MonoBehaviour
         {
             yield return null;
             _speedReduction += settings.speedRecovery * Time.deltaTime;
-            
+
         }
         _speedReduction = 1.0f;
         _slowCoroutine = null;
@@ -85,7 +87,7 @@ public class Enemy : MonoBehaviour
 
     public void Die(LivingEntity entity)
     {
-        if(entity != _livingEntity)
+        if (entity != _livingEntity)
             return;
         StopAllCoroutines();
         Systems.aiManager.enemies.Remove(this);

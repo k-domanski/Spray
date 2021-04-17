@@ -34,11 +34,13 @@ public class Player : MonoBehaviour
     private float _time = 0;
     private int _weaponIndex;
     private float _playerSpeed;
+    private LivingEntity _livingEntity;
     #endregion
 
     #region Messages
     private void Awake()
     {
+        _livingEntity = GetComponent<LivingEntity>();
         _rigidbody = GetComponent<Rigidbody>();
         _playerController = GetComponent<PlayerController>();
         _simpleShooting = GetComponent<SimpleShooting>();
@@ -54,6 +56,16 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+    }
+
+    private void OnEnable()
+    {
+        _livingEntity.onDeath.AddListener(Die);
+    }
+
+    private void OnDisable()
+    {
+        _livingEntity.onDeath.RemoveListener(Die);
     }
 
     private void Update()
@@ -149,6 +161,12 @@ public class Player : MonoBehaviour
         _animator.speed = _animationTiming.GetPlaybackSpeed(_playerSpeed);
         _animator.SetFloat("Horizontal", x);
         _animator.SetFloat("Vertical", y);
+    }
+
+    private void Die(LivingEntity livingEntity)
+    {
+        if (livingEntity == _livingEntity)
+            Debug.Log("YOU DIED!!!!!!!!!");
     }
     #endregion
 }
