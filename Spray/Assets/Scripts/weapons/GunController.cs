@@ -11,6 +11,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private AudioSource _shotAudio;
     [SerializeField] private ParticleSystem _muzzleFlash;
     [SerializeField] private bool _placeBulletHoles = true;
+    [SerializeField] private float _decalChance = 1.0f;
     public WeaponStats weaponStats => _weaponStats;
     #endregion
 
@@ -48,7 +49,7 @@ public class GunController : MonoBehaviour
                 _shotAudio.Play();
 
             var dir = CalculateRecoil(aimDirection, time);
-            _weaponStats.CreateProjectile(_muzzlePoint.position, dir, _placeBulletHoles);
+            _weaponStats.CreateProjectile(_muzzlePoint.position, dir, _placeBulletHoles, _decalChance);
             this.Delay(() => SetShooting(), 1f / _weaponStats.fireRate);
         }
     }

@@ -339,7 +339,8 @@ MonoBehaviour:
   _muzzlePoint: {fileID: 316268268246391510}
   _shotAudio: {fileID: 5613164622250683464}
   _muzzleFlash: {fileID: 7418973509067188909}
-  _placeBulletHoles: 0
+  _placeBulletHoles: 1
+  _decalChance: 0.2
 --- !u!1001 &282781176
 PrefabInstance:
   m_ObjectHideFlags: 0

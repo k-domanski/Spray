@@ -39,7 +39,7 @@ public class WeaponStats : ScriptableObject
     public float playerBaseSpeedReduction => _playerBaseSpeedReduction;
     public float playerSpeedReductionWhileShooting => _playerSpeedReductionWhileShooting;
 
-    public void CreateProjectile(Vector3 position, Vector3 direction, bool placeBulletHole = true)
+    public void CreateProjectile(Vector3 position, Vector3 direction, bool placeBulletHole = true, float decalChance = 1.0f)
     {
         var projectileObject = GameObject.Instantiate(_projectile.gameObject, position, Quaternion.identity);
 
@@ -49,6 +49,7 @@ public class WeaponStats : ScriptableObject
                                                                    1.0f);
         var projectile = projectileObject.GetComponent<ProjectileBehaviourBase>();
         projectile.placeBulletHole = placeBulletHole;
+        projectile.decalChance = decalChance;
         projectile.raycastRadius = _projectileRaycastRadius;
         projectile.damage = _damage;
         projectile.ownerLayer = LayerMask.NameToLayer(_ownerLayer);

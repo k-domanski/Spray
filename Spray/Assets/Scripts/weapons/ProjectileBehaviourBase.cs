@@ -9,6 +9,7 @@ public abstract class ProjectileBehaviourBase : MonoBehaviour
     public LayerMask ownerLayer { get => _ownerLayer; set { _ownerLayer = value; } }
     public float raycastRadius { get => _raycastRadius; set { _raycastRadius = value; } }
     public bool placeBulletHole { get; set; } = true;
+    public float decalChance { get; set; } = 1.0f;
 
 
     protected int _damage;

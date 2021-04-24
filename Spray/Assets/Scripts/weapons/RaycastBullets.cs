@@ -88,7 +88,21 @@ public class RaycastBullets : ProjectileBehaviourBase
         {
             // print(hitInfo.collider.gameObject.layer);
             if (placeBulletHole && hitInfo.transform.gameObject.layer == _layer)
-                Systems.decalSystem.PlaceBulletHole(hitInfo.point, hitInfo.normal);
+            {
+                if (decalChance == 1.0f)
+                {
+                    Systems.decalSystem.PlaceBulletHole(hitInfo.point, hitInfo.normal);
+                }
+                else
+                {
+
+                    var roll = UnityEngine.Random.Range(0.0f, 1.0f);
+                    if (roll >= decalChance)
+                    {
+                        Systems.decalSystem.PlaceBulletHole(hitInfo.point, hitInfo.normal);
+                    }
+                }
+            }
         }
     }
 }
