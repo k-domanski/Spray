@@ -12,6 +12,9 @@ public class GunController : MonoBehaviour
     [SerializeField] private ParticleSystem _muzzleFlash;
     [SerializeField] private bool _placeBulletHoles = true;
     [SerializeField] private float _decalChance = 1.0f;
+    [SerializeField] private bool _laserVisible = true;
+    private LineRenderer _laser;
+
     public WeaponStats weaponStats => _weaponStats;
     #endregion
 
@@ -22,9 +25,32 @@ public class GunController : MonoBehaviour
     #region Messages
     private void Awake()
     {
+        
+        TryGetComponent<LineRenderer>(out _laser);
         if (_shotAudio == null)
             _shotAudio = GetComponent<AudioSource>();
         _muzzleFlash.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (_laser && _laserVisible)
+        {
+            _laser.SetPosition(0, _muzzlePoint.position);
+            RaycastHit hitInfo;
+            Vector3 direction = (_muzzlePoint.position - transform.position).normalized;
+            direction.y = 0;
+            if (Physics.Raycast(_muzzlePoint.position, direction, out hitInfo))
+            {
+                if (hitInfo.collider)
+                    _laser.SetPosition(1, hitInfo.point);
+            }
+        }
+        else if (!_laserVisible)
+        {
+            _laser.SetPosition(0, _muzzlePoint.position);
+            _laser.SetPosition(1, _muzzlePoint.position);
+        }
     }
     #endregion
 
