@@ -2662,15 +2662,15 @@ MonoBehaviour:
   - name: Blue Wave
     enemy: {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
     count: 5
-    rate: 0.33
+    rate: 0.25
   - name: Yellow Wave
     enemy: {fileID: 1679871354761440918, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
     count: 4
-    rate: 0.5
+    rate: 0.33
   - name: Red Wave
     enemy: {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
     count: 3
-    rate: 0.6
+    rate: 0.5
   spawnPoints:
   - {fileID: 1841129608}
   - {fileID: 755339491}
@@ -5785,14 +5785,6 @@ PrefabInstance:
       propertyPath: _cameraController
       value: 
       objectReference: {fileID: 1764025463}
-    - target: {fileID: 8588755703038638670, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
-      propertyPath: m_fontSize
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8588755703038638670, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
 --- !u!1 &1841129607
