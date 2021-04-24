@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +26,19 @@ public class Systems : DontDestroyBehaviour<Systems>
     #region Protected
     protected override void OnAwake()
     {
+        Debug.Log("awake");
+
         _inputManager.Initialize();
     }
+
+    protected override void Destroy()
+    {
+        Debug.Log("destroy");
+
+        aiManager.enemies.Clear();
+        decalSystem.ClearDecals();
+        //inputManager.Clear();
+    }
+
     #endregion
 }

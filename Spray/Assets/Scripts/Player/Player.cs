@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _weaponName;
     [SerializeField] private List<GunController> _guns;
     [SerializeField] private AnimationPlaybackSpeed _animationTiming;
+    [SerializeField] private DeathPanel _playerDeathPanel;//TODO: move it to UIManager or somewhere
     public PlayerSettings playerSettings => _playerSettings;
     public Rigidbody _rigidbody { get; private set; }
     public Vector3 velocity => _rigidbody.velocity;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     private int _weaponIndex;
     private float _playerSpeed;
     private LivingEntity _livingEntity;
+    private bool _isDead = false;
     #endregion
 
     #region Messages
@@ -165,8 +167,13 @@ public class Player : MonoBehaviour
 
     private void Die(LivingEntity livingEntity)
     {
-        if (livingEntity == _livingEntity)
+        if (livingEntity == _livingEntity && !_isDead)
+        {
+            _isDead = true;
             Debug.Log("YOU DIED!!!!!!!!!");
+            this.Delay(() => Systems.sceneManager.LoadScene(GameScene.Preload), 2.0f);
+            _playerDeathPanel.Show();
+        }
     }
     #endregion
 }

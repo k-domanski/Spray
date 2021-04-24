@@ -18,9 +18,12 @@ public class InputManager : MonoBehaviour
             _mainControlls.Player.SetCallbacks(playerActions);
     }
 
-    private void OnDestroy()
+    public void Clear()
     {
-        _mainControlls.Disable();
-        _mainControlls.Dispose();
+        if (_mainControlls != null)
+        {
+            _mainControlls.Disable();
+            _mainControlls.Dispose();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,11 @@ public class AIManager : MonoBehaviour
     private void Start()
     {
         enemies.AddRange(FindObjectsOfType<Enemy>());
+    }
+
+    public void Clear()
+    {
+        enemies.Clear();
     }
 
     public Enemy GetNeighbour(Enemy enemy)

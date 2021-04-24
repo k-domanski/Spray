@@ -76,6 +76,15 @@ public class DecalSystem : MonoBehaviour
             ++_stored;
         }
     }
+
+    public void ClearDecals()
+    {
+        foreach (var child in gameObject.GetComponentsInChildren<MeshRenderer>())
+        {
+            Destroy(child.gameObject);
+        }
+        _decals.Clear();
+    }
     #endregion
 
     #region Private

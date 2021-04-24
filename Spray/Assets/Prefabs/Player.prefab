@@ -1426,6 +1426,7 @@ MonoBehaviour:
   - {fileID: 954813361116936351}
   - {fileID: 5367893856227714692}
   _animationTiming: {fileID: 11400000, guid: e23d92512b21c924aaf868802f77417e, type: 2}
+  _playerDeathPanel: {fileID: 0}
 --- !u!114 &5020966971749737467
 MonoBehaviour:
   m_ObjectHideFlags: 0
