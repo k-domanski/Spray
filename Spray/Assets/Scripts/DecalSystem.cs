@@ -84,6 +84,7 @@ public class DecalSystem : MonoBehaviour
             Destroy(child.gameObject);
         }
         _decals.Clear();
+        _stored = 0;
     }
     #endregion
 
