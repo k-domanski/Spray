@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,10 +28,18 @@ public abstract class DontDestroyBehaviour<T> : MonoBehaviour where T : MonoBeha
             return;
         }
         OnAwake();
+        Debug.Log("dont destriy awake");
     }
+
+    private void OnDestroy()
+    {
+        Destroy();
+    }
+
     #endregion
 
     #region Protected
     protected abstract void OnAwake();
+    protected abstract void Destroy();
     #endregion
 }

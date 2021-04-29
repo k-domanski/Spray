@@ -14,7 +14,9 @@ public class Player : MonoBehaviour
     #region Properties
     [SerializeField] private PlayerSettings _playerSettings;
     [SerializeField] private TextMeshProUGUI _weaponName;
-    [SerializeField]private List<GunController> _guns;
+    [SerializeField] private List<GunController> _guns;
+    [SerializeField] private AnimationPlaybackSpeed _animationTiming;
+    [SerializeField] private DeathPanel _playerDeathPanel;//TODO: move it to UIManager or somewhere
     public PlayerSettings playerSettings => _playerSettings;
     public Rigidbody _rigidbody { get; private set; }
     public Vector3 velocity => _rigidbody.velocity;
@@ -28,18 +30,24 @@ public class Player : MonoBehaviour
     private SimpleShooting _simpleShooting;
     private AudioSource _audio;
     private GunController _currentWeapon;
+    private Animator _animator;
     private bool _isShooting = false;
     private float _time = 0;
     private int _weaponIndex;
+    private float _playerSpeed;
+    private LivingEntity _livingEntity;
+    private bool _isDead = false;
     #endregion
 
     #region Messages
     private void Awake()
     {
+        _livingEntity = GetComponent<LivingEntity>();
         _rigidbody = GetComponent<Rigidbody>();
         _playerController = GetComponent<PlayerController>();
         _simpleShooting = GetComponent<SimpleShooting>();
         _audio = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
 
         _currentWeapon = mainWeapon;
         mainWeapon.Equip();
@@ -50,6 +58,16 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+    }
+
+    private void OnEnable()
+    {
+        _livingEntity.onDeath.AddListener(Die);
+    }
+
+    private void OnDisable()
+    {
+        _livingEntity.onDeath.RemoveListener(Die);
     }
 
     private void Update()
@@ -88,10 +106,10 @@ public class Player : MonoBehaviour
         var acceleration = _playerSettings.acceleration * accelerationBoost;
 
         //TODO: Reduce speed here
-        var playerSpeed = _playerSettings.maxSpeed - GetSpeedReduction();
+        _playerSpeed = _playerSettings.maxSpeed - GetSpeedReduction();
 
-        Vector3 desiredVelocity = Vector3.MoveTowards(currentVelocity, direction * playerSpeed, acceleration * deltaTime);
-
+        Vector3 desiredVelocity = Vector3.MoveTowards(currentVelocity, direction * _playerSpeed, acceleration * deltaTime);
+        AdjustAnimation(desiredVelocity.normalized, transform.forward);
         _rigidbody.velocity = desiredVelocity;
 
         if (_rigidbody.velocity.magnitude > 0.1f && !_audio.isPlaying)
@@ -129,10 +147,33 @@ public class Player : MonoBehaviour
     #region Private Methods
     private float GetSpeedReduction()
     {
-        if(!_isShooting)
+        if (!_isShooting)
             return _currentWeapon.weaponStats.playerBaseSpeedReduction;
 
         return _currentWeapon.weaponStats.playerSpeedReductionWhileShooting;
+    }
+    private void AdjustAnimation(Vector3 moveDirection, Vector3 lookDirection)
+    {
+        moveDirection.y = 0.0f;
+        moveDirection.Normalize();
+        lookDirection.y = 0.0f;
+        lookDirection.Normalize();
+        var x = Vector3.Cross(lookDirection, moveDirection).y;
+        var y = Vector3.Dot(moveDirection, lookDirection);
+        _animator.speed = _animationTiming.GetPlaybackSpeed(_playerSpeed);
+        _animator.SetFloat("Horizontal", x);
+        _animator.SetFloat("Vertical", y);
+    }
+
+    private void Die(LivingEntity livingEntity)
+    {
+        if (livingEntity == _livingEntity && !_isDead)
+        {
+            _isDead = true;
+            Debug.Log("YOU DIED!!!!!!!!!");
+            this.Delay(() => Systems.sceneManager.LoadScene(GameScene.Preload), 2.0f);
+            _playerDeathPanel.Show();
+        }
     }
     #endregion
 }

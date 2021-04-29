@@ -17,12 +17,18 @@
             <e p="OutOfRangeDecision.cs" t="Include" />
             <e p="PursuitAction.cs" t="Include" />
             <e p="SeekAction.cs" t="Include" />
+            <e p="ShootAndGoDecision.cs" t="Include" />
             <e p="ShootDecision.cs" t="Include" />
             <e p="ShootingAction.cs" t="Include" />
             <e p="State.cs" t="Include" />
             <e p="StateController.cs" t="Include" />
+            <e p="StopAction.cs" t="Include" />
+            <e p="StopAndShootDecision.cs" t="Include" />
             <e p="Target.cs" t="Include" />
             <e p="Transition.cs" t="Include" />
+          </e>
+          <e p="Animation" t="Include">
+            <e p="AnimationPlaybackSpeed.cs" t="Include" />
           </e>
           <e p="Bilboard.cs" t="Include" />
           <e p="BloodFX.cs" t="Include" />
@@ -59,6 +65,7 @@
             <e p="SceneManager.cs" t="Include" />
             <e p="Systems.cs" t="Include" />
           </e>
+          <e p="WaveSpawner.cs" t="Include" />
           <e p="weapons" t="Include">
             <e p="BazookaBullets.cs" t="Include" />
             <e p="GunController.cs" t="Include" />

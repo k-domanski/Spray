@@ -13,6 +13,7 @@ public class EnemyParams : ScriptableObject
     public float maxRotationSpeed;
     [Header("Ranged attack")]
     public float shootingRange;
+    public float stopAndShootDistance;
 
     [Header("Knockback")]
     public float speedRecovery;

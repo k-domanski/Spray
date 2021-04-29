@@ -23,14 +23,14 @@ public class DecalSystem : MonoBehaviour
     #region Messages
     void Awake()
     {
-            _decals = new Queue<GameObject>( _maxCapacity);
+        _decals = new Queue<GameObject>(_maxCapacity);
     }
     #endregion
 
     #region Public
     public void PlaceSplat(Vector3 position, Vector3 facingDirection, Material material = null)
     {
-        if(_decalLimit && _stored >= _maxCapacity)
+        if (_decalLimit && _stored >= _maxCapacity)
         {
             FreeDecals(_batchRemoveAmount);
         }
@@ -38,24 +38,27 @@ public class DecalSystem : MonoBehaviour
         instance.transform.Rotate(Vector3.up, Random.Range(-Mathf.PI, Mathf.PI), Space.Self);
         var scale = Random.Range(_sizeRange.x, _sizeRange.y);
         instance.transform.localScale = new Vector3(scale, 1.0f, scale);
+        instance.transform.position -= facingDirection * 0.1f;
+        var pos = instance.transform.position;
+        // print($"Instance: [{pos.x}, {pos.y}, {pos.z}]");
         instance.transform.up = facingDirection;
         instance.isStatic = true;
 
-        if(material!= null)
+        if (material != null)
         {
             var renderer = instance.GetComponent<Renderer>();
             renderer.material = material;
         }
 
-        if(_decalLimit)
-        {        
-            _decals.Enqueue(instance.gameObject);
-            ++_stored;
-        }
+        // if(_decalLimit)
+        // {        
+        //     _decals.Enqueue(instance.gameObject);
+        //     ++_stored;
+        // }
     }
     public void PlaceBulletHole(Vector3 position, Vector3 facingDirection)
     {
-        if(_decalLimit && _stored >= _maxCapacity)
+        if (_decalLimit && _stored >= _maxCapacity)
         {
             FreeDecals(_batchRemoveAmount);
         }
@@ -67,18 +70,28 @@ public class DecalSystem : MonoBehaviour
         instance.transform.up = facingDirection;
         instance.transform.position += facingDirection * 0.01f;
         instance.isStatic = true;
-        if(_decalLimit)
+        if (_decalLimit)
         {
             _decals.Enqueue(instance.gameObject);
             ++_stored;
         }
+    }
+
+    public void ClearDecals()
+    {
+        foreach (var child in gameObject.GetComponentsInChildren<MeshRenderer>())
+        {
+            Destroy(child.gameObject);
+        }
+        _decals.Clear();
+        _stored = 0;
     }
     #endregion
 
     #region Private
     private void FreeDecals(int amount)
     {
-        for(int i=0; i<_batchRemoveAmount; ++i)
+        for (int i = 0; i < _batchRemoveAmount; ++i)
         {
             Destroy(_decals.Dequeue());
         }
