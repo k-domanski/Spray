@@ -16,7 +16,7 @@ public class WaveSpawner : MonoBehaviour
     public class Wave
     {
         public string name;
-        public Enemy enemy;
+        public Enemy[] enemy;
         public int count;
         public float rate;
     }
@@ -109,7 +109,8 @@ public class WaveSpawner : MonoBehaviour
 
         for (int i = 0; i < _wave.count * waveMultiplier; i++)
         {
-            SpawnEnemy(_wave.enemy);
+            var index = (int)Random.Range(0, _wave.enemy.Length);
+            SpawnEnemy(_wave.enemy[index]);
             yield return new WaitForSeconds(1f / _wave.rate);
         }
         
