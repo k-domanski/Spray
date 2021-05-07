@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public GunController mainWeapon { get => _guns[0]; set => _guns[0] = value; }
     public GunController secondaryWeapon { get => _guns[1]; set => _guns[1] = value; }
     public GunController currentWeapon => _currentWeapon;
+    public LivingEntity livingEntity { get; private set; }
     #endregion
 
     #region Private
@@ -35,14 +36,13 @@ public class Player : MonoBehaviour
     private float _time = 0;
     private int _weaponIndex;
     private float _playerSpeed;
-    private LivingEntity _livingEntity;
     private bool _isDead = false;
     #endregion
 
     #region Messages
     private void Awake()
     {
-        _livingEntity = GetComponent<LivingEntity>();
+        livingEntity = GetComponent<LivingEntity>();
         _rigidbody = GetComponent<Rigidbody>();
         _playerController = GetComponent<PlayerController>();
         _simpleShooting = GetComponent<SimpleShooting>();
@@ -62,12 +62,12 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        _livingEntity.onDeath.AddListener(Die);
+        livingEntity.onDeath.AddListener(Die);
     }
 
     private void OnDisable()
     {
-        _livingEntity.onDeath.RemoveListener(Die);
+        livingEntity.onDeath.RemoveListener(Die);
     }
 
     private void Update()
@@ -165,9 +165,9 @@ public class Player : MonoBehaviour
         _animator.SetFloat("Vertical", y);
     }
 
-    private void Die(LivingEntity livingEntity)
+    private void Die(LivingEntity entity)
     {
-        if (livingEntity == _livingEntity && !_isDead)
+        if (entity == livingEntity && !_isDead)
         {
             _isDead = true;
             Debug.Log("YOU DIED!!!!!!!!!");
