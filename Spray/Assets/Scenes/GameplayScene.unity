@@ -2783,21 +2783,21 @@ MonoBehaviour:
     - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
     - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
     count: 5
-    rate: 0.25
+    rate: 0.33
   - name: Yellow Wave
     enemy:
     - {fileID: 1679871354761440918, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
     - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
     - {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
     count: 4
-    rate: 0.33
+    rate: 0.5
   - name: Red Wave
     enemy:
     - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
     - {fileID: 1679871354761440918, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
     - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
     count: 3
-    rate: 0.5
+    rate: 0.66
   spawnPoints:
   - {fileID: 1841129608}
   - {fileID: 755339491}
