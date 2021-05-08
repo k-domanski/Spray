@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+        Systems.scoreSystem.Reset();
     }
 
     private void OnEnable()

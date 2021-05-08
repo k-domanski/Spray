@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyParams : ScriptableObject
 {
     public float maxHealth;
+    public int score;
     [Header("Movement")]
     public float maxSpeed;
     public float stoppingDistance;

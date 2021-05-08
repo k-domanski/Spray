@@ -91,6 +91,7 @@ public class Enemy : MonoBehaviour
             return;
         StopAllCoroutines();
         Systems.aiManager.enemies.Remove(this);
+        Systems.scoreSystem.AddScore(settings.score);
         gameObject.SetActive(false);
     }
 }

@@ -9,9 +9,10 @@ public class Systems : DontDestroyBehaviour<Systems>
     public static GameManager gameManager => instance._gameManager;
     public static AudioManager audioManager => instance._audioManager;
     public static SceneManager sceneManager => instance._sceneManager;
-    public static InputManager inputManager=> instance._inputManager;
+    public static InputManager inputManager => instance._inputManager;
     public static DecalSystem decalSystem => instance._decalSystem;
     public static AIManager aiManager => instance._aiManager;
+    public static ScoreSystem scoreSystem => instance._scoreSystem;
     #endregion
     #region Properties
     [Header("References")]
@@ -21,6 +22,7 @@ public class Systems : DontDestroyBehaviour<Systems>
     [SerializeField] private InputManager _inputManager;
     [SerializeField] private DecalSystem _decalSystem;
     [SerializeField] private AIManager _aiManager;
+    [SerializeField] private ScoreSystem _scoreSystem;
     #endregion
 
     #region Protected
