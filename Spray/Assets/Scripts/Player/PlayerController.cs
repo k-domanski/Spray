@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
     private Vector2 _lastStickOffset = Vector3.forward;
     private Vector3 _aimOffset = Vector3.forward;
     private Vector3 _moveOffset = Vector3.zero;
+    private bool _shootOnAim;
     #endregion
 
     private void Awake()
@@ -54,16 +55,19 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
     {
         var stickOffset = context.ReadValue<Vector2>();
 
-        if (stickOffset.sqrMagnitude < 0.01)
+        if (stickOffset.sqrMagnitude < _player.playerSettings.controllerAimDeadZone)
         {
             stickOffset = _lastStickOffset;
+            _shootOnAim = false;
         }
         else
         {
             _lastStickOffset = stickOffset;
+            _shootOnAim = true;
         }
-        // aimDirection = new Vector3(stickOffset.x, 0f, stickOffset.y).normalized;
         _aimOffset = new Vector3(stickOffset.x, 0f, stickOffset.y).normalized;
+        if(_player.playerSettings.autoShoot)
+            this.Delay(()=>_player.Shoot(_shootOnAim),0.1f);
     }
 
     public void OnMouse(InputAction.CallbackContext context)

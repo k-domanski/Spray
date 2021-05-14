@@ -43,7 +43,10 @@ public class GunController : MonoBehaviour
             if (Physics.Raycast(_muzzlePoint.position, direction, out hitInfo))
             {
                 if (hitInfo.collider)
+                {
                     _laser.SetPosition(1, hitInfo.point);
+                    _laser.material.color = hitInfo.transform.TryGetComponent<Enemy>(out var enemy) ? Color.red : Color.green;
+                }
             }
         }
         else if (!_laserVisible)

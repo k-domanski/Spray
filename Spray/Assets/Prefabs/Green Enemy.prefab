@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2487453089657557036, guid: 60f89e3d125841c4fabee8c917e5e440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2487453089657557039, guid: 60f89e3d125841c4fabee8c917e5e440, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -59,5 +63,9 @@ PrefabInstance:
       propertyPath: _visualData
       value: 
       objectReference: {fileID: 11400000, guid: d2d06fb3f217da54dadf47ef82cc17d2, type: 2}
+    - target: {fileID: 5004306941349561598, guid: 60f89e3d125841c4fabee8c917e5e440, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60f89e3d125841c4fabee8c917e5e440, type: 3}

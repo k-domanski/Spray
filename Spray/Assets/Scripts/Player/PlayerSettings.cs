@@ -11,10 +11,15 @@ public class PlayerSettings : ScriptableObject
     [SerializeField, Range(1.0f, 5.0f)] private float _accelerationBoost;
     [Tooltip("Maximum rotations per second")]
     [SerializeField, Range(0.0f, 5.0f)] private float _rotationsPerSecond;
+    [Header("Shooting on Controller Test")]
+    [SerializeField] private bool _autoShoot;
+    [SerializeField, Range(0.01f, 1.0f)] private float _controllerAimDeadZone;
 
     public float maxSpeed => _maxSpeed;
     public float acceleration => _acceleration;
     public float accelerationBoost => _accelerationBoost;
     public float maxRotationSpeed => _rotationsPerSecond * 360.0f;
+    public bool autoShoot => _autoShoot;
+    public float controllerAimDeadZone => _controllerAimDeadZone;
     #endregion
 }
