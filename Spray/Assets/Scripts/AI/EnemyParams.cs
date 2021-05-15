@@ -12,9 +12,11 @@ public class EnemyParams : ScriptableObject
     public float maxQueueAhead;
     public float maxQueueRadius;
     public float maxRotationSpeed;
+    public float acceleration;
     [Header("Ranged attack")]
     public float shootingRange;
     public float stopAndShootDistance;
+    public bool predictPosition;
 
     [Header("Knockback")]
     public float speedRecovery;

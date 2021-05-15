@@ -2844,21 +2844,21 @@ MonoBehaviour:
     - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
     - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
     count: 5
-    rate: 0.33
+    rate: 0.5
   - name: Yellow Wave
     enemy:
     - {fileID: 1679871354761440918, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
     - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
     - {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
-    count: 4
-    rate: 0.5
+    count: 6
+    rate: 0.66
   - name: Red Wave
     enemy:
     - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
     - {fileID: 1679871354761440918, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
     - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
-    count: 3
-    rate: 0.66
+    count: 5
+    rate: 0.88
   spawnPoints:
   - {fileID: 1841129608}
   - {fileID: 755339491}
@@ -5986,14 +5986,6 @@ PrefabInstance:
       propertyPath: _cameraController
       value: 
       objectReference: {fileID: 1764025463}
-    - target: {fileID: 5289139112177146188, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
-      propertyPath: _maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5289139112177146188, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
-      propertyPath: _currentHealth
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
 --- !u!1 &1841129607

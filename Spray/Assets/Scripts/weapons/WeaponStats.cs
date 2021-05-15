@@ -36,6 +36,7 @@ public class WeaponStats : ScriptableObject
     public bool hasRecoil { get => _hasRecoil; }
 
     public float accuracy { get => _accuracy; }
+    public float speed => _speed;
     public float playerBaseSpeedReduction => _playerBaseSpeedReduction;
     public float playerSpeedReductionWhileShooting => _playerSpeedReductionWhileShooting;
 
