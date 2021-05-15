@@ -5,11 +5,6 @@ public class ShootDecision : Decision
 {
     public override bool Decide(Enemy enemy)
     {
-        if (Vector3.Distance(enemy.target.transform.position, enemy.transform.position) < enemy.settings.shootingRange)
-        {
-            return true;
-        }
-
-        return false;
+        return Vector3.Distance(enemy.target.transform.position, enemy.transform.position) < enemy.settings.shootingRange;
     }
 }
