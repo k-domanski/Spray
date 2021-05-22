@@ -149,6 +149,7 @@ public class Enemy : MonoBehaviour
     private IEnumerator showAttackEnumerator()
     {
         var time = settings.attackCooldown - ( settings.preAttackTime);
+        time /= 2f;
         var timeCounter = 0f;
         var angle = settings.attackAngle / time;
         //Debug.Log(weaponPlaceholder.transform.localEulerAngles - (180f * Vector3.up));
