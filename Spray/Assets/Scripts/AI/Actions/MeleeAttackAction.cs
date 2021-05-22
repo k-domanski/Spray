@@ -9,6 +9,7 @@ public class MeleeAttackAction : Action
         {
             enemy.canAttack = false;
             enemy.Delay(() => Attack(enemy), enemy.settings.preAttackTime);
+            enemy.ShowAttack();
         }
     }
 
@@ -17,14 +18,14 @@ public class MeleeAttackAction : Action
         var target = enemy.target;
         var targetDir = target.transform.position - enemy.transform.position;
 
-        Debug.Log(Vector3.SignedAngle(enemy.transform.forward, targetDir, Vector3.up));
+        //Debug.Log(Vector3.SignedAngle(enemy.transform.forward, targetDir, Vector3.up));
 
         if (Mathf.Abs(Vector3.SignedAngle(enemy.transform.forward, targetDir, Vector3.up)) >
               (enemy.settings.attackAngle / 2f)) return;
-        Debug.Log("distance: " + targetDir.magnitude);
+        //Debug.Log("distance: " + targetDir.magnitude);
 
         if (targetDir.magnitude > enemy.settings.attackRange) return;
-        Debug.Log("in range");
+        //Debug.Log("in range");
         var livingEntity = target.GetComponent<LivingEntity>();
         livingEntity.DealDamage(enemy.settings.attackDamage, Vector3.zero);
     }

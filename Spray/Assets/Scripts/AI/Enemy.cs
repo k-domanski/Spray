@@ -9,6 +9,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public EnemyParams settings;
+    public GameObject weaponPlaceholder;
     public GunController gunController { get; private set; }
     public StateController stateController { get; private set; }
     private Rigidbody _rigidbody;
@@ -51,6 +52,9 @@ public class Enemy : MonoBehaviour
         _attackRangeChecker.center = settings.attackTriggerPosition * Vector3.forward;
         _attackRangeChecker.size = new Vector3(settings.attackTriggerSize.x, 1f, settings.attackTriggerSize.y);
         _attackRangeChecker.isTrigger = true;
+        var scale = weaponPlaceholder.transform.localScale;
+        weaponPlaceholder.transform.localScale = new Vector3(scale.x, scale.y, scale.z * settings.attackRange);
+        weaponPlaceholder.SetActive(false);
     }
 
     private void Start()
@@ -119,6 +123,13 @@ public class Enemy : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void ShowAttack()
+    {
+        weaponPlaceholder.SetActive(true);
+        var rot = weaponPlaceholder.transform.localEulerAngles;
+        weaponPlaceholder.transform.localEulerAngles = new Vector3(rot.x, settings.attackAngle / 2f, rot.z);
+        this.Delay(() => StartCoroutine(showAttackEnumerator()), settings.preAttackTime);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Player>(out var _))
@@ -133,5 +144,23 @@ public class Enemy : MonoBehaviour
         {
             targetInMeleeRange = false;
         }
+    }
+
+    private IEnumerator showAttackEnumerator()
+    {
+        var time = settings.attackCooldown - ( settings.preAttackTime);
+        var timeCounter = 0f;
+        var angle = settings.attackAngle / time;
+        //Debug.Log(weaponPlaceholder.transform.localEulerAngles - (180f * Vector3.up));
+        Debug.Log(angle);
+        while (timeCounter < time)
+        //while ((weaponPlaceholder.transform.localEulerAngles.y - 180f) > (-settings.attackAngle))
+        {
+            Debug.Log(weaponPlaceholder.transform.localEulerAngles - (180f * Vector3.up));
+            weaponPlaceholder.transform.Rotate(Vector3.up, -angle * Time.deltaTime);
+            timeCounter += Time.deltaTime;
+            yield return null;
+        }
+        weaponPlaceholder.SetActive(false);
     }
 }
