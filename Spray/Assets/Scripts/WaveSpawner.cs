@@ -123,7 +123,7 @@ public class WaveSpawner : MonoBehaviour
         //Spawn enemy
         Debug.Log(("spawning enemy: " + _enemy.name));
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        var createdEnemy = Instantiate(_enemy, _sp.position, _sp.rotation);
+        var createdEnemy = Instantiate(_enemy, _sp.position + new Vector3(Random.Range(-2f,2f), 0.0f, Random.Range(-2f, 2f)), _sp.rotation);
         Systems.aiManager.enemies.Add(createdEnemy);
     }
 }

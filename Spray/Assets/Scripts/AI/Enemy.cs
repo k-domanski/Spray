@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(StateController))]
@@ -21,6 +22,19 @@ public class Enemy : MonoBehaviour
     private float _speedReduction = 1.0f;
     private Coroutine _slowCoroutine;
 
+    private BoxCollider _attackRangeChecker;
+    public bool targetInMeleeRange { get; private set; }
+    private bool _canAttack;
+    public bool canAttack
+    {
+        get => _canAttack;
+        set
+        {
+            _canAttack = value;
+            if (!value)
+                this.Delay(() => canAttack = true, settings.attackCooldown);
+        }
+    }
 
     private void Awake()
     {
@@ -28,6 +42,15 @@ public class Enemy : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         gunController = GetComponent<GunController>();
         _livingEntity = GetComponent<LivingEntity>();
+        targetInMeleeRange = false;
+        canAttack = true;
+        if (settings.attackTriggerSize == Vector2.zero) return;
+
+        _attackRangeChecker = gameObject.AddComponent<BoxCollider>();
+
+        _attackRangeChecker.center = settings.attackTriggerPosition * Vector3.forward;
+        _attackRangeChecker.size = new Vector3(settings.attackTriggerSize.x, 1f, settings.attackTriggerSize.y);
+        _attackRangeChecker.isTrigger = true;
     }
 
     private void Start()
@@ -46,6 +69,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDisable()
     {
+        StopAllCoroutines();
         _livingEntity.onDeath.RemoveListener(Die);
     }
 
@@ -93,5 +117,21 @@ public class Enemy : MonoBehaviour
         Systems.aiManager.enemies.Remove(this);
         Systems.scoreSystem.AddScore(settings.score);
         gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<Player>(out var _))
+        {
+            targetInMeleeRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<Player>(out var _))
+        {
+            targetInMeleeRange = false;
+        }
     }
 }
