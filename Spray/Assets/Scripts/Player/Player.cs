@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
         //TODO: Reduce speed here
         _playerSpeed = _playerSettings.maxSpeed - GetSpeedReduction();
 
-        Vector3 desiredVelocity = Vector3.MoveTowards(currentVelocity, direction * _playerSpeed, acceleration * deltaTime);
+        Vector3 desiredVelocity = Vector3.MoveTowards(currentVelocity, desiredDirection * _playerSpeed, acceleration * deltaTime);
         AdjustAnimation(desiredVelocity.normalized, transform.forward);
         _rigidbody.velocity = desiredVelocity;
 
