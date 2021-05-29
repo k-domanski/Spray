@@ -2843,22 +2843,36 @@ MonoBehaviour:
     - {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
     - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
     - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+    count: 3
+    rate: 0.6
+  - name: Second Wave
+    enemy:
+    - {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+    - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+    - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
     count: 10
     rate: 0.7
+  - name: Third Wave
+    enemy:
+    - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+    - {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+    - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
+    count: 20
+    rate: 0.8
+  - name: Fourth Wave
+    enemy:
+    - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+    - {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+    - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
+    count: 30
+    rate: 0.95
   - name: Peak Wave
     enemy:
-    - {fileID: 1679871354761440918, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
-    - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
+    - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
     - {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
-    count: 75
-    rate: 1.5
-  - name: Debug Wave
-    enemy:
-    - {fileID: 1679871354761440918, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
-    - {fileID: 1679871354761440918, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
-    - {fileID: 1679871354761440918, guid: 5ca18df98f09e924e99b2afbe2564a11, type: 3}
-    count: 1
-    rate: 2
+    - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
+    count: 40
+    rate: 1.1
   spawnPoints:
   - {fileID: 1841129608}
   - {fileID: 755339491}

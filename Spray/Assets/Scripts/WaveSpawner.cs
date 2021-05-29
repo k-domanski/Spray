@@ -79,7 +79,7 @@ public class WaveSpawner : MonoBehaviour
 
         if (_nextWave + 1 > waves.Length - 1)
         {
-            waveMultiplier += 1.5f;
+            //waveMultiplier += 1.5f;
             _nextWave = 0;
             Debug.Log("Completed all waves! Looping...");
         }
@@ -121,7 +121,7 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy(Enemy _enemy)
     {
         //Spawn enemy
-        Debug.Log(("spawning enemy: " + _enemy.name));
+        //Debug.Log(("spawning enemy: " + _enemy.name));
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
         var createdEnemy = Instantiate(_enemy, _sp.position + new Vector3(Random.Range(-2f,2f), 0.0f, Random.Range(-2f, 2f)), _sp.rotation);
         Systems.aiManager.enemies.Add(createdEnemy);
