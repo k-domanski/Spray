@@ -8,22 +8,32 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="AI" t="Include">
-            <e p="Action.cs" t="Include" />
+            <e p="Actions" t="Include">
+              <e p="Action.cs" t="Include" />
+              <e p="MeleeAttackAction.cs" t="Include" />
+              <e p="PursuitAction.cs" t="Include" />
+              <e p="SeekAction.cs" t="Include" />
+              <e p="ShootingAction.cs" t="Include" />
+              <e p="StopAction.cs" t="Include" />
+            </e>
             <e p="Agent.cs" t="Include" />
             <e p="AIManager.cs" t="Include" />
-            <e p="Decision.cs" t="Include" />
+            <e p="Decisions" t="Include">
+              <e p="Decision.cs" t="Include" />
+              <e p="EnterArenaDecision.cs" t="Include" />
+              <e p="MeleeAttackDecision.cs" t="Include" />
+              <e p="OutOfMeleeAttackDecision.cs" t="Include" />
+              <e p="OutOfRangeDecision.cs" t="Include" />
+              <e p="ShootAndGoDecision.cs" t="Include" />
+              <e p="ShootDecision.cs" t="Include" />
+              <e p="StopAndShootDecision.cs" t="Include" />
+            </e>
             <e p="Enemy.cs" t="Include" />
             <e p="EnemyParams.cs" t="Include" />
-            <e p="OutOfRangeDecision.cs" t="Include" />
-            <e p="PursuitAction.cs" t="Include" />
-            <e p="SeekAction.cs" t="Include" />
-            <e p="ShootAndGoDecision.cs" t="Include" />
-            <e p="ShootDecision.cs" t="Include" />
-            <e p="ShootingAction.cs" t="Include" />
-            <e p="State.cs" t="Include" />
             <e p="StateController.cs" t="Include" />
-            <e p="StopAction.cs" t="Include" />
-            <e p="StopAndShootDecision.cs" t="Include" />
+            <e p="States" t="Include">
+              <e p="State.cs" t="Include" />
+            </e>
             <e p="Target.cs" t="Include" />
             <e p="Transition.cs" t="Include" />
           </e>
@@ -37,6 +47,7 @@
             <e p="CameraSettings.cs" t="Include" />
           </e>
           <e p="DamageDealer.cs" t="Include" />
+          <e p="DeathPanel.cs" t="Include" />
           <e p="DecalSystem.cs" t="Include" />
           <e p="DontDestroyBehaviour.cs" t="Include" />
           <e p="EnemyVisuals.cs" t="Include" />
@@ -55,6 +66,10 @@
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerSettings.cs" t="Include" />
           </e>
+          <e p="Proxy" t="Include">
+            <e p="Proxy.cs" t="Include" />
+            <e p="ScoreUIProxy.cs" t="Include" />
+          </e>
           <e p="SimpleShooting.cs" t="Include" />
           <e p="Spawner.cs" t="Include" />
           <e p="Systems" t="Include">
@@ -63,7 +78,14 @@
             <e p="AudioSettings.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
             <e p="SceneManager.cs" t="Include" />
+            <e p="ScoreSystem.cs" t="Include" />
             <e p="Systems.cs" t="Include" />
+          </e>
+          <e p="UI" t="Include">
+            <e p="PlayerHealthBar.cs" t="Include" />
+            <e p="ProgressBar.cs" t="Include" />
+            <e p="ScoreUI.cs" t="Include" />
+            <e p="WaveNumber.cs" t="Include" />
           </e>
           <e p="WaveSpawner.cs" t="Include" />
           <e p="weapons" t="Include">

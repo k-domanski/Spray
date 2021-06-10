@@ -24,6 +24,10 @@ public class WaveSpawner : MonoBehaviour
     public float waveMultiplier = 1.0f;
     public Wave[] waves;
     private int _nextWave = 0;
+    
+    //waveNumber fields
+    public int waveNumber = 0;
+    private WaveNumber _waveNumber;
 
     public Transform[] spawnPoints;
 
@@ -41,14 +45,20 @@ public class WaveSpawner : MonoBehaviour
             Debug.LogError("No spawn points referenced");
         }
         waveCountdown = timeBetweenWaves;
+        _waveNumber = GameObject.FindObjectOfType<WaveNumber>();
+        _waveNumber.updateWaveNumber(waveNumber);
     }
 
     void Update()
     {
         if (state == SpawnState.WAITING)
         {
+
             if (!EnemyIsAlive())
             {
+                waveNumber++;
+                _waveNumber.updateWaveNumber(waveNumber);
+
                 WaveCompleted();
             }
             else
