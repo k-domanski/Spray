@@ -638,6 +638,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d3df08903084e143a38ff12d5acee0a, type: 3}
+--- !u!114 &193927407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+  m_PrefabInstance: {fileID: 528331007}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d333887c9c274f62a814ced4af000654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &249625631
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,38 +2358,41 @@ MonoBehaviour:
   waveMultiplier: 1
   waves:
   - name: First Wave
-    enemy:
-    - {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
-    - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
-    - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
+    enemies:
+    - enemy: {fileID: 1388067114}
+      count: 3
     count: 3
     rate: 0.6
   - name: Second Wave
-    enemy:
-    - {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
-    - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
-    - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
+    enemies:
+    - enemy: {fileID: 1388067114}
+      count: 10
     count: 10
     rate: 0.7
   - name: Third Wave
-    enemy:
-    - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
-    - {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
-    - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
+    enemies:
+    - enemy: {fileID: 1388067114}
+      count: 16
+    - enemy: {fileID: 1948951786}
+      count: 4
     count: 20
     rate: 0.8
   - name: Fourth Wave
-    enemy:
-    - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
-    - {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
-    - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
+    enemies:
+    - enemy: {fileID: 1388067114}
+      count: 15
+    - enemy: {fileID: 1948951786}
+      count: 15
     count: 30
     rate: 0.95
   - name: Peak Wave
-    enemy:
-    - {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
-    - {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
-    - {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
+    enemies:
+    - enemy: {fileID: 1388067114}
+      count: 16
+    - enemy: {fileID: 1948951786}
+      count: 16
+    - enemy: {fileID: 193927407}
+      count: 8
     count: 40
     rate: 1.1
   waveNumber: 0
@@ -5153,6 +5167,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 680441862708573799, guid: b5041192c91ef9948b6eb543f03fa653, type: 3}
   m_PrefabInstance: {fileID: 680441861379551092}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1388067114 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
+  m_PrefabInstance: {fileID: 1808817115}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d333887c9c274f62a814ced4af000654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1480198103
 Mesh:
   m_ObjectHideFlags: 0
@@ -6316,6 +6341,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1948951786 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+  m_PrefabInstance: {fileID: 1291741516}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d333887c9c274f62a814ced4af000654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1984185411
 GameObject:
   m_ObjectHideFlags: 0

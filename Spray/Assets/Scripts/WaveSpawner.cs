@@ -16,11 +16,22 @@ public class WaveSpawner : MonoBehaviour
     public class Wave
     {
         public string name;
-        public Enemy[] enemy;
+        public EnemyWithColor[] enemies;
         public int count;
         public float rate;
-    }
+        public int totalEnemiesSpawned { get => _totalEnemiesSpawned; set { _totalEnemiesSpawned = value; } }
 
+        private int _totalEnemiesSpawned = 0;
+    }
+    [System.Serializable]
+    public class EnemyWithColor
+    {
+        public Enemy enemy;
+        public int count;
+        public int currentEnemyCount { get => _currentEnemyCount; set { _currentEnemyCount = value; } }
+        public bool canSpawn => currentEnemyCount < count;
+        private int _currentEnemyCount = 0;
+    }
     public float waveMultiplier = 1.0f;
     public Wave[] waves;
     private int _nextWave = 0;
@@ -37,6 +48,7 @@ public class WaveSpawner : MonoBehaviour
     private float searchCountdown = 1f;
 
     private SpawnState state = SpawnState.COUNTING;
+
 
     void Start()
     {
@@ -117,23 +129,28 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log("Spawning wave: " + _wave.name);
         state = SpawnState.SPAWNING;
 
-        for (int i = 0; i < _wave.count * waveMultiplier; i++)
+        do
         {
-            var index = (int)Random.Range(0, _wave.enemy.Length);
-            SpawnEnemy(_wave.enemy[index]);
-            yield return new WaitForSeconds(1f / _wave.rate);
-        }
-        
+            var index = (int)Random.Range(0, _wave.enemies.Length);
+            Debug.Log(index);
+            if (_wave.enemies[index].canSpawn)
+            {
+                SpawnEnemy(_wave.enemies[index]);
+                _wave.totalEnemiesSpawned++;
+                yield return new WaitForSeconds(1f / _wave.rate);
+
+            }
+        } while (_wave.totalEnemiesSpawned < _wave.count * waveMultiplier);
+
         state = SpawnState.WAITING;
         yield break;
     }
 
-    void SpawnEnemy(Enemy _enemy)
+    void SpawnEnemy(EnemyWithColor _enemy)
     {
-        //Spawn enemy
-        //Debug.Log(("spawning enemy: " + _enemy.name));
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        var createdEnemy = Instantiate(_enemy, _sp.position + new Vector3(Random.Range(-2f,2f), 0.0f, Random.Range(-2f, 2f)), _sp.rotation);
+        var createdEnemy = Instantiate(_enemy.enemy, _sp.position + new Vector3(Random.Range(-2f, 2f), 0.0f, Random.Range(-2f, 2f)), _sp.rotation);
         Systems.aiManager.enemies.Add(createdEnemy);
+        _enemy.currentEnemyCount++;
     }
 }
