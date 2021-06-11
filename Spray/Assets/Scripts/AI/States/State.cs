@@ -13,6 +13,7 @@ public class State : ScriptableObject
         {
             if (transition.decision.Decide(enemy))
             {
+                Debug.Log($"Transition to {transition.decision.name}");
                 enemy.stateController.currentState = transition.nextState;
             }
         }
