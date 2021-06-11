@@ -37,7 +37,7 @@ public class WaveSpawner : MonoBehaviour
     private int _nextWave = 0;
     
     //waveNumber fields
-    public int waveNumber = 0;
+    private int waveNumber = 1;
     private WaveNumber _waveNumber;
 
     public Transform[] spawnPoints;

@@ -2384,7 +2384,6 @@ MonoBehaviour:
       count: 8
     count: 40
     rate: 1.1
-  waveNumber: 0
   spawnPoints:
   - {fileID: 1841129608}
   - {fileID: 755339491}
@@ -6902,6 +6901,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1313897304}
     m_Modifications:
+    - target: {fileID: 680441861179051378, guid: b5041192c91ef9948b6eb543f03fa653, type: 3}
+      propertyPath: m_text
+      value: 'Wave number: 1'
+      objectReference: {fileID: 0}
+    - target: {fileID: 680441861179051378, guid: b5041192c91ef9948b6eb543f03fa653, type: 3}
+      propertyPath: m_fontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 680441861179051378, guid: b5041192c91ef9948b6eb543f03fa653, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 680441862708573798, guid: b5041192c91ef9948b6eb543f03fa653, type: 3}
       propertyPath: m_Name
       value: WaveNumber
@@ -6972,7 +6983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 680441862708573799, guid: b5041192c91ef9948b6eb543f03fa653, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -1418.085
       objectReference: {fileID: 0}
     - target: {fileID: 680441862708573799, guid: b5041192c91ef9948b6eb543f03fa653, type: 3}
       propertyPath: m_AnchoredPosition.y

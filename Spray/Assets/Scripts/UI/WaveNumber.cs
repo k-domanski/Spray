@@ -11,6 +11,7 @@ public class WaveNumber : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentWaveNumber;
     public void updateWaveNumber(int waveNumber)
     {
-        currentWaveNumber.text = "Waves survived: " + waveNumber.ToString();
+        
+        currentWaveNumber.text = "Current wave: " + waveNumber.ToString();
     }
 }
