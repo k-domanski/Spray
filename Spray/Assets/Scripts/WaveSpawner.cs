@@ -22,6 +22,13 @@ public class WaveSpawner : MonoBehaviour
         public int totalEnemiesSpawned { get => _totalEnemiesSpawned; set { _totalEnemiesSpawned = value; } }
 
         private int _totalEnemiesSpawned = 0;
+
+        public void ResetWave()
+        {
+            _totalEnemiesSpawned = 0;
+            foreach (var enemy in enemies)
+                enemy.currentEnemyCount = 0;
+        }
     }
     [System.Serializable]
     public class EnemyWithColor
@@ -98,11 +105,13 @@ public class WaveSpawner : MonoBehaviour
         
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
+        int lastWaveIndex = waves.Length - 1;
 
-        if (_nextWave + 1 > waves.Length - 1)
+        if (_nextWave + 1 > lastWaveIndex)
         {
             //waveMultiplier += 1.5f;
-            _nextWave = 0;
+            waves[lastWaveIndex].ResetWave();
+            _nextWave = lastWaveIndex;
             Debug.Log("Completed all waves! Looping...");
         }
         else
