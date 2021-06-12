@@ -2582,6 +2582,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bazooka
       objectReference: {fileID: 0}
+    - target: {fileID: 3666564383040089781, guid: f8dbecc53b4dacd4b9f7f157a15ddbb4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5367893856096644301, guid: f8dbecc53b4dacd4b9f7f157a15ddbb4, type: 3}
       propertyPath: _placeBulletHoles
       value: 1
@@ -2661,7 +2665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3666564383040089781, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5367893856096644301, guid: c429f230aaf59a64e897f6344ec5961a, type: 3}
       propertyPath: _placeBulletHoles
