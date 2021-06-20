@@ -129,6 +129,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792ba2cec6b74544f96c440c8f3558cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2122811928114530396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1695911321869367925}
+  - component: {fileID: 3605122953247012633}
+  m_Layer: 0
+  m_Name: CheatConsole
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1695911321869367925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122811928114530396}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 588323610619083950}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3605122953247012633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122811928114530396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d759052c9df2aca4e814c9cdd8ea85cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerProxy: {fileID: 11400000, guid: 9ce5f19140b8a5f41aabeaade66cc8d2, type: 2}
 --- !u!1 &3588618167271512439
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,6 +208,7 @@ Transform:
   - {fileID: 1268691187}
   - {fileID: 1339101778}
   - {fileID: 2637760359447082124}
+  - {fileID: 1695911321869367925}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -186,6 +231,7 @@ MonoBehaviour:
   _decalSystem: {fileID: 276180310807477474}
   _aiManager: {fileID: 1339101777}
   _scoreSystem: {fileID: 2753834258058080436}
+  _cheatConsole: {fileID: 3605122953247012633}
 --- !u!1 &5003600369088321570
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,3 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258563040a787194ebf662105a7899db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scoreUIProxy: {fileID: 0}
+  _baseMultiplierTime: 5
+  _timeReduction: 0.1

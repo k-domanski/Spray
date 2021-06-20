@@ -1420,6 +1420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c88f8975e4f0bf4dad61c668fdbb120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerProxy: {fileID: 11400000, guid: 9ce5f19140b8a5f41aabeaade66cc8d2, type: 2}
   _playerSettings: {fileID: 11400000, guid: 295043b51bf993d45a5f2e283c1e218b, type: 2}
   _weaponName: {fileID: 8588755703038638670}
   _guns:
@@ -1573,6 +1574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHealth: 100
   _maxHealth: 100
+  canReceiveDamage: 1
   onDamageTaken:
     m_PersistentCalls:
       m_Calls: []
