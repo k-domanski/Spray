@@ -79,9 +79,15 @@ public class Enemy : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        var vel = Vector3.Lerp(_rigidbody.velocity, velocity * _speedReduction, 0.2f);
+        //var vel = Vector3.Lerp(_rigidbody.velocity, velocity * _speedReduction, 0.2f);
+        var vel = Vector3.MoveTowards(_rigidbody.velocity, velocity * _speedReduction, settings.acceleration * Time.fixedDeltaTime);
         vel.y = _rigidbody.velocity.y;
         _rigidbody.velocity = vel;
+
+        //var force = velocity - _rigidbody.velocity;
+        //force.y = 0;
+        //force *= settings.mass;
+        //_rigidbody.AddForce(force, ForceMode.VelocityChange);
 
         var sqrt_mag = Vector3.SqrMagnitude(target.transform.position - transform.position);
         targetInMeleeRange = sqrt_mag < settings.attackRange;

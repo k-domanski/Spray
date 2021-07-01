@@ -4,7 +4,7 @@ using UnityEngine;
 public class PursuitAction : Action
 {
 
-    private bool _tryAvoidingQueue = false;
+    private bool _tryAvoidingQueue = true;//debug
     public override void Act(Enemy enemy)
     {
         if (enemy.target == null)
@@ -15,9 +15,9 @@ public class PursuitAction : Action
         var position = enemy.transform.position;
         position.y = 0f;
 
-        Vector3 distance = targetPosition - position;
-        var predictionStep = distance.magnitude / enemy.settings.maxSpeed;
-        Vector3 futurePosition = targetPosition + enemy.target.velocity * predictionStep;
+        var distance = (targetPosition - position).magnitude;
+        var predictionStep = distance / enemy.settings.maxSpeed;
+        Vector3 futurePosition = targetPosition + (enemy.target.velocity * predictionStep);
 
         Vector3 desiredVelocity = futurePosition - position;
 
@@ -28,8 +28,8 @@ public class PursuitAction : Action
 
         //float distance = desiredVelocity.magnitude;
 
-        if (distance.magnitude < enemy.settings.stoppingDistance)
-            desiredVelocity = desiredVelocity.normalized * enemy.settings.maxSpeed * (distance.magnitude / enemy.settings.stoppingDistance);
+        if (distance < enemy.settings.stoppingDistance)
+            desiredVelocity = desiredVelocity.normalized * enemy.settings.maxSpeed * (distance / enemy.settings.stoppingDistance);
         else
             desiredVelocity = desiredVelocity.normalized * enemy.settings.maxSpeed;
 
@@ -48,14 +48,12 @@ public class PursuitAction : Action
     {
         Vector3 breakForce = Vector3.zero;
         var velocity = enemy.velocity;
-        _tryAvoidingQueue = false;
         var neighbour = Systems.aiManager.GetNeighbour(enemy);
         if (neighbour != null)
         {
             breakForce = -steering * 0.8f;
             breakForce -= velocity;
 
-            _tryAvoidingQueue = true;
             //if (Vector3.Distance(enemy.transform.position, neighbour.transform.position) <= enemy.settings.maxQueueRadius)
             //  enemy.velocity *= 0.3f;
         }

@@ -17,7 +17,7 @@ public class StateController : MonoBehaviour
         currentState = startState;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         currentState.UpdateState(_enemy);
     }

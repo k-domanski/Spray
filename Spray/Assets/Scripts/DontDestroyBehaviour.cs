@@ -28,7 +28,6 @@ public abstract class DontDestroyBehaviour<T> : MonoBehaviour where T : MonoBeha
             return;
         }
         OnAwake();
-        Debug.Log("dont destriy awake");
     }
 
     private void OnDestroy()
