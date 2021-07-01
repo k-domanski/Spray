@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public Enemy leader { get; set; } = null;
     public Player target { get; set; } = null;
     public Vector3 velocity { get; set; } = Vector3.zero;
+
     public float speed => settings.maxSpeed - _speedReduction;
 
     private LivingEntity _livingEntity;
@@ -76,12 +77,13 @@ public class Enemy : MonoBehaviour
         StopAllCoroutines();
         _livingEntity.onDeath.RemoveListener(Die);
     }
-
     private void FixedUpdate()
     {
-        var vel = Vector3.Lerp(_rigidbody.velocity, velocity * _speedReduction, 0.5f);
+        var vel = Vector3.Lerp(_rigidbody.velocity, velocity * _speedReduction, 0.2f);
         vel.y = _rigidbody.velocity.y;
         _rigidbody.velocity = vel;
+        Debug.Log(vel);
+        //transform.position += vel * Time.fixedDeltaTime;
     }
 
     public void Knockback(Vector3 direction, float power)
@@ -153,11 +155,11 @@ public class Enemy : MonoBehaviour
         var timeCounter = 0f;
         var angle = settings.attackAngle / time;
         //Debug.Log(weaponPlaceholder.transform.localEulerAngles - (180f * Vector3.up));
-        Debug.Log(angle);
+        //Debug.Log(angle);
         while (timeCounter < time)
         //while ((weaponPlaceholder.transform.localEulerAngles.y - 180f) > (-settings.attackAngle))
         {
-            Debug.Log(weaponPlaceholder.transform.localEulerAngles - (180f * Vector3.up));
+            //Debug.Log(weaponPlaceholder.transform.localEulerAngles - (180f * Vector3.up));
             weaponPlaceholder.transform.Rotate(Vector3.up, -angle * Time.deltaTime);
             timeCounter += Time.deltaTime;
             yield return null;
