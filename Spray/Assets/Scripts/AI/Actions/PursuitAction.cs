@@ -3,8 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "AI/Actions/Pursuit")]
 public class PursuitAction : Action
 {
-
-    private bool _tryAvoidingQueue = true;//debug
+    private readonly Quaternion _rightRotation = Quaternion.Euler(0f, 45f, 0f);
+    private readonly Quaternion _leftRotation = Quaternion.Euler(0f, -45f, 0f);
     public override void Act(Enemy enemy)
     {
         if (enemy.target == null)
@@ -15,18 +15,52 @@ public class PursuitAction : Action
         var position = enemy.transform.position;
         position.y = 0f;
 
-        var distance = (targetPosition - position).magnitude;
+        var targetDir = targetPosition - position;
+        var distance = targetDir.magnitude;
         var predictionStep = distance / enemy.settings.maxSpeed;
         Vector3 futurePosition = targetPosition + (enemy.target.velocity * predictionStep);
 
+        var angle = Vector3.SignedAngle(targetDir, futurePosition, Vector3.up);
+
         Vector3 desiredVelocity = futurePosition - position;
+        if (Mathf.Abs(angle) > 180f)
+            desiredVelocity = targetDir;
 
-        if (_tryAvoidingQueue)
+        //queue avoiding
+        var rightIsFree = true;
+        var leftIsFree = true;
+        Physics.SphereCast(enemy.transform.position, 0.5f, desiredVelocity.normalized, out var hitInfo, 2.0f);
+        if (hitInfo.collider != null)
         {
-            desiredVelocity = Quaternion.Euler(0f, 30f, 0f) * desiredVelocity;
-        }
+            if (hitInfo.collider.TryGetComponent<Enemy>(out var comp))
+            {
+                var newDesiredVelocity = _rightRotation * desiredVelocity;
+                Physics.SphereCast(enemy.transform.position, 0.5f, newDesiredVelocity.normalized, out var rightHitInfo, 2.0f);
+                if (rightHitInfo.collider != null)
+                {
+                    if (rightHitInfo.collider.TryGetComponent<Enemy>(out var newComp))
+                    {
+                        Debug.Log(rightHitInfo.transform);
+                        rightIsFree = false;
+                    }
+                }
 
-        //float distance = desiredVelocity.magnitude;
+                newDesiredVelocity = _leftRotation * desiredVelocity;
+                Physics.SphereCast(enemy.transform.position, 0.5f, newDesiredVelocity.normalized, out var leftHitInfo, 2.0f);
+                if (leftHitInfo.collider != null)
+                {
+                    if (leftHitInfo.collider.TryGetComponent<Enemy>(out var newComp))
+                    {
+                        leftIsFree = false;
+                    }
+                }
+
+                if (rightIsFree)
+                    desiredVelocity = _rightRotation * desiredVelocity;
+                else if (leftIsFree)
+                    desiredVelocity = _leftRotation * desiredVelocity;
+            }
+        }
 
         if (distance < enemy.settings.stoppingDistance)
             desiredVelocity = desiredVelocity.normalized * enemy.settings.maxSpeed * (distance / enemy.settings.stoppingDistance);
