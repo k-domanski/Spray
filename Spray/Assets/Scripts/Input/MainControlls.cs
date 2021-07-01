@@ -150,7 +150,7 @@ public class @MainControlls : IInputActionCollection, IDisposable
                     ""id"": ""e61f4b9c-3c60-44b8-85fa-2774565ae026"",
                     ""path"": ""<XInputController>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone(min=0.23)"",
                     ""groups"": """",
                     ""action"": ""Move"",
                     ""isComposite"": false,

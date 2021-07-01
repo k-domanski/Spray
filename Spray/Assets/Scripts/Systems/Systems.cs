@@ -13,6 +13,7 @@ public class Systems : DontDestroyBehaviour<Systems>
     public static DecalSystem decalSystem => instance._decalSystem;
     public static AIManager aiManager => instance._aiManager;
     public static ScoreSystem scoreSystem => instance._scoreSystem;
+    public static CheatConsole cheatConsole => instance._cheatConsole;
     #endregion
     #region Properties
     [Header("References")]
@@ -23,6 +24,7 @@ public class Systems : DontDestroyBehaviour<Systems>
     [SerializeField] private DecalSystem _decalSystem;
     [SerializeField] private AIManager _aiManager;
     [SerializeField] private ScoreSystem _scoreSystem;
+    [SerializeField] private CheatConsole _cheatConsole;
     #endregion
 
     #region Protected

@@ -27,6 +27,7 @@ public class LivingEntity : MonoBehaviour
             onHealthChanged?.Invoke(oldHealth, value);
         }
     }
+    public bool canReceiveDamage = true;
 
     #endregion
 
@@ -39,6 +40,11 @@ public class LivingEntity : MonoBehaviour
     #region Public
     public void DealDamage(float damage, Vector3 impactDirection)
     {
+        if (!canReceiveDamage)
+        {
+            return;
+        }
+
         if (currentHealth > 0)
         {
             currentHealth -= damage;

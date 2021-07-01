@@ -5,7 +5,7 @@ public class EnemyParams : ScriptableObject
 {
     public float maxHealth;
     public int score;
-    
+
     [Header("Movement")]
     public float maxSpeed;
     public float stoppingDistance;
@@ -14,20 +14,22 @@ public class EnemyParams : ScriptableObject
     public float maxQueueRadius;
     public float maxRotationSpeed;
     public float acceleration;
-    
+
     [Header("Ranged attack")]
     public float shootingRange;
     public float stopAndShootDistance;
     public bool predictPosition;
 
-    [Header("Close combat attack")] 
+    [Header("Melee Attack")]
     public float attackRange;
     public float attackAngle;
     public float attackTriggerPosition;
     public Vector2 attackTriggerSize;
     public float attackDamage;
-    public float attackCooldown;
-    public float preAttackTime;
+
+    public float attackStartTime;
+    public float attackSwingTime;
+    public float attackEndTime;
 
     [Header("Knockback")]
     public float speedRecovery;

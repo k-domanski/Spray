@@ -1,0 +1,5 @@
+walk forward - 32
+walk_backward - 32
+walk right/left - 49
+run - 19
+idle - 37

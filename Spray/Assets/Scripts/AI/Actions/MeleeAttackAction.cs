@@ -5,11 +5,15 @@ public class MeleeAttackAction : Action
 {
     public override void Act(Enemy enemy)
     {
+        /* Performed each frame */
+        /* Swing hand from right then from left */
         if (enemy.canAttack && enemy.targetInMeleeRange)
         {
-            enemy.canAttack = false;
-            enemy.Delay(() => Attack(enemy), enemy.settings.preAttackTime);
-            enemy.ShowAttack();
+            if (enemy.canAttack)
+            {
+                enemy.MeleeAttack();
+            }
+            // enemy.Delay(() => Attack(enemy), enemy.settings.preAttackTime);
         }
     }
 
@@ -27,6 +31,7 @@ public class MeleeAttackAction : Action
         if (targetDir.magnitude > enemy.settings.attackRange) return;
         //Debug.Log("in range");
         var livingEntity = target.GetComponent<LivingEntity>();
-        livingEntity.DealDamage(enemy.settings.attackDamage, Vector3.zero);
+
+        // livingEntity.DealDamage(enemy.settings.attackDamage, Vector3.zero);
     }
 }

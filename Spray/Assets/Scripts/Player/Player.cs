@@ -12,6 +12,7 @@ using Vector3 = UnityEngine.Vector3;
 public class Player : MonoBehaviour
 {
     #region Properties
+    [SerializeField] private PlayerProxy _playerProxy;
     [SerializeField] private PlayerSettings _playerSettings;
     [SerializeField] private TextMeshProUGUI _weaponName;
     [SerializeField] private List<GunController> _guns;
@@ -53,6 +54,8 @@ public class Player : MonoBehaviour
         mainWeapon.Equip();
         secondaryWeapon.Unequip();
         _weaponName.text = _currentWeapon.name;
+
+        _playerProxy.Register(this);
     }
 
     private void Start()
@@ -69,6 +72,11 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         livingEntity.onDeath.RemoveListener(Die);
+    }
+    
+    private void OnDestroy()
+    {
+        _playerProxy.Unregister(this);
     }
 
     private void Update()

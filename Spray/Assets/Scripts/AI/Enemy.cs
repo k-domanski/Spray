@@ -9,7 +9,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public EnemyParams settings;
-    public GameObject weaponPlaceholder;
     public GunController gunController { get; private set; }
     public StateController stateController { get; private set; }
     private Rigidbody _rigidbody;
@@ -27,16 +26,13 @@ public class Enemy : MonoBehaviour
     private BoxCollider _attackRangeChecker;
     public bool targetInMeleeRange { get; private set; }
     private bool _canAttack;
-    public bool canAttack
-    {
-        get => _canAttack;
-        set
-        {
-            _canAttack = value;
-            if (!value)
-                this.Delay(() => canAttack = true, settings.attackCooldown);
-        }
-    }
+    // public bool canAttack
+    // {
+    //     get => _canAttack;
+    //     set => _canAttack = value;
+    // }
+    public bool canAttack => !_meleeAnimation.isAnimating;
+    private MeleeAnimation _meleeAnimation;
 
     private void Awake()
     {
@@ -44,8 +40,8 @@ public class Enemy : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         gunController = GetComponent<GunController>();
         _livingEntity = GetComponent<LivingEntity>();
+        _meleeAnimation = GetComponent<MeleeAnimation>();
         targetInMeleeRange = false;
-        canAttack = true;
         if (settings.attackTriggerSize == Vector2.zero) return;
 
         _attackRangeChecker = gameObject.AddComponent<BoxCollider>();
@@ -53,9 +49,13 @@ public class Enemy : MonoBehaviour
         _attackRangeChecker.center = settings.attackTriggerPosition * Vector3.forward;
         _attackRangeChecker.size = new Vector3(settings.attackTriggerSize.x, 1f, settings.attackTriggerSize.y);
         _attackRangeChecker.isTrigger = true;
-        var scale = weaponPlaceholder.transform.localScale;
-        weaponPlaceholder.transform.localScale = new Vector3(scale.x, scale.y, scale.z * settings.attackRange);
-        weaponPlaceholder.SetActive(false);
+
+        // /* Hands */
+        // _qLBase = _leftHand.transform.rotation;
+        // _qRBase = _rightHand.transform.rotation;
+        // _qLInter = Quaternion.identity;
+        // _qRInter = Quaternion.identity;
+
     }
 
     private void Start()
@@ -82,8 +82,9 @@ public class Enemy : MonoBehaviour
         var vel = Vector3.Lerp(_rigidbody.velocity, velocity * _speedReduction, 0.2f);
         vel.y = _rigidbody.velocity.y;
         _rigidbody.velocity = vel;
-        Debug.Log(vel);
-        //transform.position += vel * Time.fixedDeltaTime;
+
+        var sqrt_mag = Vector3.SqrMagnitude(target.transform.position - transform.position);
+        targetInMeleeRange = sqrt_mag < settings.attackRange;
     }
 
     public void Knockback(Vector3 direction, float power)
@@ -101,7 +102,10 @@ public class Enemy : MonoBehaviour
             _slowCoroutine = null;
         }
     }
-
+    public void MeleeAttack()
+    {
+        _meleeAnimation.MeleeAttack();
+    }
     private IEnumerator SlowdownCoroutine()
     {
         _speedReduction = 0.1f;
@@ -125,18 +129,11 @@ public class Enemy : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void ShowAttack()
-    {
-        weaponPlaceholder.SetActive(true);
-        var rot = weaponPlaceholder.transform.localEulerAngles;
-        weaponPlaceholder.transform.localEulerAngles = new Vector3(rot.x, settings.attackAngle / 2f, rot.z);
-        this.Delay(() => StartCoroutine(showAttackEnumerator()), settings.preAttackTime);
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Player>(out var _))
         {
-            targetInMeleeRange = true;
+            // targetInMeleeRange = true;
         }
     }
 
@@ -144,26 +141,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.TryGetComponent<Player>(out var _))
         {
-            targetInMeleeRange = false;
+            // targetInMeleeRange = false;
         }
-    }
-
-    private IEnumerator showAttackEnumerator()
-    {
-        var time = settings.attackCooldown - ( settings.preAttackTime);
-        time /= 2f;
-        var timeCounter = 0f;
-        var angle = settings.attackAngle / time;
-        //Debug.Log(weaponPlaceholder.transform.localEulerAngles - (180f * Vector3.up));
-        //Debug.Log(angle);
-        while (timeCounter < time)
-        //while ((weaponPlaceholder.transform.localEulerAngles.y - 180f) > (-settings.attackAngle))
-        {
-            //Debug.Log(weaponPlaceholder.transform.localEulerAngles - (180f * Vector3.up));
-            weaponPlaceholder.transform.Rotate(Vector3.up, -angle * Time.deltaTime);
-            timeCounter += Time.deltaTime;
-            yield return null;
-        }
-        weaponPlaceholder.SetActive(false);
     }
 }
