@@ -17,16 +17,16 @@ public class PursuitAction : Action
 
         var targetDir = targetPosition - position;
         var distance = targetDir.magnitude;
-        var predictionStep = distance / enemy.settings.maxSpeed;
-        Vector3 futurePosition = targetPosition + (enemy.target.velocity * predictionStep);
+        //var predictionStep = distance / enemy.settings.maxSpeed;
+        //Vector3 futurePosition = targetPosition + (enemy.target.velocity * predictionStep);
 
-        var angle = Vector3.SignedAngle(targetDir, futurePosition, Vector3.up);
+        //var angle = Vector3.SignedAngle(targetDir, futurePosition, Vector3.up);
 
-        Vector3 desiredVelocity = futurePosition - position;
-        if (Mathf.Abs(angle) > 180f)
-            desiredVelocity = targetDir;
+        Vector3 desiredVelocity = targetPosition - position;
+        //if (Mathf.Abs(angle) > 180f)
+          //  desiredVelocity = targetDir;
 
-        //queue avoiding
+          //queue avoiding
         var rightIsFree = true;
         var leftIsFree = true;
         Physics.SphereCast(enemy.transform.position, 0.5f, desiredVelocity.normalized, out var hitInfo, 2.0f);
