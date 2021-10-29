@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.31, y: 0.113, z: 0.008}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7217554813560272461}
   m_RootOrder: 2
@@ -60,6 +61,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.3, y: 1.368, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4985371492682430956}
   - {fileID: 4396126235123111959}
@@ -206,6 +208,7 @@ LineRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -386,6 +389,10 @@ PrefabInstance:
       propertyPath: m_RenderAlignment
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2680246634964103819, guid: 4b3069eeb13305a4fb13a92d26639350, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 5171336199614118407, guid: 4b3069eeb13305a4fb13a92d26639350, type: 3}
       propertyPath: m_RootOrder
       value: 1
