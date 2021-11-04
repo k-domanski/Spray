@@ -141,7 +141,6 @@ public class WaveSpawner : MonoBehaviour
         do
         {
             var index = (int)Random.Range(0, _wave.enemies.Length);
-            Debug.Log(index);
             if (_wave.enemies[index].canSpawn)
             {
                 SpawnEnemy(_wave.enemies[index]);

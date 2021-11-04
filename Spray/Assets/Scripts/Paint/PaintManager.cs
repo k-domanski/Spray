@@ -18,6 +18,7 @@ public class PaintManager : MonoBehaviour
     private int _hardnessID = Shader.PropertyToID("_Hardness");
     private int _strengthID = Shader.PropertyToID("_Strength");
     private int _rotationID = Shader.PropertyToID("_BrushRotation");
+    private int _brushID = Shader.PropertyToID("_BrushPos");
 
     void Awake()
     {
@@ -41,7 +42,11 @@ public class PaintManager : MonoBehaviour
         Graphics.ExecuteCommandBuffer(command);
     }
 
-    public void Paint(Paintable paintable, Vector3 position, float radius, float hardness, float strength, float rotation = 0, Color? color = null)
+    public void Paint(Paintable paintable, Vector3 position, PaintData paintData) {
+        Paint(paintable, position, paintData.radius, paintData.hardness, paintData.strength, paintData.rotation, paintData.color, paintData.brush);
+    }
+
+    public void Paint(Paintable paintable, Vector3 position, float radius, float hardness, float strength, float rotation = 0, Color? color = null, Texture brush = null)
     {
         command.Clear();
 
@@ -52,9 +57,14 @@ public class PaintManager : MonoBehaviour
         maskMaterial.SetFloat(_strengthID, strength);
         maskMaterial.SetFloat(_rotationID, rotation);
 
-        if(color != null)
+        if (color != null)
         {
             maskMaterial.SetColor(_colorID, color.Value);
+        }
+
+        if (brush != null)
+        {
+            maskMaterial.SetTexture(_brushID, brush);
         }
 
         command.SetRenderTarget(paintable.maskTexture);
@@ -65,4 +75,15 @@ public class PaintManager : MonoBehaviour
 
         Graphics.ExecuteCommandBuffer(command);
     }
+}
+
+
+public class PaintData
+{
+    public float radius = 1.0f;
+    public float hardness = 1.0f;
+    public float strength = 1.0f;
+    public float rotation = 0.0f;
+    public Color? color = null;
+    public Texture brush = null;
 }

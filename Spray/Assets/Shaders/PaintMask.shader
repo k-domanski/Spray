@@ -97,8 +97,8 @@ Shader "Unlit/PaintMask"
                 
                 /* Mask - radius based on brush position */
                 float m = mask(_BrushPos, IN.worldPos, _Radius, _Hardness);
-
                 return lerp(color, _Color, brush.a * m * _Strength);
+
 
             }
             ENDCG

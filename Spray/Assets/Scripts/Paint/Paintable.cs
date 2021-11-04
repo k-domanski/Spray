@@ -6,7 +6,6 @@ using UnityEngine.Rendering;
 public class Paintable : MonoBehaviour
 {
     private const int TEXTURE_SIZE = 1024;
-    public PaintManager paintManager;
     new public Renderer renderer { get; private set; } = null;
     public RenderTexture maskTexture = null;
     public RenderTexture swapTexture = null;
@@ -26,7 +25,7 @@ public class Paintable : MonoBehaviour
         renderer = GetComponent<Renderer>();
         renderer.material.SetTexture(_maskTexID, swapTexture);
 
-        paintManager.InitTextures(this);
+        Systems.paintManager.InitTextures(this);
     }
 
     void OnDestroy()
