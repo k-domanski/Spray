@@ -53,9 +53,21 @@ public class EnemyVisuals : MonoBehaviour
     #endregion
 
     #region Private Methods
-    private void PlaceSplatWithMaterial(Vector3 position, Vector3 facing)
+    private void PlaceSplatWithMaterial(GameObject receiver, Vector3 position, Vector3 facing)
     {
-        Systems.decalSystem.PlaceSplat(position, facing, _splatMaterial);
+        Paintable paintable = receiver.GetComponent<Paintable>();
+        if (paintable == null)
+        {
+            return;
+        }
+
+        PaintData data = new PaintData();
+        data.radius = Random.Range(0.1f, 1.0f);
+        data.hardness =  Random.Range(0.5f, 1.0f);
+        data.strength =  Random.Range(0.75f, 1.0f);
+        data.rotation = Random.Range(-Mathf.PI, Mathf.PI);
+        data.color = _visualData.baseColor;
+        Systems.paintManager.Paint(paintable, position, data);
     }
     #endregion
 }

@@ -269,7 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 8825231522133241336}
   _particleCollision: {fileID: 4751756274334789898}
-  _particleCount: 3
+  _particleCount: 6
 --- !u!114 &2487453089657557040
 MonoBehaviour:
   m_ObjectHideFlags: 0

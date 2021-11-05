@@ -10,7 +10,7 @@ public class ParticleCollision : MonoBehaviour
     #endregion
 
     #region Event
-    public UnityEvent<Vector3, Vector3> onParticleCollision;
+    public UnityEvent<GameObject, Vector3, Vector3> onParticleCollision;
     #endregion
 
     #region Messages
@@ -27,7 +27,7 @@ public class ParticleCollision : MonoBehaviour
         {
             var pos = collisions[i].intersection;
             var normal = collisions[i].normal;
-            onParticleCollision?.Invoke(pos, normal);
+            onParticleCollision?.Invoke(other, pos, normal);
             // print($"Collision: [{pos.x}, {pos.y}, {pos.z}]");
         }
     }
