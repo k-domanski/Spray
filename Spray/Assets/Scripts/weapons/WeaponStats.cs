@@ -28,14 +28,14 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private string _ownerLayer;
 
 
-    public float fireRate { get => _fireRate; }
-    public int damage { get => _damage; }
-    public float knockback { get => _knockback; }
-    public ProjectileBehaviourBase projectile { get => _projectile; }
+    public float fireRate => _fireRate;
+    public int damage => _damage; 
+    public float knockback => _knockback;
+    public ProjectileBehaviourBase projectile  => _projectile;
 
-    public bool hasRecoil { get => _hasRecoil; }
+    public bool hasRecoil => _hasRecoil;
 
-    public float accuracy { get => _accuracy; }
+    public float accuracy => _accuracy;
     public float speed => _speed;
     public float playerBaseSpeedReduction => _playerBaseSpeedReduction;
     public float playerSpeedReductionWhileShooting => _playerSpeedReductionWhileShooting;

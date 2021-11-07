@@ -29,6 +29,16 @@ public class LivingEntity : MonoBehaviour
     }
     public bool canReceiveDamage = true;
 
+    public float damageMultiplier
+    {
+        get => _damageMultiplier;
+
+        set => _damageMultiplier = value;
+    }
+    #endregion
+
+    #region Private
+    private float _damageMultiplier = 1.0f;
     #endregion
 
     #region Events
@@ -47,7 +57,7 @@ public class LivingEntity : MonoBehaviour
 
         if (currentHealth > 0)
         {
-            currentHealth -= damage;
+            currentHealth -= CalculateDamage(damage);
             onDamageTaken?.Invoke(damage, impactDirection);
         }
 
@@ -62,6 +72,11 @@ public class LivingEntity : MonoBehaviour
     private void Die()
     {
         onDeath?.Invoke(this);
+    }
+
+    private float CalculateDamage(float damage)
+    {
+        return _damageMultiplier * damage;
     }
     #endregion
 }

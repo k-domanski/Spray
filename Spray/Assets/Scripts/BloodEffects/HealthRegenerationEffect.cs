@@ -14,6 +14,7 @@ public class HealthRegenerationEffect : BloodEffectBase
         if (_livingEntity == null)
         {
             _livingEntity = gameObject.GetComponent<LivingEntity>();
+            RegenerateHealth(_livingEntity);
         }
         else
         {
