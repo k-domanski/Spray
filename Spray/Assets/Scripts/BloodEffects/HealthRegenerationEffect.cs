@@ -9,7 +9,7 @@ public class HealthRegenerationEffect : BloodEffectBase
     private LivingEntity _livingEntity;
     public override void Apply(GameObject gameObject)
     {
-        currentDuration -= Time.deltaTime;
+        Tick();
 
         if (_livingEntity == null)
         {
@@ -20,6 +20,11 @@ public class HealthRegenerationEffect : BloodEffectBase
         {
             RegenerateHealth(_livingEntity);
         }
+    }
+
+    public override void Remove()
+    {
+        currentDuration = 0;
     }
 
     private void RegenerateHealth(LivingEntity livingEntity)

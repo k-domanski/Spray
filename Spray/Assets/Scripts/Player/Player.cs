@@ -25,6 +25,10 @@ public class Player : MonoBehaviour
     public GunController secondaryWeapon { get => _guns[1]; set => _guns[1] = value; }
     public GunController currentWeapon => _currentWeapon;
     public LivingEntity livingEntity { get; private set; }
+
+    //TODO:Move to PlayerSettings
+    public float speedMultiplier { get => _speedMultiplier; set => _speedMultiplier += value ; }
+    public float damageMultiplier { get =>_damageMultiplier ; set => _damageMultiplier += value ; }
     #endregion
 
     #region Private
@@ -38,6 +42,8 @@ public class Player : MonoBehaviour
     private int _weaponIndex;
     private float _playerSpeed;
     private bool _isDead = false;
+    private float _speedMultiplier = 1;
+    private float _damageMultiplier = 1;
     #endregion
 
     #region Messages
@@ -84,7 +90,7 @@ public class Player : MonoBehaviour
         if (_isShooting)
         {
             _time += Time.deltaTime;
-            _currentWeapon.Shoot(_playerController.aimDirection, _time);
+            _currentWeapon.Shoot(_playerController.aimDirection, _damageMultiplier, _time);
         }
         else
         {
@@ -115,7 +121,7 @@ public class Player : MonoBehaviour
         var acceleration = _playerSettings.acceleration * accelerationBoost;
 
         //TODO: Reduce speed here
-        _playerSpeed = _playerSettings.maxSpeed - GetSpeedReduction();
+        _playerSpeed = (_playerSettings.maxSpeed - GetSpeedReduction()) * _speedMultiplier;
 
         Vector3 desiredVelocity = Vector3.MoveTowards(currentVelocity, desiredDirection * _playerSpeed, acceleration * deltaTime);
         AdjustAnimation(desiredVelocity.normalized, transform.forward);

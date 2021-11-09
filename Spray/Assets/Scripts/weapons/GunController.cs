@@ -68,7 +68,7 @@ public class GunController : MonoBehaviour
         _muzzleFlash.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
-    public void Shoot(Vector3 aimDirection, float time = 0f)
+    public void Shoot(Vector3 aimDirection, float playerMultiplier, float time = 0f)
     {
         if (_canShoot)
         {
@@ -78,7 +78,7 @@ public class GunController : MonoBehaviour
                 _shotAudio.Play();
 
             var dir = CalculateRecoil(aimDirection, time);
-            _weaponStats.CreateProjectile(_muzzlePoint.position, dir, _placeBulletHoles, _decalChance);
+            _weaponStats.CreateProjectile(_muzzlePoint.position, dir, playerMultiplier, _placeBulletHoles, _decalChance);
             this.Delay(() => SetShooting(), 1f / _weaponStats.fireRate);
         }
     }

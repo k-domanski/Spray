@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.Events;
 
 public class LivingEntity : MonoBehaviour
@@ -28,17 +29,15 @@ public class LivingEntity : MonoBehaviour
         }
     }
     public bool canReceiveDamage = true;
-
-    public float damageMultiplier
+    public float damageTakenMultiplier
     {
-        get => _damageMultiplier;
-
-        set => _damageMultiplier = value;
+        get => _damageTakenMultiplier;
+        set => _damageTakenMultiplier += value;
     }
     #endregion
 
     #region Private
-    private float _damageMultiplier = 1.0f;
+    private float _damageTakenMultiplier = 1;
     #endregion
 
     #region Events
@@ -58,6 +57,7 @@ public class LivingEntity : MonoBehaviour
         if (currentHealth > 0)
         {
             currentHealth -= CalculateDamage(damage);
+            
             onDamageTaken?.Invoke(damage, impactDirection);
         }
 
@@ -76,7 +76,7 @@ public class LivingEntity : MonoBehaviour
 
     private float CalculateDamage(float damage)
     {
-        return _damageMultiplier * damage;
+        return _damageTakenMultiplier * damage;
     }
     #endregion
 }

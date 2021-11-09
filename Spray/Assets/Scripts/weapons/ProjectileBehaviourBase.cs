@@ -5,14 +5,14 @@ using UnityEngine;
 public abstract class ProjectileBehaviourBase : MonoBehaviour
 {
     /* TODO: move to a struct */
-    public int damage { get => _damage; set { _damage = value; } }
+    public float damage { get => _damage; set { _damage = value; } }
     public LayerMask ownerLayer { get => _ownerLayer; set { _ownerLayer = value; } }
     public float raycastRadius { get => _raycastRadius; set { _raycastRadius = value; } }
     public bool placeBulletHole { get; set; } = true;
     public float decalChance { get; set; } = 1.0f;
 
 
-    protected int _damage;
+    protected float _damage;
     protected Vector3 _direction;
     protected float _speed;
     protected float _duration;

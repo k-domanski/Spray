@@ -33,7 +33,7 @@ public class BloodEffectController : MonoBehaviour
 
     private void RemoveEffect(BloodEffectBase bloodEffect)
     {
-        bloodEffect.currentDuration = 0;
+        bloodEffect.Remove();
         _appliedEffects.Remove(bloodEffect);
     }
 }
