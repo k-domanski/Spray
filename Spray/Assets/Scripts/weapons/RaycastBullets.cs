@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RaycastBullets : ProjectileBehaviourBase
 {
+    [SerializeField] private Texture2D _holeTexture = null;
     [SerializeField] private TrailRenderer _trail;
     [SerializeField] private ParticleSystem _particle;
     /*Debug projectile radius gizmo*/
@@ -86,22 +87,15 @@ public class RaycastBullets : ProjectileBehaviourBase
         }
         else
         {
-            // print(hitInfo.collider.gameObject.layer);
-            if (placeBulletHole && hitInfo.transform.gameObject.layer == _layer)
+            Paintable paintable = hitInfo.transform.GetComponent<Paintable>();
+            if (paintable)
             {
-                if (decalChance == 1.0f)
-                {
-                    Systems.decalSystem.PlaceBulletHole(hitInfo.point, hitInfo.normal);
-                }
-                else
-                {
-
-                    var roll = UnityEngine.Random.Range(0.0f, 1.0f);
-                    if (roll >= decalChance)
-                    {
-                        Systems.decalSystem.PlaceBulletHole(hitInfo.point, hitInfo.normal);
-                    }
-                }
+                PaintData data = new PaintData();
+                data.color = Color.black;
+                data.brush = _holeTexture;
+                data.radius = UnityEngine.Random.Range(0.2f, 0.35f);
+                data.rotation = UnityEngine.Random.Range(-Mathf.PI, Mathf.PI);
+                Systems.paintManager.Paint(paintable, hitInfo.point, data);
             }
         }
     }

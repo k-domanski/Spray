@@ -31,7 +31,8 @@ public class MousePainter : MonoBehaviour
                     print($"{hit.transform.gameObject.name}");
                     return;
                 }
-                Systems.paintManager.Paint(paintable, hit.point, 1.0f, 0.5f, 1.0f, rotation);
+                // Systems.paintManager.Paint(paintable, hit.point, 1.0f, 0.5f, 1.0f, rotation);
+                Systems.paintManager.Paint(paintable, hit.point, 1.0f, 1.0f, 1.0f, rotation);
                 print("Mouse Paint");
             }
             pressed = true;
