@@ -5,33 +5,40 @@ using UnityEngine.Rendering;
 
 public class Paintable : MonoBehaviour
 {
-    private const int TEXTURE_SIZE = 1024;
+    public int textureSize = 2048;
     new public Renderer renderer { get; private set; } = null;
-    public RenderTexture maskTexture = null;
-    public RenderTexture swapTexture = null;
+    public RenderTexture colorMaskTexture = null;
+    public RenderTexture colorTexture = null;
+    public RenderTexture normalMaskTexture = null;
     public RenderTexture normalTexture = null;
 
-    private int _maskTexID = Shader.PropertyToID("_MaskTex");
+    private int _colorTexID = Shader.PropertyToID("_SplatColorTex");
+    private int _normalTexID = Shader.PropertyToID("_SplatNormalTex");
     void Start()
     {
-        maskTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0);
-        maskTexture.filterMode = FilterMode.Bilinear;
+        colorMaskTexture = new RenderTexture(textureSize, textureSize, 0);
+        colorMaskTexture.filterMode = FilterMode.Bilinear;
 
-        swapTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0);
-        swapTexture.filterMode = FilterMode.Bilinear;
+        colorTexture = new RenderTexture(textureSize, textureSize, 0);
+        colorTexture.filterMode = FilterMode.Bilinear;
 
-        normalTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0, RenderTextureFormat.Default);
+        normalMaskTexture = new RenderTexture(textureSize, textureSize, 0);
+        normalMaskTexture.filterMode = FilterMode.Bilinear;
+
+        normalTexture = new RenderTexture(textureSize, textureSize, 0);
+        normalTexture.filterMode = FilterMode.Bilinear;
 
         renderer = GetComponent<Renderer>();
-        renderer.material.SetTexture(_maskTexID, swapTexture);
+        renderer.material.SetTexture(_colorTexID, colorTexture);
+        renderer.material.SetTexture(_normalTexID, normalTexture);
 
         Systems.paintManager.InitTextures(this);
     }
 
     void OnDestroy()
     {
-        maskTexture.Release();
-        swapTexture.Release();
-        normalTexture.Release();
+        colorMaskTexture.Release();
+        colorTexture.Release();
+        normalMaskTexture.Release();
     }
 }

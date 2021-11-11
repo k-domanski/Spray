@@ -40,7 +40,6 @@ public class PursuitAction : Action
                 {
                     if (rightHitInfo.collider.TryGetComponent<Enemy>(out var newComp))
                     {
-                        Debug.Log(rightHitInfo.transform);
                         rightIsFree = false;
                     }
                 }

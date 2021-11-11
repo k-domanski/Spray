@@ -11,14 +11,15 @@ public class PaintManager : MonoBehaviour
     public Material initMaterial = null;
     public Material maskMaterial = null;
 
-    private int _mainTexID = Shader.PropertyToID("_MainTex");
+    private int _colorTexID = Shader.PropertyToID("_ColorTex");
     private int _colorID = Shader.PropertyToID("_Color");
     private int _brushPosID = Shader.PropertyToID("_BrushPos");
     private int _radiusID = Shader.PropertyToID("_Radius");
     private int _hardnessID = Shader.PropertyToID("_Hardness");
     private int _strengthID = Shader.PropertyToID("_Strength");
     private int _rotationID = Shader.PropertyToID("_BrushRotation");
-    private int _brushID = Shader.PropertyToID("_BrushPos");
+    private int _brushID = Shader.PropertyToID("_BrushTex");
+    private int _normalTexID = Shader.PropertyToID("_NormalTex");
 
     void Awake()
     {
@@ -32,17 +33,24 @@ public class PaintManager : MonoBehaviour
     {
         command.Clear();
 
-        command.SetRenderTarget(paintable.maskTexture);
+        command.SetRenderTarget(paintable.colorMaskTexture);
         command.ClearRenderTarget(RTClearFlags.All, Color.clear, 1.0f, 0);
 
-        command.SetRenderTarget(paintable.swapTexture);
-        // command.Blit(paintable.renderer.material.mainTexture, paintable.swapTexture);
+        command.SetRenderTarget(paintable.colorTexture);
+        command.ClearRenderTarget(RTClearFlags.All, Color.clear, 1.0f, 0);
 
-        // command.DrawRenderer(paintable.renderer, initMaterial);
+        command.SetRenderTarget(paintable.normalMaskTexture);
+        command.ClearRenderTarget(RTClearFlags.All, Color.clear, 1.0f, 0);
+
+        command.SetRenderTarget(paintable.normalTexture);
+        command.ClearRenderTarget(RTClearFlags.All, Color.clear, 1.0f, 0);
+
+        command.SetRenderTarget(paintable.colorTexture);
         Graphics.ExecuteCommandBuffer(command);
     }
 
-    public void Paint(Paintable paintable, Vector3 position, PaintData paintData) {
+    public void Paint(Paintable paintable, Vector3 position, PaintData paintData)
+    {
         Paint(paintable, position, paintData.radius, paintData.hardness, paintData.strength, paintData.rotation, paintData.color, paintData.brush);
     }
 
@@ -50,7 +58,8 @@ public class PaintManager : MonoBehaviour
     {
         command.Clear();
 
-        maskMaterial.SetTexture(_mainTexID, paintable.swapTexture);
+        maskMaterial.SetTexture(_colorTexID, paintable.colorTexture);
+        maskMaterial.SetTexture(_normalTexID, paintable.normalTexture);
         maskMaterial.SetVector(_brushPosID, position);
         maskMaterial.SetFloat(_radiusID, radius);
         maskMaterial.SetFloat(_hardnessID, hardness);
@@ -62,16 +71,17 @@ public class PaintManager : MonoBehaviour
             maskMaterial.SetColor(_colorID, color.Value);
         }
 
-        if (brush != null)
-        {
-            maskMaterial.SetTexture(_brushID, brush);
-        }
+        maskMaterial.SetTexture(_brushID, brush);
 
-        command.SetRenderTarget(paintable.maskTexture);
+        RenderTargetIdentifier[] targets = { paintable.colorMaskTexture, paintable.normalMaskTexture };
+        command.SetRenderTarget(targets, paintable.colorMaskTexture.depthBuffer);
         command.DrawRenderer(paintable.renderer, maskMaterial, 0);
 
-        command.SetRenderTarget(paintable.swapTexture);
-        command.Blit(paintable.maskTexture, paintable.swapTexture);
+        command.SetRenderTarget(paintable.colorTexture);
+        command.Blit(paintable.colorMaskTexture, paintable.colorTexture);
+
+        command.SetRenderTarget(paintable.normalTexture);
+        command.Blit(paintable.normalMaskTexture, paintable.normalTexture);
 
         Graphics.ExecuteCommandBuffer(command);
     }
