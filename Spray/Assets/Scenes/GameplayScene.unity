@@ -7546,6 +7546,10 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 2463
       objectReference: {fileID: 0}
+    - target: {fileID: 8233126430499167086, guid: 3c00c34e374aab74faaf6837b2432393, type: 3}
+      propertyPath: m_Intensity
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8397701038404085245, guid: 3c00c34e374aab74faaf6837b2432393, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -11718,7 +11722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &938973631
 MonoBehaviour:
   m_ObjectHideFlags: 0

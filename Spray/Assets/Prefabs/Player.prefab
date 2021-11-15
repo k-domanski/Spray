@@ -1341,6 +1341,7 @@ GameObject:
   - component: {fileID: 1922234882881626193}
   - component: {fileID: 5289139112177146188}
   - component: {fileID: 250297123230187757}
+  - component: {fileID: 8141015079975751499}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -1645,6 +1646,19 @@ MonoBehaviour:
   _samplingTexture: {fileID: 0}
   rawColor: {r: 0, g: 0, b: 0, a: 0}
   colorType: 0
+--- !u!114 &8141015079975751499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5020966971749737458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7aa6deccddb434abf761e094c28c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffLib: {fileID: 11400000, guid: 8d4d87b91d5c9884993c526e5ffc1e17, type: 2}
 --- !u!1 &5020966972500500201
 GameObject:
   m_ObjectHideFlags: 0

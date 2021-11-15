@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class ColorSampler : MonoBehaviour
     private Coroutine _coroutine;
     public Color rawColor;
     public ColorType colorType;
+
+    public Action<ColorType, ColorType> onColorTypeChanged;
 
     void Awake()
     {
@@ -77,6 +80,7 @@ public class ColorSampler : MonoBehaviour
             }
         }
 
+        onColorTypeChanged?.Invoke(colorType, type);
         colorType = type;
     }
 
