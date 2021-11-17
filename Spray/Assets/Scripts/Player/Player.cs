@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     private SimpleShooting _simpleShooting;
     private AudioSource _audio;
     private GunController _currentWeapon;
+    private GunController _secCurrentWeapon;
     private Animator _animator;
     private bool _isShooting = false;
     private float _time = 0;
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         _currentWeapon = mainWeapon;
+        _secCurrentWeapon = _guns[2];
         mainWeapon.Equip();
         secondaryWeapon.Unequip();
         _weaponName.text = _currentWeapon.name;
@@ -91,6 +93,7 @@ public class Player : MonoBehaviour
         {
             _time += Time.deltaTime;
             _currentWeapon.Shoot(_playerController.aimDirection, _damageMultiplier, _time);
+            _secCurrentWeapon.Shoot(_playerController.aimDirection, _damageMultiplier, _time);
         }
         else
         {

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
     [SerializeField] private LayerMask _mouseHitLayer;
     [SerializeField] private CameraController _cameraController;
     [SerializeField] private GameObject _gunPoint;
+    [SerializeField] private GameObject _secondGunPoint;
     public Vector3 moveDirection { get; private set; } = Vector3.zero;
     public Vector3 aimDirection { get; private set; } = Vector3.forward;
     public float cameraRotationDirection { get; private set; } = 0.0f;
