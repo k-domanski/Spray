@@ -27,8 +27,8 @@ public class Player : MonoBehaviour
     public LivingEntity livingEntity { get; private set; }
 
     //TODO:Move to PlayerSettings
-    public float speedMultiplier { get => _speedMultiplier; set => _speedMultiplier += value ; }
-    public float damageMultiplier { get =>_damageMultiplier ; set => _damageMultiplier += value ; }
+    public float speedMultiplier { get => _speedMultiplier; set => _speedMultiplier += value; }
+    public float damageMultiplier { get => _damageMultiplier; set => _damageMultiplier += value; }
     #endregion
 
     #region Private
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
     {
         livingEntity.onDeath.RemoveListener(Die);
     }
-    
+
     private void OnDestroy()
     {
         _playerProxy.Unregister(this);
@@ -92,8 +92,8 @@ public class Player : MonoBehaviour
         if (_isShooting)
         {
             _time += Time.deltaTime;
-            _currentWeapon.Shoot(_playerController.aimDirection, _damageMultiplier, _time);
-            _secCurrentWeapon.Shoot(_playerController.aimDirection, _damageMultiplier, _time);
+            _currentWeapon.Shoot(_playerController.lookDirection, _damageMultiplier, _time);
+            _secCurrentWeapon.Shoot(_playerController.lookDirection, _damageMultiplier, _time);
         }
         else
         {
@@ -105,6 +105,11 @@ public class Player : MonoBehaviour
     #region Public
     public void LookAt(Vector3 direction, float deltaTime)
     {
+        if (direction == Vector3.zero)
+        {
+            return;
+        }
+
         _rigidbody.rotation = Quaternion.RotateTowards(_rigidbody.rotation,
                                                        Quaternion.LookRotation(direction.normalized, Vector3.up),
                                                        deltaTime * _playerSettings.maxRotationSpeed);
@@ -112,16 +117,24 @@ public class Player : MonoBehaviour
 
     public void Move(Vector3 direction, float deltaTime)
     {
-        var currentVelocity = _rigidbody.velocity;
-        var currentDirection = currentVelocity.normalized;
-        var desiredDirection = direction.normalized;
+        Vector3 currentVelocity = _rigidbody.velocity;
+        Vector3 currentDirection = currentVelocity.normalized;
+        Vector3 desiredDirection = direction.normalized;
 
-        // Re-mapping from dot product [-1, 1] range to [0, 1] range
-        var t = (Vector3.Dot(currentDirection, desiredDirection) + 1.0f) / 2.0f;
-        // Applying boost based on 'turn sharpness'
-        var accelerationBoost = Mathf.Lerp(_playerSettings.accelerationBoost, 1.0f, t);
+        // 1 if user input, 0 otherwise
+        float throttle = desiredDirection.sqrMagnitude;
+        float dot = Vector3.Dot(currentDirection, desiredDirection);
+        // Speed ratio, used to ease out the sudden direction change (dot from -1 to 1)
+        float speedRatio = currentVelocity.magnitude / _playerSpeed;
+        float speedFactor = Mathf.Lerp(1.0f, speedRatio, _playerSettings.accelerationSpeedFactor * throttle);
+        // Re-mapping from dot product [-1, 1] range to [0, 1] range and smooth with speed ratio
+        float t = (dot * 0.5f + 0.5f) * speedFactor;
+        // Applying boost based on 'turn sharpness', speed and throttle
+        float accelerationBoost = Mathf.Lerp(1.0f, Mathf.Lerp(_playerSettings.accelerationBoost, 1.0f, t), throttle);
+        // If the movement is held or released
+        float deceleration = Mathf.Max(_playerSettings.decelerationRate, throttle);
 
-        var acceleration = _playerSettings.acceleration * accelerationBoost;
+        float acceleration = _playerSettings.acceleration * accelerationBoost * deceleration;
 
         //TODO: Reduce speed here
         _playerSpeed = (_playerSettings.maxSpeed - GetSpeedReduction()) * _speedMultiplier;
@@ -130,10 +143,10 @@ public class Player : MonoBehaviour
         AdjustAnimation(desiredVelocity.normalized, transform.forward);
         _rigidbody.velocity = desiredVelocity;
 
-        if (_rigidbody.velocity.magnitude > 0.1f && !_audio.isPlaying)
-            _audio.Play();
-        else if (_audio.isPlaying && _rigidbody.velocity.magnitude < 0.1f)
-            _audio.Pause();
+        // if (_rigidbody.velocity.magnitude > 0.1f && !_audio.isPlaying)
+        //     _audio.Play();
+        // else if (_audio.isPlaying && _rigidbody.velocity.magnitude < 0.1f)
+        //     _audio.Pause();
     }
     public void Shoot(bool start)
     {
@@ -165,6 +178,8 @@ public class Player : MonoBehaviour
     #region Private Methods
     private float GetSpeedReduction()
     {
+        return 0;
+
         if (!_isShooting)
             return _currentWeapon.weaponStats.playerBaseSpeedReduction;
 

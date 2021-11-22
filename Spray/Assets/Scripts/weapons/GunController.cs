@@ -74,8 +74,8 @@ public class GunController : MonoBehaviour
         {
             _muzzleFlash.gameObject.SetActive(true);
             _canShoot = false;
-            if (_shotAudio != null)
-                _shotAudio.Play();
+            // if (_shotAudio != null)
+            //     _shotAudio.Play();
 
             var dir = CalculateRecoil(aimDirection, time);
             _weaponStats.CreateProjectile(_muzzlePoint.position, dir, playerMultiplier, _placeBulletHoles, _decalChance);
