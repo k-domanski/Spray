@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
     [SerializeField] private GameObject _secondGunPoint;
     public Vector3 moveDirection { get; private set; } = Vector3.zero;
     public Vector3 aimDirection { get; private set; } = Vector3.forward;
+    public Vector3 lookDirection => transform.forward;
     public float cameraRotationDirection { get; private set; } = 0.0f;
     #endregion
 
@@ -67,8 +68,8 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
             _shootOnAim = true;
         }
         _aimOffset = new Vector3(stickOffset.x, 0f, stickOffset.y).normalized;
-        if(_player.playerSettings.autoShoot)
-            this.Delay(()=>_player.Shoot(_shootOnAim),0.1f);
+        if (_player.playerSettings.autoShoot)
+            this.Delay(() => _player.Shoot(_shootOnAim), 0.1f);
     }
 
     public void OnMouse(InputAction.CallbackContext context)
