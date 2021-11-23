@@ -1,8 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BloodEffectController : MonoBehaviour
 {
+    public Action<BloodEffectBase> onEffectAdded;
+    public Action<BloodEffectBase> onEffectRemoved;
+
     [SerializeField] private BuffLib buffLib;
     private List<BloodEffectBase> _appliedEffects = new List<BloodEffectBase>();
     private Dictionary<ColorType, List<BloodEffectBase>> _availableBuffs = new Dictionary<ColorType, List<BloodEffectBase>>();
@@ -58,11 +62,13 @@ public class BloodEffectController : MonoBehaviour
         }
         bloodEffect.currentDuration = bloodEffect.duration;
         _appliedEffects.Add(bloodEffect);
+        onEffectAdded?.Invoke(bloodEffect);
     }
 
     private void RemoveEffect(BloodEffectBase bloodEffect)
     {
         bloodEffect.Remove();
         _appliedEffects.Remove(bloodEffect);
+        onEffectRemoved?.Invoke(bloodEffect);
     }
 }

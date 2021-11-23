@@ -1,14 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
 public abstract class BloodEffectBase : ScriptableObject
 {
+    public Action<float> OnCurrentDuration;
     public float duration => _duration;
-    public float currentDuration { get; set; }
+    public float currentDuration
+    {
+        get =>_currentDuration; 
+        set
+        {
+            _currentDuration = value;
+            OnCurrentDuration?.Invoke(value);
+        }
+    }
 
+    public Color color => _color;
+    public EffectType type => _type;
     [SerializeField] private float _duration;
+    [SerializeField] private Color _color;
+    [SerializeField] private EffectType _type;
+    private float _currentDuration;
 
     public void RefreshEffect()
     {
@@ -25,4 +41,11 @@ public abstract class BloodEffectBase : ScriptableObject
     {
         currentDuration -= Time.deltaTime;
     }
+}
+
+public enum EffectType
+{
+    None,
+    Buff,
+    Debuff
 }
