@@ -20,7 +20,6 @@ public class EffectPanelUI : MonoBehaviour
         {
             if (obj.icon == icon.icon.sprite)
             {
-                
                 obj.OnCurrentDuration -= icon.SetDuration;
                 icon.gameObject.SetActive(false);
                 _effectIcons.Remove(icon);
