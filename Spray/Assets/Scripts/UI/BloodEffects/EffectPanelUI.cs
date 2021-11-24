@@ -18,8 +18,9 @@ public class EffectPanelUI : MonoBehaviour
     {
         foreach (var icon in _effectIcons)
         {
-            if (obj.color == icon.icon.color)
+            if (obj.icon == icon.icon.sprite)
             {
+                
                 obj.OnCurrentDuration -= icon.SetDuration;
                 icon.gameObject.SetActive(false);
                 _effectIcons.Remove(icon);
@@ -33,7 +34,7 @@ public class EffectPanelUI : MonoBehaviour
     {
         var icon = Instantiate(obj.type == EffectType.Buff ? _buffPrefab : _debuffPrefab).GetComponent<EffectIconUI>();
         icon.transform.SetParent(transform);
-        icon.icon.color = obj.color;
+        icon.icon.sprite = obj.icon;
         _effectIcons.Add(icon);
         obj.OnCurrentDuration += icon.SetDuration;
 

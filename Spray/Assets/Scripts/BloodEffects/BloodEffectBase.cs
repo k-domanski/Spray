@@ -19,10 +19,10 @@ public abstract class BloodEffectBase : ScriptableObject
         }
     }
 
-    public Color color => _color;
+    public Sprite icon => _icon;
     public EffectType type => _type;
     [SerializeField] private float _duration;
-    [SerializeField] private Color _color;
+    [SerializeField] private Sprite _icon;
     [SerializeField] private EffectType _type;
     private float _currentDuration;
 
