@@ -10,71 +10,74 @@ public class PursuitAction : Action
         if (enemy.target == null)
             return;
 
-        var targetPosition = enemy.target.transform.position;
-        targetPosition.y = 0f;
-        var position = enemy.transform.position;
-        position.y = 0f;
+        enemy.SetDestination(enemy.target.transform.position);
+        enemy.Move(enemy.settings.maxSpeed);
 
-        var targetDir = targetPosition - position;
-        var distance = targetDir.magnitude;
-        //var predictionStep = distance / enemy.settings.maxSpeed;
-        //Vector3 futurePosition = targetPosition + (enemy.target.velocity * predictionStep);
+        //var targetPosition = enemy.target.transform.position;
+        //targetPosition.y = 0f;
+        //var position = enemy.transform.position;
+        //position.y = 0f;
 
-        //var angle = Vector3.SignedAngle(targetDir, futurePosition, Vector3.up);
+        //var targetDir = targetPosition - position;
+        //var distance = targetDir.magnitude;
+        ////var predictionStep = distance / enemy.settings.maxSpeed;
+        ////Vector3 futurePosition = targetPosition + (enemy.target.velocity * predictionStep);
 
-        Vector3 desiredVelocity = targetPosition - position;
-        //if (Mathf.Abs(angle) > 180f)
-          //  desiredVelocity = targetDir;
+        ////var angle = Vector3.SignedAngle(targetDir, futurePosition, Vector3.up);
 
-          //queue avoiding
-        var rightIsFree = true;
-        var leftIsFree = true;
-        Physics.SphereCast(enemy.transform.position, 0.5f, desiredVelocity.normalized, out var hitInfo, 2.0f);
-        if (hitInfo.collider != null)
-        {
-            if (hitInfo.collider.TryGetComponent<Enemy>(out var comp))
-            {
-                var newDesiredVelocity = _rightRotation * desiredVelocity;
-                Physics.SphereCast(enemy.transform.position, 0.5f, newDesiredVelocity.normalized, out var rightHitInfo, 2.0f);
-                if (rightHitInfo.collider != null)
-                {
-                    if (rightHitInfo.collider.TryGetComponent<Enemy>(out var newComp))
-                    {
-                        rightIsFree = false;
-                    }
-                }
+        //Vector3 desiredVelocity = targetPosition - position;
+        ////if (Mathf.Abs(angle) > 180f)
+        //  //  desiredVelocity = targetDir;
 
-                newDesiredVelocity = _leftRotation * desiredVelocity;
-                Physics.SphereCast(enemy.transform.position, 0.5f, newDesiredVelocity.normalized, out var leftHitInfo, 2.0f);
-                if (leftHitInfo.collider != null)
-                {
-                    if (leftHitInfo.collider.TryGetComponent<Enemy>(out var newComp))
-                    {
-                        leftIsFree = false;
-                    }
-                }
+        //  //queue avoiding
+        //var rightIsFree = true;
+        //var leftIsFree = true;
+        //Physics.SphereCast(enemy.transform.position, 0.5f, desiredVelocity.normalized, out var hitInfo, 2.0f);
+        //if (hitInfo.collider != null)
+        //{
+        //    if (hitInfo.collider.TryGetComponent<Enemy>(out var comp))
+        //    {
+        //        var newDesiredVelocity = _rightRotation * desiredVelocity;
+        //        Physics.SphereCast(enemy.transform.position, 0.5f, newDesiredVelocity.normalized, out var rightHitInfo, 2.0f);
+        //        if (rightHitInfo.collider != null)
+        //        {
+        //            if (rightHitInfo.collider.TryGetComponent<Enemy>(out var newComp))
+        //            {
+        //                rightIsFree = false;
+        //            }
+        //        }
 
-                if (rightIsFree)
-                    desiredVelocity = _rightRotation * desiredVelocity;
-                else if (leftIsFree)
-                    desiredVelocity = _leftRotation * desiredVelocity;
-            }
-        }
+        //        newDesiredVelocity = _leftRotation * desiredVelocity;
+        //        Physics.SphereCast(enemy.transform.position, 0.5f, newDesiredVelocity.normalized, out var leftHitInfo, 2.0f);
+        //        if (leftHitInfo.collider != null)
+        //        {
+        //            if (leftHitInfo.collider.TryGetComponent<Enemy>(out var newComp))
+        //            {
+        //                leftIsFree = false;
+        //            }
+        //        }
 
-        if (distance < enemy.settings.stoppingDistance)
-            desiredVelocity = desiredVelocity.normalized * enemy.settings.maxSpeed * (distance / enemy.settings.stoppingDistance);
-        else
-            desiredVelocity = desiredVelocity.normalized * enemy.settings.maxSpeed;
+        //        if (rightIsFree)
+        //            desiredVelocity = _rightRotation * desiredVelocity;
+        //        else if (leftIsFree)
+        //            desiredVelocity = _leftRotation * desiredVelocity;
+        //    }
+        //}
 
-        Vector3 steering = Vector3.ClampMagnitude(desiredVelocity - enemy.velocity, enemy.settings.maxSpeed);
-        steering += Queue(enemy, steering);
-        steering = steering / enemy.settings.mass;
+        //if (distance < enemy.settings.stoppingDistance)
+        //    desiredVelocity = desiredVelocity.normalized * enemy.settings.maxSpeed * (distance / enemy.settings.stoppingDistance);
+        //else
+        //    desiredVelocity = desiredVelocity.normalized * enemy.settings.maxSpeed;
+
+        //Vector3 steering = Vector3.ClampMagnitude(desiredVelocity - enemy.velocity, enemy.settings.maxSpeed);
+        //steering += Queue(enemy, steering);
+        //steering = steering / enemy.settings.mass;
 
 
-        enemy.velocity = Vector3.ClampMagnitude(enemy.velocity + steering, enemy.settings.maxSpeed);
-        if (enemy.velocity.magnitude > 0.3f)
-            //enemy.transform.LookAt(enemy.transform.position + enemy.velocity.normalized);
-            enemy.transform.rotation = Quaternion.RotateTowards(enemy.transform.rotation, Quaternion.LookRotation(enemy.velocity.normalized, Vector3.up), enemy.settings.maxRotationSpeed);
+        //enemy.velocity = Vector3.ClampMagnitude(enemy.velocity + steering, enemy.settings.maxSpeed);
+        //if (enemy.velocity.magnitude > 0.3f)
+        //    //enemy.transform.LookAt(enemy.transform.position + enemy.velocity.normalized);
+        //    enemy.transform.rotation = Quaternion.RotateTowards(enemy.transform.rotation, Quaternion.LookRotation(enemy.velocity.normalized, Vector3.up), enemy.settings.maxRotationSpeed);
     }
 
     private Vector3 Queue(Enemy enemy, Vector3 steering)

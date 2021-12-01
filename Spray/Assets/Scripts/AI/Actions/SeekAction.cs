@@ -5,23 +5,25 @@ class SeekAction : Action
 {
     public override void Act(Enemy enemy)
     {
-        var maxSpeed = enemy.settings.maxSpeed / 2f;
+        //var maxSpeed = enemy.settings.maxSpeed / 2f;
 
-        Vector3 desiredVelocity = enemy.target.transform.position - enemy.transform.position;
-        desiredVelocity.y = 0f;
-        float distance = desiredVelocity.magnitude;
+        //Vector3 desiredVelocity = enemy.target.transform.position - enemy.transform.position;
+        //desiredVelocity.y = 0f;
+        //float distance = desiredVelocity.magnitude;
 
-        if (distance < enemy.settings.stoppingDistance)
-            desiredVelocity = desiredVelocity.normalized * maxSpeed * ((distance - 1f) / enemy.settings.stoppingDistance);
-        else
-            desiredVelocity = desiredVelocity.normalized * maxSpeed;
+        //if (distance < enemy.settings.stoppingDistance)
+        //    desiredVelocity = desiredVelocity.normalized * maxSpeed * ((distance - 1f) / enemy.settings.stoppingDistance);
+        //else
+        //    desiredVelocity = desiredVelocity.normalized * maxSpeed;
 
-        Vector3 steering = Vector3.ClampMagnitude(desiredVelocity - enemy.velocity, maxSpeed);
-        steering += Queue(enemy, steering);
-        steering = steering / enemy.settings.mass;
+        //Vector3 steering = Vector3.ClampMagnitude(desiredVelocity - enemy.velocity, maxSpeed);
+        //steering += Queue(enemy, steering);
+        //steering = steering / enemy.settings.mass;
 
-        enemy.velocity = Vector3.ClampMagnitude(enemy.velocity + steering, maxSpeed);
+        //enemy.velocity = Vector3.ClampMagnitude(enemy.velocity + steering, maxSpeed);
 
+        enemy.SetDestination(enemy.target.transform.position);
+        enemy.Move(enemy.settings.maxSpeed / 2f);
     }
 
     private Vector3 Queue(Enemy enemy, Vector3 steering)
