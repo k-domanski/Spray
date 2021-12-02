@@ -6,13 +6,14 @@ public class GreenTurret : MonoBehaviour
 {
     [Header("Unity Setup Fields")]
     public Transform playerTarget;
+    public string enemTag = "EnemyTarget";
     public GameObject enemyBullet;
     public Transform firePoint;
     public float rotationSpeed = 4f;
 
     [Header("Attributes")]
     public float AttackRange = 10.0f;
-    public float fireRate = 1.0f;
+    public float fireRate = 2.0f;
     private float fireCoundown = 3.0f;
 
     private float distanceToPlayer;
@@ -21,6 +22,7 @@ public class GreenTurret : MonoBehaviour
     void Start()
     {
         InvokeRepeating("UpdateRangeToPlayer", 2.0f, 0.5f);
+        playerTarget = null;
     }
 
     // Update is called once per frame
@@ -47,7 +49,22 @@ public class GreenTurret : MonoBehaviour
 
     void UpdateRangeToPlayer()
     {
-        distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
+        GameObject[] enemyTarget = GameObject.FindGameObjectsWithTag(enemTag);
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestEnemyTarget = null;
+        foreach(GameObject tar in enemyTarget)
+        {
+            distanceToPlayer = Vector3.Distance(transform.position, tar.transform.position);
+            if(distanceToPlayer < shortestDistance)
+            {
+                shortestDistance = distanceToPlayer;
+                nearestEnemyTarget = tar;
+            }
+        }
+        if(nearestEnemyTarget != null && shortestDistance <= AttackRange)
+        {
+            playerTarget = nearestEnemyTarget.transform;
+        }
     }
 
     void Shoot()
