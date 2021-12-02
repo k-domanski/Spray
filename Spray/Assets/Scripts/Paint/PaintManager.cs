@@ -10,6 +10,7 @@ public class PaintManager : MonoBehaviour
     private CommandBuffer command;
     public Material initMaterial = null;
     public Material maskMaterial = null;
+    public Material blitMaterial = null;
 
     private int _colorTexID = Shader.PropertyToID("_ColorTex");
     private int _colorID = Shader.PropertyToID("_Color");
@@ -20,6 +21,9 @@ public class PaintManager : MonoBehaviour
     private int _rotationID = Shader.PropertyToID("_BrushRotation");
     private int _brushID = Shader.PropertyToID("_BrushTex");
     private int _normalTexID = Shader.PropertyToID("_NormalTex");
+    private int _brushNormalTexID = Shader.PropertyToID("_BrushNormalTex");
+    private int _randomNormalID = Shader.PropertyToID("_RandomNormal");
+    private int _normalStrengthID = Shader.PropertyToID("_NormalStrength");
 
     void Awake()
     {
@@ -51,10 +55,10 @@ public class PaintManager : MonoBehaviour
 
     public void Paint(Paintable paintable, Vector3 position, PaintData paintData)
     {
-        Paint(paintable, position, paintData.radius, paintData.hardness, paintData.strength, paintData.rotation, paintData.color, paintData.brush);
+        Paint(paintable, position, paintData.radius, paintData.hardness, paintData.strength, paintData.rotation, paintData.color, paintData.brush, paintData.normalStrength, paintData.normal, paintData.randomNormals);
     }
 
-    public void Paint(Paintable paintable, Vector3 position, float radius, float hardness, float strength, float rotation = 0, Color? color = null, Texture brush = null)
+    public void Paint(Paintable paintable, Vector3 position, float radius, float hardness, float strength, float rotation = 0, Color? color = null, Texture brush = null, float normalStrength = 1.0f, Texture normal = null, bool randomNormal = true)
     {
         command.Clear();
 
@@ -65,6 +69,9 @@ public class PaintManager : MonoBehaviour
         maskMaterial.SetFloat(_hardnessID, hardness);
         maskMaterial.SetFloat(_strengthID, strength);
         maskMaterial.SetFloat(_rotationID, rotation);
+        maskMaterial.SetTexture(_brushNormalTexID, normal);
+        maskMaterial.SetInt(_randomNormalID, randomNormal ? 1 : 0);
+        maskMaterial.SetFloat(_normalStrengthID, normalStrength);
 
         if (color != null)
         {
@@ -87,7 +94,6 @@ public class PaintManager : MonoBehaviour
     }
 }
 
-
 public class PaintData
 {
     public float radius = 1.0f;
@@ -96,4 +102,7 @@ public class PaintData
     public float rotation = 0.0f;
     public Color? color = null;
     public Texture brush = null;
+    public Texture normal = null;
+    public bool randomNormals = true;
+    public float normalStrength = 1.0f;
 }

@@ -7,6 +7,7 @@ public class EnemyVisuals : MonoBehaviour
     #region Properties
     [SerializeField] private EnemyVisualsData _visualData;
     [SerializeField] private BloodFX _bloodFX;
+    [SerializeField] private Brush _brush;
     #endregion
 
     #region Private
@@ -61,11 +62,12 @@ public class EnemyVisuals : MonoBehaviour
             return;
         }
 
-        PaintData data = new PaintData();
-        data.radius = Random.Range(0.1f, 1.0f);
-        data.hardness =  Random.Range(0.5f, 1.0f);
-        data.strength =  Random.Range(0.75f, 1.0f);
-        data.rotation = Random.Range(-Mathf.PI, Mathf.PI);
+        //PaintData data = new PaintData();
+        //data.radius = Random.Range(0.1f, 1.0f);
+        //data.hardness =  Random.Range(0.5f, 1.0f);
+        //data.strength =  Random.Range(0.75f, 1.0f);
+        //data.rotation = Random.Range(-Mathf.PI, Mathf.PI);
+        PaintData data = _brush.GetPaintData();
         data.color = _visualData.baseColor;
         Systems.paintManager.Paint(paintable, position, data);
     }
