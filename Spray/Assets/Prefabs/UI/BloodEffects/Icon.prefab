@@ -208,6 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effectIcon: {fileID: 6046930088396504376}
   _durationText: {fileID: 8973741701924902265}
+  _effectBackground: {fileID: 9039228364842107727}
 --- !u!1 &4971082967412972580
 GameObject:
   m_ObjectHideFlags: 0

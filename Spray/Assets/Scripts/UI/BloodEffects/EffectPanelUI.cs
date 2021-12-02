@@ -29,13 +29,25 @@ public class EffectPanelUI : MonoBehaviour
         }
     }
 
-    private void AddIcon(BloodEffectBase obj)
+    private void AddIcon(BloodEffectBase obj, Color color)
     {
         var icon = Instantiate(obj.type == EffectType.Buff ? _buffPrefab : _debuffPrefab).GetComponent<EffectIconUI>();
         icon.transform.SetParent(transform);
         icon.icon.sprite = obj.icon;
+        icon.borderColor = color;
+        icon.backgroundColor = obj.type == EffectType.Buff ? color : DarkerColor(color, 0.5f);
+        icon.icon.color = obj.type == EffectType.Buff ? color : DarkerColor(color, 0.5f);
         _effectIcons.Add(icon);
         obj.OnCurrentDuration += icon.SetDuration;
 
+    }
+
+    private Color DarkerColor(Color color, float value)
+    {
+        Color newColor = color;
+        newColor.r *= value;
+        newColor.g *= value;
+        newColor.b *= value;
+        return newColor;
     }
 }
