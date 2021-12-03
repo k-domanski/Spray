@@ -929,6 +929,10 @@ PrefabInstance:
       value: Systems
       objectReference: {fileID: 0}
     - target: {fileID: 5848758456213084926, guid: 4b3b3da30cc884d469d33fae5e9814bd, type: 3}
+      propertyPath: bltTex
+      value: 
+      objectReference: {fileID: 2800000, guid: 000d26e0bfa8a5e4b83333fffd098685, type: 3}
+    - target: {fileID: 5848758456213084926, guid: 4b3b3da30cc884d469d33fae5e9814bd, type: 3}
       propertyPath: _blitShader
       value: 
       objectReference: {fileID: 4800000, guid: 3828ed1bb72fc5b4d80bd5fa32addf69, type: 3}

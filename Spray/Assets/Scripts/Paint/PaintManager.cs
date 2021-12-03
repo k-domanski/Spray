@@ -10,7 +10,6 @@ public class PaintManager : MonoBehaviour
     private CommandBuffer command;
     public Material initMaterial = null;
     public Material maskMaterial = null;
-    public Material blitMaterial = null;
 
     private int _colorTexID = Shader.PropertyToID("_ColorTex");
     private int _colorID = Shader.PropertyToID("_Color");

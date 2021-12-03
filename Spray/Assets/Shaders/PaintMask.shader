@@ -220,7 +220,8 @@ Shader "Unlit/PaintMask"
 					OUT.uv = IN.uv;
 					OUT.normal = UnityObjectToWorldNormal(IN.normal);
 					OUT.tangent = UnityObjectToWorldDir(IN.tangent.xyz);
-					OUT.bitangent = cross(OUT.normal, OUT.tangent) * IN.tangent.w * unity_WorldTransformParams.w;
+					//OUT.bitangent = cross(OUT.normal, OUT.tangent) * IN.tangent.w * unity_WorldTransformParams.w;
+					OUT.bitangent = cross(OUT.normal, OUT.tangent) * IN.tangent.w;
 
 					float4 position = float4(0, 0, 0, 1);
 					position.xy = (IN.uv.xy * float2(2, 2) - float2(1, 1)) * float2(1, _ProjectionParams.x);

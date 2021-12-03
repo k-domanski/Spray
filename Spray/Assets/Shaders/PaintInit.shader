@@ -1,4 +1,4 @@
-Shader "Unlit/PaintMask"
+Shader "Unlit/PaintInit"
 {
     Properties
     {
