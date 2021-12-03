@@ -11,6 +11,11 @@ public class EffectIconUI : MonoBehaviour
     {
         set => _border.color = value;
     }
+
+    public Color backgroundColor
+    {
+        set => _effectBackground.color = value;
+    }
     public Image icon
     {
         get => _effectIcon;
@@ -19,6 +24,7 @@ public class EffectIconUI : MonoBehaviour
 
     [SerializeField] private Image _effectIcon;
     [SerializeField] private TextMeshProUGUI _durationText;
+    [SerializeField] private Image _effectBackground;
     private Image _border;
 
     void Awake()
