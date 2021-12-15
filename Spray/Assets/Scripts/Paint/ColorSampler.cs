@@ -13,6 +13,14 @@ public class ColorSampler : MonoBehaviour
     private Coroutine _coroutine;
     public Color rawColor;
     public ColorType colorType;
+    public Color bloodColor
+    {
+        get
+        {
+            GetColorType(rawColor);
+            return _colors.GetColor(colorType);
+        }
+    }
 
     public Action<ColorType, ColorType> onColorTypeChanged;
 
@@ -76,7 +84,7 @@ public class ColorSampler : MonoBehaviour
             if (dist < min_dist)
             {
                 min_dist = dist;
-                type = pair.firts;
+                type = pair.first;
             }
         }
 

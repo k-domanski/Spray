@@ -257,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _visualData: {fileID: 0}
   _bloodFX: {fileID: 2487453089657557035}
+  _brush: {fileID: 11400000, guid: 16b27b81e0d3cff4eb56337793b64b22, type: 2}
 --- !u!114 &2487453089657557035
 MonoBehaviour:
   m_ObjectHideFlags: 0

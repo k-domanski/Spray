@@ -16,13 +16,13 @@ public class WanderAction : Action
 
                 float length = Random.Range(10, 20);
                 //var dir = Random.insideUnitCircle;
-                _point.x = Random.Range(-40f, 40f);
-                _point.y = Random.Range(-40f, 40f);//random point on map
+                _point.x = Random.Range(-20f, 20f);
+                _point.z = Random.Range(-20f, 20f);//random point on map
                 var dir = (_point - enemy.transform.position).normalized;
 
                 dir *= length;
 
-                Vector3 randomPoint = new Vector3(dir.x, 0f, dir.y) + enemy.transform.position;
+                Vector3 randomPoint = new Vector3(dir.x, 0f, dir.z) + enemy.transform.position;
                 bool res = NavMesh.SamplePosition(randomPoint, out var hit, 10f, NavMesh.AllAreas);
                 if (res)
                 {

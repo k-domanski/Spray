@@ -5014,6 +5014,7 @@ MonoBehaviour:
   _holeTexture: {fileID: 2800000, guid: 5a4a82e4a366226439b98cf2d0a952b6, type: 3}
   _trail: {fileID: 7659622435639707254}
   _particle: {fileID: 6579007288376413672}
+  _brush: {fileID: 11400000, guid: a0fa0bc21727eee4b93aa11d5060bc7b, type: 2}
 --- !u!1 &6370124324570965811
 GameObject:
   m_ObjectHideFlags: 0

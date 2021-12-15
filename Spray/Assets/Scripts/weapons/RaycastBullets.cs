@@ -8,6 +8,7 @@ public class RaycastBullets : ProjectileBehaviourBase
     [SerializeField] private Texture2D _holeTexture = null;
     [SerializeField] private TrailRenderer _trail;
     [SerializeField] private ParticleSystem _particle;
+    [SerializeField] private Brush _brush;
     /*Debug projectile radius gizmo*/
     private Vector3 origintest;
     /*-----------------------------*/
@@ -90,11 +91,14 @@ public class RaycastBullets : ProjectileBehaviourBase
             Paintable paintable = hitInfo.transform.GetComponent<Paintable>();
             if (paintable)
             {
-                PaintData data = new PaintData();
+                //PaintData data = new PaintData();
+                //data.color = Color.black;
+                //data.brush = _holeTexture;
+                //data.radius = UnityEngine.Random.Range(0.2f, 0.35f);
+                //data.rotation = UnityEngine.Random.Range(-Mathf.PI, Mathf.PI);
+
+                PaintData data = _brush.GetPaintData();
                 data.color = Color.black;
-                data.brush = _holeTexture;
-                data.radius = UnityEngine.Random.Range(0.2f, 0.35f);
-                data.rotation = UnityEngine.Random.Range(-Mathf.PI, Mathf.PI);
                 Systems.paintManager.Paint(paintable, hitInfo.point, data);
             }
         }

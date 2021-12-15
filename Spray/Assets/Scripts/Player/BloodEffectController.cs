@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class BloodEffectController : MonoBehaviour
 {
-    public Action<BloodEffectBase> onEffectAdded;
+    public Action<BloodEffectBase, Color> onEffectAdded;
     public Action<BloodEffectBase> onEffectRemoved;
 
+
+    public ColorSampler colorSample => _colorSampler;
     [SerializeField] private BuffLib buffLib;
     private List<BloodEffectBase> _appliedEffects = new List<BloodEffectBase>();
     private Dictionary<ColorType, List<BloodEffectBase>> _availableBuffs = new Dictionary<ColorType, List<BloodEffectBase>>();
@@ -15,7 +17,7 @@ public class BloodEffectController : MonoBehaviour
     {
         foreach (var pair in buffLib.buffs)
         {
-            _availableBuffs.Add(pair.firts, pair.second);
+            _availableBuffs.Add(pair.first, pair.second);
         }
 
         _colorSampler = GetComponent<ColorSampler>();
@@ -62,7 +64,7 @@ public class BloodEffectController : MonoBehaviour
         }
         bloodEffect.currentDuration = bloodEffect.duration;
         _appliedEffects.Add(bloodEffect);
-        onEffectAdded?.Invoke(bloodEffect);
+        onEffectAdded?.Invoke(bloodEffect, colorSample.bloodColor);
     }
 
     private void RemoveEffect(BloodEffectBase bloodEffect)
