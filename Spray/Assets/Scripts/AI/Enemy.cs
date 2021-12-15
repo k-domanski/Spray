@@ -148,6 +148,11 @@ public class Enemy : MonoBehaviour
 
     public void Move(float maxStateSpeed)
     {
+        if (maxStateSpeed <= 0.01f)
+        {
+            _rigidbody.velocity = Vector3.zero;
+            return;
+        }
         agent.nextPosition = transform.position;
         //if (!_pathExists)
         //    return;
@@ -179,7 +184,7 @@ public class Enemy : MonoBehaviour
             steering = steering / settings.mass;
 
             velocity = Vector3.ClampMagnitude(velocity + steering, maxSpeed);
-            if (velocity.magnitude > 0.3f)
+            if (_rigidbody.velocity.magnitude > 0.3f)
                 //enemy.transform.LookAt(enemy.transform.position + enemy.velocity.normalized);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(velocity.normalized, Vector3.up), settings.maxRotationSpeed);
         }
