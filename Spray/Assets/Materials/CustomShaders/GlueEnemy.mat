@@ -102,16 +102,16 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DrippingSpeed: 0.5
+    - _DrippingSpeed: 0.1
     - _DstBlend: 0
-    - _EdgeSmothness: 10
-    - _EdgeWidth: 1
+    - _EdgeSmothness: 4
+    - _EdgeWidth: 10
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _Noise: 12
+    - _Noise: 7
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
