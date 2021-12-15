@@ -17,14 +17,12 @@ public class DamageTakenModifier : BloodEffectBase
     public override void Apply(GameObject gameObject)
     {
         Tick();
-
         Initialize(gameObject);
-        if (_livingEntity == null)
-        {
-        }
 
         if (!_applied)
+        {
             Enable();
+        }
     }
 
     public override void Remove()
@@ -35,10 +33,7 @@ public class DamageTakenModifier : BloodEffectBase
         {
             playerVisuals.ShowShield(false);
         }
-        //if (_vfxPrefab != null)
-        //{
-        //    _vfx.SetActive(_applied);
-        //}
+
         currentDuration = 0;
     }
 
@@ -46,22 +41,12 @@ public class DamageTakenModifier : BloodEffectBase
     {
         _livingEntity = gameObject.GetComponent<LivingEntity>();
         playerVisuals = gameObject.GetComponent<PlayerVisuals>();
-        //if (_vfxPrefab != null)
-        //{
-        //    SpawnVfx(gameObject);
-        //}
-        Enable();
-
     }
 
     private void Enable()
     {
         _livingEntity.damageTakenMultiplier = _amount;
         _applied = true;
-        //if (_vfxPrefab != null)
-        //{
-        //    _vfx.SetActive(_applied);
-        //}
         if (isReducedDamage)
         {
             playerVisuals.ShowShield(true);

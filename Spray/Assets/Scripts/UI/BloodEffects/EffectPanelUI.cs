@@ -14,6 +14,12 @@ public class EffectPanelUI : MonoBehaviour
         _bloodEffectController.onEffectRemoved += RemoveIcon;
     }
 
+    private void OnDisable()
+    {
+        _bloodEffectController.onEffectAdded -= AddIcon;
+        _bloodEffectController.onEffectRemoved -= RemoveIcon;
+    }
+
     private void RemoveIcon(BloodEffectBase obj)
     {
         foreach (var icon in _effectIcons)
@@ -32,7 +38,7 @@ public class EffectPanelUI : MonoBehaviour
     private void AddIcon(BloodEffectBase obj, Color color)
     {
         var icon = Instantiate(obj.type == EffectType.Buff ? _buffPrefab : _debuffPrefab).GetComponent<EffectIconUI>();
-        icon.transform.SetParent(transform);
+        icon.transform.SetParent(transform, false);
         icon.icon.sprite = obj.icon;
         icon.borderColor = color;
         icon.backgroundColor = obj.type == EffectType.Buff ? color : DarkerColor(color, 0.5f);
