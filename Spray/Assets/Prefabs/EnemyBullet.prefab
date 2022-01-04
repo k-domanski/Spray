@@ -93,7 +93,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3239901621446333897}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254e03eded932244bab3631e26915ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
   speed: 13
   lifeDuration: 3
   impactEffect: {fileID: 5174790990691111437, guid: 4c43891c9acc5b548a25cc9d49d9eca2, type: 3}

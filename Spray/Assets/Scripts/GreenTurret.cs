@@ -17,30 +17,38 @@ public class GreenTurret : MonoBehaviour
     private float fireCoundown = 3.0f;
 
     private float distanceToPlayer;
-
-    // Start is called before the first frame update
+    private int defaultLayer = (1 << 6) + (1 << 8);
     void Start()
     {
-        InvokeRepeating("UpdateRangeToPlayer", 2.0f, 0.5f);
-        playerTarget = null;
+        //InvokeRepeating("UpdateRangeToPlayer", 2.0f, 0.5f);
+        playerTarget = GetComponent<Enemy>().target.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (playerTarget == null)
-            return;
-
-        if (distanceToPlayer <= AttackRange)
         {
-            Vector3 direction = playerTarget.position - transform.position;
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
-            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-            if (fireCoundown <= 0.0f)
+            Debug.LogError("No target for Enemy: " + gameObject.name);
+            return;
+        }
+
+        Vector3 dir = playerTarget.position - transform.position;
+        dir.y = 0;
+        Debug.DrawRay(transform.position, dir.normalized * AttackRange);
+        if (Physics.Raycast(transform.position, dir.normalized, out var hit, AttackRange, defaultLayer, QueryTriggerInteraction.Ignore))
+        {
+            Debug.Log($"hitted: {hit.collider.gameObject.name}");
+            if (hit.collider.gameObject.TryGetComponent<Player>(out _))
             {
-                Shoot();
-                fireCoundown = 1.0f / fireRate;
+                Quaternion lookRotation = Quaternion.LookRotation(dir);
+                Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
+                transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+                if (fireCoundown <= 0.0f)
+                {
+                    Shoot();
+                    fireCoundown = 1.0f / fireRate;
+                }
             }
         }
 
@@ -52,16 +60,16 @@ public class GreenTurret : MonoBehaviour
         GameObject[] enemyTarget = GameObject.FindGameObjectsWithTag(enemTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemyTarget = null;
-        foreach(GameObject tar in enemyTarget)
+        foreach (GameObject tar in enemyTarget)
         {
             distanceToPlayer = Vector3.Distance(transform.position, tar.transform.position);
-            if(distanceToPlayer < shortestDistance)
+            if (distanceToPlayer < shortestDistance)
             {
                 shortestDistance = distanceToPlayer;
                 nearestEnemyTarget = tar;
             }
         }
-        if(nearestEnemyTarget != null && shortestDistance <= AttackRange)
+        if (nearestEnemyTarget != null && shortestDistance <= AttackRange)
         {
             playerTarget = nearestEnemyTarget.transform;
         }
@@ -69,7 +77,7 @@ public class GreenTurret : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bulletGO = (GameObject)Instantiate(enemyBullet, firePoint.position, firePoint.rotation);
+        GameObject bulletGO = Instantiate(enemyBullet, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null)

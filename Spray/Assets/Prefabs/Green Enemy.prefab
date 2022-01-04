@@ -43,7 +43,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7418682652769707484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.408, z: 0.696}
+  m_LocalPosition: {x: 0, y: 0.408, z: 1.536}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101,6 +101,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5998301319071483956, guid: 39100bdf6cf4df14799767e123d9efbf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 39100bdf6cf4df14799767e123d9efbf, type: 3}
       propertyPath: m_Name
       value: greenEnemy1
@@ -114,6 +118,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1688904019727943992, guid: 60f89e3d125841c4fabee8c917e5e440, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2487453089657557034, guid: 60f89e3d125841c4fabee8c917e5e440, type: 3}
       propertyPath: m_Name
       value: Green Enemy
@@ -121,6 +129,10 @@ PrefabInstance:
     - target: {fileID: 2487453089657557036, guid: 60f89e3d125841c4fabee8c917e5e440, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487453089657557037, guid: 60f89e3d125841c4fabee8c917e5e440, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2487453089657557037, guid: 60f89e3d125841c4fabee8c917e5e440, type: 3}
       propertyPath: m_Materials.Array.size
@@ -186,6 +198,10 @@ PrefabInstance:
       propertyPath: settings
       value: 
       objectReference: {fileID: 11400000, guid: c0ab3512eefb24b42ad61468c6a119b1, type: 2}
+    - target: {fileID: 4207224419180318306, guid: 60f89e3d125841c4fabee8c917e5e440, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5004306941349561598, guid: 60f89e3d125841c4fabee8c917e5e440, type: 3}
       propertyPath: m_Enabled
       value: 0

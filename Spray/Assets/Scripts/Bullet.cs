@@ -27,32 +27,46 @@ public class Bullet : MonoBehaviour
             DestroyBullet();
 
         Vector3 direction = target.position - transform.position;
+        direction.y = 0f;
         float distanceThisFrame = speed * Time.deltaTime;
 
-        if(direction.magnitude <= distanceThisFrame * 15)
-        {
-            HitTarget();
-            return;
-        }
+        //if (direction.magnitude <= distanceThisFrame * 15)
+        //{
+        //    HitTarget();
+        //    return;
+        //}
 
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
     }
 
     void HitTarget()
     {
-        DestroyBullet();
-        var livingEntity = target.parent.GetComponent<LivingEntity>();
-        Debug.Log("livingEntityOwner: " + target.parent.name);
-        if(livingEntity != null)
+        var livingEntity = target.GetComponent<LivingEntity>();
+        Debug.Log("livingEntityOwner: " + target.name);
+        if (livingEntity != null)
         {
             livingEntity.DealDamage(damage, Vector3.zero);
         }
+        DestroyBullet();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.TryGetComponent<Enemy>(out _))
+            return;
+        if (other.gameObject.TryGetComponent<LivingEntity>(out var livingEntity))
+        {
+            Debug.Log("livingEntityOwner: " + target.name);
+            livingEntity.DealDamage(damage, Vector3.zero);
+        }
+        DestroyBullet();
     }
 
     void DestroyBullet()
     {
-        Destroy(gameObject);
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(effectIns, 1f);
+        Destroy(gameObject);
     }
 }

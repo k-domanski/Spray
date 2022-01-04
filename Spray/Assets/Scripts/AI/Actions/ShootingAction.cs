@@ -5,12 +5,12 @@ public class ShootingAction : Action
 {
     public override void Act(Enemy enemy)
     {
-        Vector3 pos = enemy.target.transform.position;
-        var enemyPos = enemy.transform.position;
-        pos.y = enemyPos.y;
-        Transform transform;
-        var time = Vector3.Distance(pos, enemyPos) / enemy.gunController.weaponStats.speed;
-        (transform = enemy.transform).LookAt( enemy.settings.predictPosition ? pos + (enemy.target.velocity * time ): pos);
-        enemy.gunController.Shoot(transform.forward, 1f + (enemy.velocity.magnitude / enemy.settings.maxSpeed));
+
+
+
+        enemy.SetDestination(enemy.transform.position);
+        enemy.velocity = Vector3.MoveTowards(enemy.velocity, Vector3.zero, enemy.settings.acceleration * Time.deltaTime);
+        enemy.Move(0f);
+        //enemy.velocity = Vector3.Lerp(enemy.velocity,Vector3.zero, 0.2f);
     }
 }
