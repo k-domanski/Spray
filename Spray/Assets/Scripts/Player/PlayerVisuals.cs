@@ -14,6 +14,9 @@ public class PlayerVisuals : MonoBehaviour
     [Header("Shield")]
     public GameObject shieldObject;
 
+    [Header("Healing Effect")]
+    public GameObject healingEffectObject;
+
     [Header("Jetpack")]
     public ParticleSystem[] jetpackJets;
 
@@ -24,6 +27,11 @@ public class PlayerVisuals : MonoBehaviour
     public void ShowShield(bool show)
     {
         shieldObject.SetActive(show);
+    }
+
+    public void ShowHealingEffect(bool show)
+    {
+        healingEffectObject.SetActive(show);
     }
 
     public void ChangeJetColor(EJetSpeed jetSpeed)
