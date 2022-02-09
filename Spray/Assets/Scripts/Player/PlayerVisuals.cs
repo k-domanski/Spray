@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,10 +13,11 @@ public enum EJetSpeed
 public class PlayerVisuals : MonoBehaviour
 {
     [Header("Shield")]
+    public float enableDuration = 1.0f;
     public GameObject shieldObject;
 
     [Header("Healing Effect")]
-    public GameObject healingEffectObject;
+    public ParticleSystem healingEffect;
 
     [Header("Jetpack")]
     public ParticleSystem[] jetpackJets;
@@ -24,14 +26,48 @@ public class PlayerVisuals : MonoBehaviour
     public Color slowJetColor;
     public Color fastJetColor;
 
+    private int edgeIndex = Shader.PropertyToID("_Edge");
+    private Coroutine shieldCoroutine = null;
+    private bool shieldEnabled = false;
+    private float shieldEdge = 0.0f;
+
+    void Start()
+    {
+        ShowHealingEffect(false);
+
+        Material mt = shieldObject.GetComponent<Renderer>().material;
+        mt.SetFloat(edgeIndex, 0.0f);
+    }
+
     public void ShowShield(bool show)
     {
-        shieldObject.SetActive(show);
+        if (show == shieldEnabled)
+        {
+            return;
+        }
+        shieldEnabled = show;
+
+        if (shieldCoroutine != null)
+        {
+            StopCoroutine(shieldCoroutine);
+        }
+
+        Material mt = shieldObject.GetComponent<Renderer>().material;
+        float startV = shieldEdge;
+        float endV = show ? 1.0f : 0.0f;
+        float time = enableDuration * Mathf.Abs(endV - shieldEdge);
+        shieldCoroutine = StartCoroutine(LerpShieldOverTime(startV, endV, time, (val) =>
+        {
+            mt.SetFloat(edgeIndex, val);
+            print($"Value: {val}");
+            shieldEdge = val;
+        }));
     }
 
     public void ShowHealingEffect(bool show)
     {
-        healingEffectObject.SetActive(show);
+        var emission = healingEffect.emission;
+        emission.enabled = show;
     }
 
     public void ChangeJetColor(EJetSpeed jetSpeed)
@@ -59,4 +95,19 @@ public class PlayerVisuals : MonoBehaviour
             }
         }
     }
+    IEnumerator LerpShieldOverTime(float startValue, float endValue, float time, System.Action<float> AssignFunction)
+    {
+        float elapsed = 0.0f;
+        while (elapsed < time)
+        {
+            float value = Mathf.Lerp(startValue, endValue, elapsed / time);
+            AssignFunction(value);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        AssignFunction(endValue);
+        shieldCoroutine = null;
+        yield return null;
+    }
 }
+

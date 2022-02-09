@@ -38,7 +38,6 @@ public class GreenTurret : MonoBehaviour
         Debug.DrawRay(transform.position, dir.normalized * AttackRange);
         if (Physics.Raycast(transform.position, dir.normalized, out var hit, AttackRange, defaultLayer, QueryTriggerInteraction.Ignore))
         {
-            Debug.Log($"hitted: {hit.collider.gameObject.name}");
             if (hit.collider.gameObject.TryGetComponent<Player>(out _))
             {
                 Quaternion lookRotation = Quaternion.LookRotation(dir);
