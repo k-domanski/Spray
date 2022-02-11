@@ -8808,7 +8808,7 @@ MonoBehaviour:
   waves:
   - name: First Wave
     enemies:
-    - enemy: {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
+    - enemy: {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
       count: 3
     count: 3
     rate: 0.6
@@ -8829,17 +8829,17 @@ MonoBehaviour:
   - name: Fourth Wave
     enemies:
     - enemy: {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
-      count: 15
+      count: 24
     - enemy: {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
-      count: 15
+      count: 6
     count: 30
     rate: 0.95
   - name: Peak Wave
     enemies:
     - enemy: {fileID: 1679871354761440918, guid: b731299a8db696940939a8df5f953aba, type: 3}
-      count: 16
+      count: 24
     - enemy: {fileID: 1679871354761440918, guid: 9c85da7c48f596443871fc365ae2433f, type: 3}
-      count: 16
+      count: 8
     - enemy: {fileID: 4747681468516902727, guid: 8f22c0a53d9926341b1ade6016d3b5f7, type: 3}
       count: 8
     count: 40
