@@ -20,6 +20,9 @@ public class GunController : MonoBehaviour
 
     #region Private
     private bool _canShoot = true;
+    private bool _overHeated = true;
+    private float _cooldownActivationTimer = 0;
+    private float _currentHeat = 0;
     #endregion
 
     #region Messages
@@ -54,6 +57,17 @@ public class GunController : MonoBehaviour
             _laser.SetPosition(0, _muzzlePoint.position);
             _laser.SetPosition(1, _muzzlePoint.position);
         }
+
+        _cooldownActivationTimer += Time.deltaTime;
+        if(_cooldownActivationTimer >= _weaponStats.cooldownActivationTime)
+        {
+            _currentHeat -= _weaponStats.cooldownFactor * Time.deltaTime;
+            if(_currentHeat <= 0)
+            {
+                _overHeated = false;
+                _currentHeat = 0;
+            }
+        }
     }
     #endregion
 
@@ -70,16 +84,20 @@ public class GunController : MonoBehaviour
     }
     public void Shoot(Vector3 aimDirection, float playerMultiplier, float time = 0f)
     {
-        if (_canShoot)
+        if (_canShoot & !_overHeated)
         {
             _muzzleFlash.gameObject.SetActive(true);
             _canShoot = false;
+            _cooldownActivationTimer = 0f;
             // if (_shotAudio != null)
             //     _shotAudio.Play();
-
             var dir = CalculateRecoil(aimDirection, time);
             _weaponStats.CreateProjectile(_muzzlePoint.position, dir, playerMultiplier, _placeBulletHoles, _decalChance);
             this.Delay(() => SetShooting(), 1f / _weaponStats.fireRate);
+
+            _currentHeat += _weaponStats.heatStepPerShot;
+            if(_currentHeat >= _weaponStats.maxHeatValue)
+                _overHeated = true;
         }
     }
     #endregion

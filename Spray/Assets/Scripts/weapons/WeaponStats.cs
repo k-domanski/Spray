@@ -25,6 +25,12 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private float _playerBaseSpeedReduction;
     [SerializeField] private float _playerSpeedReductionWhileShooting;
 
+    [Header("Overheating")]
+    [SerializeField] private float _cooldownFactor;
+    [SerializeField] private float _cooldownActivationTime;
+    [SerializeField] private float _maxHeatValue;
+    [SerializeField] private float _heatStepPerShot;
+
     [SerializeField] private string _ownerLayer;
 
 
@@ -39,6 +45,11 @@ public class WeaponStats : ScriptableObject
     public float speed => _speed;
     public float playerBaseSpeedReduction => _playerBaseSpeedReduction;
     public float playerSpeedReductionWhileShooting => _playerSpeedReductionWhileShooting;
+
+    public float cooldownFactor => _cooldownFactor;
+    public float cooldownActivationTime => _cooldownActivationTime;
+    public float maxHeatValue => _maxHeatValue;
+    public float heatStepPerShot => _heatStepPerShot;
 
     public void CreateProjectile(Vector3 position, Vector3 direction, float playerMultiplier, bool placeBulletHole = true, float decalChance = 1.0f)
     {
