@@ -55,11 +55,18 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.TryGetComponent<Enemy>(out _))
             return;
-        if (other.gameObject.TryGetComponent<LivingEntity>(out var livingEntity))
+        LivingEntity livingEntity;
+        if (other.gameObject.TryGetComponent<LivingEntity>(out livingEntity))
         {
             Debug.Log("livingEntityOwner: " + target.name);
             livingEntity.DealDamage(damage, Vector3.zero);
         }
+        else if ((livingEntity = other.gameObject.GetComponentInParent<LivingEntity>()) != null)
+        {
+            Debug.Log("ParentlivingEntity: " + target.name);
+            livingEntity.DealDamage(damage, Vector3.zero);
+        }
+
         DestroyBullet();
     }
 
