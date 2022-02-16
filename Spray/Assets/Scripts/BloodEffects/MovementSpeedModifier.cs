@@ -26,7 +26,7 @@ public class MovementSpeedModifier : BloodEffectBase
 
     private void Enable()
     {
-        _player.speedMultiplier = _amount;
+        _player.playerSettings.speedMultiplier = _amount;
         _applied = true;
         _player.GetComponent<PlayerVisuals>().ChangeJetColor(jetSpeed);
     }
@@ -39,7 +39,7 @@ public class MovementSpeedModifier : BloodEffectBase
 
     public override void Remove()
     {
-        _player.speedMultiplier = -_amount;
+        _player.playerSettings.speedMultiplier = -_amount;
         _applied = false;
         currentDuration = 0;
         _player.GetComponent<PlayerVisuals>().ChangeJetColor(EJetSpeed.Normal);

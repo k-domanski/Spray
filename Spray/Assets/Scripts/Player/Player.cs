@@ -25,10 +25,6 @@ public class Player : MonoBehaviour
     public GunController secondaryWeapon { get => _guns[1]; set => _guns[1] = value; }
     public GunController currentWeapon => _currentWeapon;
     public LivingEntity livingEntity { get; private set; }
-
-    //TODO:Move to PlayerSettings
-    public float speedMultiplier { get => _speedMultiplier; set => _speedMultiplier += value; }
-    public float damageMultiplier { get => _damageMultiplier; set => _damageMultiplier += value; }
     #endregion
 
     #region Private
@@ -43,8 +39,6 @@ public class Player : MonoBehaviour
     private int _weaponIndex;
     private float _playerSpeed;
     private bool _isDead = false;
-    private float _speedMultiplier = 1;
-    private float _damageMultiplier = 1;
     #endregion
 
     #region Messages
@@ -92,8 +86,8 @@ public class Player : MonoBehaviour
         if (_isShooting)
         {
             _time += Time.deltaTime;
-            _currentWeapon.Shoot(_playerController.lookDirection, _damageMultiplier, _time);
-            _secCurrentWeapon.Shoot(_playerController.lookDirection, _damageMultiplier, _time);
+            _currentWeapon.Shoot(_playerController.lookDirection, _playerSettings.damageMultiplier, _time);
+            _secCurrentWeapon.Shoot(_playerController.lookDirection, _playerSettings.damageMultiplier, _time);
         }
         else
         {
@@ -137,7 +131,7 @@ public class Player : MonoBehaviour
         float acceleration = _playerSettings.acceleration * accelerationBoost * deceleration;
 
         //TODO: Reduce speed here
-        _playerSpeed = (_playerSettings.maxSpeed - GetSpeedReduction()) * _speedMultiplier;
+        _playerSpeed = (_playerSettings.maxSpeed - GetSpeedReduction()) * _playerSettings.speedMultiplier;
 
         Vector3 desiredVelocity = Vector3.MoveTowards(currentVelocity, desiredDirection * _playerSpeed, acceleration * deltaTime);
         AdjustAnimation(desiredVelocity.normalized, transform.forward);
@@ -151,10 +145,6 @@ public class Player : MonoBehaviour
     public void Shoot(bool start)
     {
         _isShooting = start;
-        //if(start)
-        //{
-        //    _simpleShooting.Fire();
-        //}
     }
     public void Knockout(Vector3 direction, float force)
     {

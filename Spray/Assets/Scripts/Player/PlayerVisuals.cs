@@ -59,7 +59,6 @@ public class PlayerVisuals : MonoBehaviour
         shieldCoroutine = StartCoroutine(LerpShieldOverTime(startV, endV, time, (val) =>
         {
             mt.SetFloat(edgeIndex, val);
-            print($"Value: {val}");
             shieldEdge = val;
         }));
     }

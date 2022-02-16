@@ -17,6 +17,10 @@ public class PlayerSettings : ScriptableObject
     [Header("Shooting on Controller Test")]
     [SerializeField] private bool _autoShoot;
     [SerializeField, Range(0.01f, 1.0f)] private float _controllerAimDeadZone;
+    [Header("Multipliers")]
+    [SerializeField] private float _speedMultiplier = 1;
+    [SerializeField] private float _damageMultiplier = 1;
+
 
     public float maxSpeed => _maxSpeed;
     public float acceleration => _acceleration;
@@ -26,5 +30,8 @@ public class PlayerSettings : ScriptableObject
     public float maxRotationSpeed => _rotationsPerSecond * 360.0f;
     public bool autoShoot => _autoShoot;
     public float controllerAimDeadZone => _controllerAimDeadZone;
+
+    public float speedMultiplier { get => _speedMultiplier; set => _speedMultiplier += value; }
+    public float damageMultiplier { get => _damageMultiplier; set => _damageMultiplier += value; }
     #endregion
 }
