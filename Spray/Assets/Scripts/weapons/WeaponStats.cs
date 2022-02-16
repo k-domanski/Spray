@@ -5,33 +5,34 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponStats", menuName = "Weapons/WeaponStats")]
 public class WeaponStats : ScriptableObject
 {
-    [SerializeField] private ProjectileBehaviourBase _projectile;
-
+    [Header("Weapon Related")]
     [SerializeField] private float _fireRate;
     [SerializeField] private int _damage;
-    [SerializeField] private float _speed;
-    [SerializeField] private float _duration;
-    [SerializeField] private float _projectileRaycastRadius;
-
-    //[Range(0, 1)]
     [SerializeField] private float _knockback;
+
+    [Header("Projectile Related")]
+    [SerializeField] private ProjectileBehaviourBase _projectile;
+    [SerializeField] private float _projectileSpeed;
+    [SerializeField] private float _projectileDuration;
+    [SerializeField] private float _projectileRaycastRadius;
+    [SerializeField] private string _ownerLayer;
+
 
     [Header("Recoil")]
     [SerializeField] private bool _hasRecoil;
     [Range(1f, 200f)]
     [SerializeField] private float _accuracy;
 
-    [Header("Player related")]
+    [Header("Player Related")]
     [SerializeField] private float _playerBaseSpeedReduction;
     [SerializeField] private float _playerSpeedReductionWhileShooting;
 
     [Header("Overheating")]
-    [SerializeField] private float _cooldownFactor;
+    [SerializeField] private float _cooldownSpeed;
     [SerializeField] private float _cooldownActivationTime;
     [SerializeField] private float _maxHeatValue;
     [SerializeField] private float _heatStepPerShot;
 
-    [SerializeField] private string _ownerLayer;
 
 
     public float fireRate => _fireRate;
@@ -42,11 +43,11 @@ public class WeaponStats : ScriptableObject
     public bool hasRecoil => _hasRecoil;
 
     public float accuracy => _accuracy;
-    public float speed => _speed;
+    public float projectileSpeed => _projectileSpeed;
     public float playerBaseSpeedReduction => _playerBaseSpeedReduction;
     public float playerSpeedReductionWhileShooting => _playerSpeedReductionWhileShooting;
 
-    public float cooldownFactor => _cooldownFactor;
+    public float cooldownSpeed => _cooldownSpeed;
     public float cooldownActivationTime => _cooldownActivationTime;
     public float maxHeatValue => _maxHeatValue;
     public float heatStepPerShot => _heatStepPerShot;
@@ -65,6 +66,6 @@ public class WeaponStats : ScriptableObject
         projectile.raycastRadius = _projectileRaycastRadius;
         projectile.damage = _damage * playerMultiplier;
         projectile.ownerLayer = LayerMask.NameToLayer(_ownerLayer);
-        projectile.Fire(direction, _speed, _duration, _knockback);
+        projectile.Fire(direction, _projectileSpeed, _projectileDuration, _knockback);
     }
 }

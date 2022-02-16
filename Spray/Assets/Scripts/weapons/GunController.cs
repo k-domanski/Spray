@@ -61,7 +61,7 @@ public class GunController : MonoBehaviour
         _cooldownActivationTimer += Time.deltaTime;
         if(_cooldownActivationTimer >= _weaponStats.cooldownActivationTime)
         {
-            _currentHeat -= _weaponStats.cooldownFactor * Time.deltaTime;
+            _currentHeat -= _weaponStats.cooldownSpeed * Time.deltaTime;
             if(_currentHeat <= 0)
             {
                 _overHeated = false;

@@ -22,14 +22,14 @@ public abstract class ProjectileBehaviourBase : MonoBehaviour
     protected LayerMask _layer;
     protected LayerMask _ownerLayer;
 
-    public void Fire(Vector3 direction, float speed, float duration, float knockback)
+    public void Fire(Vector3 direction, float projectileSpeed, float duration, float knockback)
     {
         if (gameObject.activeSelf)
         {
             return;
         }
         _direction = direction;
-        _speed = speed;
+        _speed = projectileSpeed;
         _duration = duration;
         _knockback = knockback;
         gameObject.SetActive(true);
