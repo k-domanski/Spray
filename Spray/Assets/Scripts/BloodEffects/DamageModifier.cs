@@ -30,13 +30,13 @@ public class DamageModifier : BloodEffectBase
 
     private void Enable()
     {
-        _player.damageMultiplier = _amount;
+        _player.playerSettings.damageMultiplier = _amount;
         _applied = true;
     }
 
     public override void Remove()
     {
-        _player.damageMultiplier = -_amount;
+        _player.playerSettings.damageMultiplier = -_amount;
         _applied = false;
         currentDuration = 0;
     }
