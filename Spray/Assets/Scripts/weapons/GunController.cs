@@ -16,6 +16,7 @@ public class GunController : MonoBehaviour
     private LineRenderer _laser;
 
     public WeaponStats weaponStats => _weaponStats;
+    public float currentHeat => _currentHeat;
     #endregion
 
     #region Private
@@ -23,6 +24,10 @@ public class GunController : MonoBehaviour
     private bool _overHeated = true;
     private float _cooldownActivationTimer = 0;
     private float _currentHeat = 0;
+    #endregion
+
+    #region Events
+    public event System.Action<bool> onWeaponOverheat;
     #endregion
 
     #region Messages
@@ -64,6 +69,8 @@ public class GunController : MonoBehaviour
             _currentHeat -= _weaponStats.cooldownSpeed * Time.deltaTime;
             if(_currentHeat <= 0)
             {
+                if(_overHeated)
+                    onWeaponOverheat?.Invoke(false);
                 _overHeated = false;
                 _currentHeat = 0;
             }
@@ -97,7 +104,11 @@ public class GunController : MonoBehaviour
 
             _currentHeat += _weaponStats.heatStepPerShot;
             if(_currentHeat >= _weaponStats.maxHeatValue)
+            {
+                if(!_overHeated)
+                    onWeaponOverheat?.Invoke(true);
                 _overHeated = true;
+            }
         }
     }
     #endregion

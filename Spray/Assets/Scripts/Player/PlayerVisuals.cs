@@ -22,6 +22,9 @@ public class PlayerVisuals : MonoBehaviour
     [Header("Jetpack")]
     public ParticleSystem[] jetpackJets;
 
+    [Header("Overheating")]
+    public ParticleSystem[] gunsOverheatSmoke;
+
     public Color normalJetColor;
     public Color slowJetColor;
     public Color fastJetColor;
@@ -93,6 +96,15 @@ public class PlayerVisuals : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void Overheat(int gun, bool start)
+    {
+        if(start)
+            gunsOverheatSmoke[gun].Play();
+        else
+            gunsOverheatSmoke[gun].Stop();
+
     }
     IEnumerator LerpShieldOverTime(float startValue, float endValue, float time, System.Action<float> AssignFunction)
     {

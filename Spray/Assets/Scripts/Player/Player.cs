@@ -69,11 +69,15 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         livingEntity.onDeath.AddListener(Die);
+        _guns[0].onWeaponOverheat += ShowRightGunOverheat;
+        _guns[0].onWeaponOverheat += ShowLeftGunOverheat;
     }
 
     private void OnDisable()
     {
         livingEntity.onDeath.RemoveListener(Die);
+        _guns[0].onWeaponOverheat -= ShowRightGunOverheat;
+        _guns[0].onWeaponOverheat -= ShowLeftGunOverheat;
     }
 
     private void OnDestroy()
@@ -187,7 +191,14 @@ public class Player : MonoBehaviour
         _animator.SetFloat("Horizontal", x);
         _animator.SetFloat("Vertical", y);
     }
-
+    private void ShowLeftGunOverheat(bool overheated)
+    {
+        GetComponent<PlayerVisuals>().Overheat(1, overheated);
+    }
+    private void ShowRightGunOverheat(bool overheated)
+    {
+        GetComponent<PlayerVisuals>().Overheat(0, overheated);
+    }
     private void Die(LivingEntity entity)
     {
         if (entity == livingEntity && !_isDead)
