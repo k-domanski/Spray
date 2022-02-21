@@ -24,6 +24,8 @@ public class GunController : MonoBehaviour
     private bool _overHeated = true;
     private float _cooldownActivationTimer = 0;
     private float _currentHeat = 0;
+    private float _angle;
+    private int _projectileCount;
     #endregion
 
     #region Events
@@ -38,6 +40,9 @@ public class GunController : MonoBehaviour
         if (_shotAudio == null)
             _shotAudio = GetComponent<AudioSource>();
         _muzzleFlash.gameObject.SetActive(false);
+
+        _angle = Mathf.PI / _weaponStats.spreadAngle;
+        _projectileCount = (int)_weaponStats.projectileCount;
     }
 
     private void Update()
@@ -99,15 +104,16 @@ public class GunController : MonoBehaviour
             // if (_shotAudio != null)
             //     _shotAudio.Play();
 
-            List<Vector3> directions = CalculateProjectileDirection(aimDirection, weaponStats.numberOfProjectiles);
-            for (int i = 0; i < _weaponStats.numberOfProjectiles; i++)
-            {
-                //var dir = CalculateRecoil(aimDirection, time);
-                var dir = CalculateRecoil(directions[i], time);
+            //TODO: Cache and change to list so it can be changed dynamically
+            _projectileCount = (int)weaponStats.projectileCount;
+            Vector3[] directions = new Vector3[_projectileCount];
+            directions = CalculateProjectileDirection(aimDirection, _projectileCount);
 
+            for (int i = 0; i < _projectileCount; i++)
+            {
+                var dir = CalculateRecoil(directions[i], time);
                 _weaponStats.CreateProjectile(_muzzlePoint.position, dir, playerMultiplier, _placeBulletHoles, _decalChance);
             }
-
             this.Delay(() => SetShooting(), 1f / _weaponStats.fireRate);
 
             _currentHeat += _weaponStats.heatStepPerShot;
@@ -122,22 +128,36 @@ public class GunController : MonoBehaviour
     #endregion
 
     #region Private Methods
-    private List<Vector3> CalculateProjectileDirection(Vector3 aimDirection, int projectileCount)
+    private Vector3[] CalculateProjectileDirection(Vector3 aimDirection, int projectileCount)
     {
-        List<Vector3> directions = new List<Vector3>(projectileCount);
+        Vector3[] directions = new Vector3[projectileCount];
 
-        directions.Add(aimDirection);
-        Vector3 dir = new Vector3();
+        directions[0] = aimDirection;
+        Vector3 direction = new Vector3();
+        int angleMultiplier = 1;
 
-        dir.x = (aimDirection.x * Mathf.Cos(Mathf.PI / 6)) - (aimDirection.z * Mathf.Sin(Mathf.PI / 6));
-        dir.z = (aimDirection.x * Mathf.Sin(Mathf.PI / 6)) - (aimDirection.z * Mathf.Cos(Mathf.PI / 6));
+        for(int i =1; i < projectileCount; i++)
+        {
+            float angle = _angle * angleMultiplier;
 
+            if(i%2 == 0)
+            {
+                direction.x = (aimDirection.x * Mathf.Cos(angle)) - (aimDirection.z * Mathf.Sin(angle));
+                direction.z = (aimDirection.x * Mathf.Sin(angle)) + (aimDirection.z * Mathf.Cos(angle));
+                angleMultiplier++;
+            }
+            else
+            {
+                direction.x = (aimDirection.x * Mathf.Cos(-angle)) - (aimDirection.z * Mathf.Sin(-angle));
+                direction.z = (aimDirection.x * Mathf.Sin(-angle)) + (aimDirection.z * Mathf.Cos(-angle));
+            }
 
-        directions.Add(dir);
-
+            directions[i] = direction;
+        }
 
         return directions;
     }
+
     private Vector3 CalculateRecoil(Vector3 aimDirection, float time)
     {
         if (!_weaponStats.hasRecoil)

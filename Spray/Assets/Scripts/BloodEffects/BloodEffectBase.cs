@@ -24,6 +24,7 @@ public abstract class BloodEffectBase : ScriptableObject
     [SerializeField] private float _duration;
     [SerializeField] private Sprite _icon;
     [SerializeField] private EffectType _type;
+
     private float _currentDuration;
 
     public void RefreshEffect()

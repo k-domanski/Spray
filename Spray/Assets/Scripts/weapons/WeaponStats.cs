@@ -16,7 +16,9 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private float _projectileDuration;
     [SerializeField] private float _projectileRaycastRadius;
     [SerializeField] private string _ownerLayer;
-    [SerializeField] private int _numberOfProjectiles = 1;
+    [SerializeField] private ProjectileCount _projectileCount = ProjectileCount.ONE;
+    [Tooltip("Angle in radians PI/value \nHigher values = smaller angle"), Range(1, 500)]
+    [SerializeField] private int _spreadAngle = 96;
 
 
     [Header("Recoil")]
@@ -43,7 +45,8 @@ public class WeaponStats : ScriptableObject
     //Projectile Related
     public ProjectileBehaviourBase projectile  => _projectile;
     public float projectileSpeed => _projectileSpeed;
-    public int numberOfProjectiles => _numberOfProjectiles;
+    public ProjectileCount projectileCount {get => _projectileCount; set =>_projectileCount = value; }
+    public int spreadAngle => _spreadAngle;
 
     //Recoil Related
     public bool hasRecoil => _hasRecoil;
@@ -75,4 +78,14 @@ public class WeaponStats : ScriptableObject
         projectile.ownerLayer = LayerMask.NameToLayer(_ownerLayer);
         projectile.Fire(direction, _projectileSpeed, _projectileDuration, _knockback);
     }
+}
+
+//Just to have drop down menu TODO: write custom inspector GUI/change so it can have even numbers
+public enum ProjectileCount
+{
+    ONE = 1,
+    THREE = 3,
+    FIVE = 5,
+    SEVEN = 7,
+    TWENTYONE = 21
 }
