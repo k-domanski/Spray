@@ -98,8 +98,16 @@ public class GunController : MonoBehaviour
             _cooldownActivationTimer = 0f;
             // if (_shotAudio != null)
             //     _shotAudio.Play();
-            var dir = CalculateRecoil(aimDirection, time);
-            _weaponStats.CreateProjectile(_muzzlePoint.position, dir, playerMultiplier, _placeBulletHoles, _decalChance);
+
+            List<Vector3> directions = CalculateProjectileDirection(aimDirection, weaponStats.numberOfProjectiles);
+            for (int i = 0; i < _weaponStats.numberOfProjectiles; i++)
+            {
+                //var dir = CalculateRecoil(aimDirection, time);
+                var dir = CalculateRecoil(directions[i], time);
+
+                _weaponStats.CreateProjectile(_muzzlePoint.position, dir, playerMultiplier, _placeBulletHoles, _decalChance);
+            }
+
             this.Delay(() => SetShooting(), 1f / _weaponStats.fireRate);
 
             _currentHeat += _weaponStats.heatStepPerShot;
@@ -114,6 +122,22 @@ public class GunController : MonoBehaviour
     #endregion
 
     #region Private Methods
+    private List<Vector3> CalculateProjectileDirection(Vector3 aimDirection, int projectileCount)
+    {
+        List<Vector3> directions = new List<Vector3>(projectileCount);
+
+        directions.Add(aimDirection);
+        Vector3 dir = new Vector3();
+
+        dir.x = (aimDirection.x * Mathf.Cos(Mathf.PI / 6)) - (aimDirection.z * Mathf.Sin(Mathf.PI / 6));
+        dir.z = (aimDirection.x * Mathf.Sin(Mathf.PI / 6)) - (aimDirection.z * Mathf.Cos(Mathf.PI / 6));
+
+
+        directions.Add(dir);
+
+
+        return directions;
+    }
     private Vector3 CalculateRecoil(Vector3 aimDirection, float time)
     {
         if (!_weaponStats.hasRecoil)

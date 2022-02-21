@@ -16,6 +16,7 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private float _projectileDuration;
     [SerializeField] private float _projectileRaycastRadius;
     [SerializeField] private string _ownerLayer;
+    [SerializeField] private int _numberOfProjectiles = 1;
 
 
     [Header("Recoil")]
@@ -34,19 +35,25 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private float _heatStepPerShot;
 
 
-
+    //Weapon Related
     public float fireRate => _fireRate;
     public int damage => _damage; 
     public float knockback => _knockback;
+
+    //Projectile Related
     public ProjectileBehaviourBase projectile  => _projectile;
-
-    public bool hasRecoil => _hasRecoil;
-
-    public float accuracy => _accuracy;
     public float projectileSpeed => _projectileSpeed;
+    public int numberOfProjectiles => _numberOfProjectiles;
+
+    //Recoil Related
+    public bool hasRecoil => _hasRecoil;
+    public float accuracy => _accuracy;
+
+    //Player Related
     public float playerBaseSpeedReduction => _playerBaseSpeedReduction;
     public float playerSpeedReductionWhileShooting => _playerSpeedReductionWhileShooting;
 
+    //Overheating
     public float cooldownSpeed => _cooldownSpeed;
     public float cooldownActivationTime => _cooldownActivationTime;
     public float maxHeatValue => _maxHeatValue;
