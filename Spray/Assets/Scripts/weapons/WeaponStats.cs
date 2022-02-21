@@ -16,6 +16,9 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private float _projectileDuration;
     [SerializeField] private float _projectileRaycastRadius;
     [SerializeField] private string _ownerLayer;
+    [SerializeField] private ProjectileCount _projectileCount = ProjectileCount.ONE;
+    [Tooltip("Angle in radians PI/value \nHigher values = smaller angle"), Range(1, 500)]
+    [SerializeField] private int _spreadAngle = 96;
 
 
     [Header("Recoil")]
@@ -34,19 +37,26 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private float _heatStepPerShot;
 
 
-
+    //Weapon Related
     public float fireRate => _fireRate;
     public int damage => _damage; 
     public float knockback => _knockback;
+
+    //Projectile Related
     public ProjectileBehaviourBase projectile  => _projectile;
-
-    public bool hasRecoil => _hasRecoil;
-
-    public float accuracy => _accuracy;
     public float projectileSpeed => _projectileSpeed;
+    public ProjectileCount projectileCount {get => _projectileCount; set =>_projectileCount = value; }
+    public int spreadAngle => _spreadAngle;
+
+    //Recoil Related
+    public bool hasRecoil => _hasRecoil;
+    public float accuracy => _accuracy;
+
+    //Player Related
     public float playerBaseSpeedReduction => _playerBaseSpeedReduction;
     public float playerSpeedReductionWhileShooting => _playerSpeedReductionWhileShooting;
 
+    //Overheating
     public float cooldownSpeed => _cooldownSpeed;
     public float cooldownActivationTime => _cooldownActivationTime;
     public float maxHeatValue => _maxHeatValue;
@@ -68,4 +78,14 @@ public class WeaponStats : ScriptableObject
         projectile.ownerLayer = LayerMask.NameToLayer(_ownerLayer);
         projectile.Fire(direction, _projectileSpeed, _projectileDuration, _knockback);
     }
+}
+
+//Just to have drop down menu TODO: write custom inspector GUI/change so it can have even numbers
+public enum ProjectileCount
+{
+    ONE = 1,
+    THREE = 3,
+    FIVE = 5,
+    SEVEN = 7,
+    TWENTYONE = 21
 }
