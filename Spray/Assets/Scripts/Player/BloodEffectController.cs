@@ -43,6 +43,10 @@ public class BloodEffectController : MonoBehaviour
     private void OnDisable()
     {
         _colorSampler.onColorTypeChanged -= OnColorChanged;
+        foreach(var effect in _appliedEffects)
+        {
+            effect.Remove();
+        }
     }
 
     public void OnColorChanged(ColorType oldColor, ColorType newColor)
