@@ -6,7 +6,7 @@ public abstract class ProjectileBehaviourBase : MonoBehaviour
 {
     /* TODO: move to a struct */
     public float damage { get => _damage; set { _damage = value; } }
-    public LayerMask ownerLayer { get => _ownerLayer; set { _ownerLayer = value; } }
+    public LayerMask collisionLayers;
     public float raycastRadius { get => _raycastRadius; set { _raycastRadius = value; } }
     public bool placeBulletHole { get; set; } = true;
     public float decalChance { get; set; } = 1.0f;
@@ -20,7 +20,6 @@ public abstract class ProjectileBehaviourBase : MonoBehaviour
     protected float _raycastRadius;
     protected bool _destroyNextFrame = false;
     protected LayerMask _layer;
-    protected LayerMask _ownerLayer;
 
     public void Fire(Vector3 direction, float projectileSpeed, float duration, float knockback)
     {

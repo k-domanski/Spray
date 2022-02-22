@@ -43,7 +43,8 @@ public class RaycastBullets : ProjectileBehaviourBase
         RaycastHit hitInfo;
         if (Physics.SphereCast(origin, _raycastRadius, _direction, out hitInfo, distance))
         {
-            if (hitInfo.transform.gameObject.layer != _ownerLayer)
+            int objectLayerMask = (1 << hitInfo.transform.gameObject.layer);
+            if ((objectLayerMask & collisionLayers.value) != 0)
             {
                 OnProjectileHit(hitInfo);
                 distance = hitInfo.distance;

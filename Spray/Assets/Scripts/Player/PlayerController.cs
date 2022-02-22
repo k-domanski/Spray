@@ -14,12 +14,14 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
     public Vector3 moveDirection { get; private set; } = Vector3.zero;
     public Vector3 aimDirection { get; private set; } = Vector3.forward;
     public Vector3 lookDirection => transform.forward;
+    public Vector3 fireDirection => _fireDirection;
     public float cameraRotationDirection { get; private set; } = 0.0f;
     #endregion
 
     #region Private
     private Player _player;
     private Camera _camera;
+    private Vector3 _fireDirection;
     private Vector2 _lastStickOffset = Vector3.forward;
     private Vector3 _aimOffset = Vector3.forward;
     private Vector3 _moveOffset = Vector3.zero;
@@ -36,8 +38,11 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
     {
         aimDirection = AdjustToCamera(_aimOffset);
         moveDirection = AdjustToCamera(_moveOffset);
-        _player.LookAt(aimDirection, Time.deltaTime);
         _player.Move(moveDirection, Time.deltaTime);
+        _player.LookAt(aimDirection, Time.deltaTime);
+        _fireDirection = transform.forward;
+        _fireDirection.y = 0;
+        _fireDirection.Normalize();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -69,7 +74,9 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
         }
         _aimOffset = new Vector3(stickOffset.x, 0f, stickOffset.y).normalized;
         if (_player.playerSettings.autoShoot)
+        {
             this.Delay(() => _player.Shoot(_shootOnAim), 0.1f);
+        }
     }
 
     public void OnMouse(InputAction.CallbackContext context)

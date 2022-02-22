@@ -14,6 +14,8 @@ public class PlayerSettings : ScriptableObject
     [SerializeField, Range(0.0f, 1.0f)] private float _decelerationRate;
     [Tooltip("Maximum rotations per second")]
     [SerializeField, Range(0.0f, 5.0f)] private float _rotationsPerSecond;
+    [SerializeField, Range(0, 180.0f)] private float _tiltAngle;
+    [SerializeField, Range(0.0f, 180.0f)] private float _tiltRotationSpeed;
     [Header("Shooting on Controller Test")]
     [SerializeField] private bool _autoShoot;
     [SerializeField, Range(0.01f, 1.0f)] private float _controllerAimDeadZone;
@@ -28,6 +30,8 @@ public class PlayerSettings : ScriptableObject
     public float accelerationSpeedFactor => _accelerationSpeedFactor;
     public float decelerationRate => _decelerationRate;
     public float maxRotationSpeed => _rotationsPerSecond * 360.0f;
+    public float tiltAngle => _tiltAngle;
+    public float tiltRotationSpeed => _tiltRotationSpeed;
     public bool autoShoot => _autoShoot;
     public float controllerAimDeadZone => _controllerAimDeadZone;
 

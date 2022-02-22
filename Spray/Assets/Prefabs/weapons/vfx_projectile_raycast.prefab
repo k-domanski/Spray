@@ -5011,6 +5011,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1962067b5e97b684aae6aba683cd3ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 192
   _holeTexture: {fileID: 2800000, guid: 5a4a82e4a366226439b98cf2d0a952b6, type: 3}
   _trail: {fileID: 7659622435639707254}
   _particle: {fileID: 6579007288376413672}

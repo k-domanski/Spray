@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Timeline;
 using Quaternion = UnityEngine.Quaternion;
+using Vector2 = System.Numerics.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 [RequireComponent(typeof(PlayerController))]
@@ -39,6 +41,12 @@ public class Player : MonoBehaviour
     private int _weaponIndex;
     private float _playerSpeed;
     private bool _isDead = false;
+
+    private float _throttle = 0.0f;
+    private float _accelerationMultiplier = 0.0f;
+    private Vector3 _desiredMoveDirection = Vector3.zero;
+    private Quaternion _tiltRotation = Quaternion.identity;
+    private Quaternion _lookRotation = Quaternion.identity;
     #endregion
 
     #region Messages
@@ -86,8 +94,9 @@ public class Player : MonoBehaviour
         if (_isShooting)
         {
             _time += Time.deltaTime;
-            _currentWeapon.Shoot(_playerController.lookDirection, _playerSettings.damageMultiplier, _time);
-            _secCurrentWeapon.Shoot(_playerController.lookDirection, _playerSettings.damageMultiplier, _time);
+            Vector3 shootDirection = _playerController.fireDirection;
+            _currentWeapon.Shoot(shootDirection, _playerSettings.damageMultiplier, _time);
+            _secCurrentWeapon.Shoot(shootDirection, _playerSettings.damageMultiplier, _time);
         }
         else
         {
@@ -104,9 +113,15 @@ public class Player : MonoBehaviour
             return;
         }
 
-        _rigidbody.rotation = Quaternion.RotateTowards(_rigidbody.rotation,
-                                                       Quaternion.LookRotation(direction.normalized, Vector3.up),
-                                                       deltaTime * _playerSettings.maxRotationSpeed);
+        Vector3 axis = Vector3.Cross(Vector3.up, _desiredMoveDirection);
+        float desiredAngle = _playerSettings.tiltAngle * Mathf.Max(0, _throttle);
+        Quaternion tiltDesiredRotation = Quaternion.AngleAxis(desiredAngle, axis);
+        _tiltRotation = Quaternion.RotateTowards(_tiltRotation, tiltDesiredRotation, deltaTime * _accelerationMultiplier * _playerSettings.tiltRotationSpeed);
+
+        Quaternion lookDesiredRotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
+        _lookRotation = Quaternion.RotateTowards(_lookRotation, lookDesiredRotation, deltaTime * _playerSettings.maxRotationSpeed);
+
+        _rigidbody.rotation = _tiltRotation * _lookRotation;
     }
 
     public void Move(Vector3 direction, float deltaTime)
@@ -114,21 +129,23 @@ public class Player : MonoBehaviour
         Vector3 currentVelocity = _rigidbody.velocity;
         Vector3 currentDirection = currentVelocity.normalized;
         Vector3 desiredDirection = direction.normalized;
+        _desiredMoveDirection = desiredDirection;
 
         // 1 if user input, 0 otherwise
-        float throttle = desiredDirection.sqrMagnitude;
+        _throttle = desiredDirection.sqrMagnitude;
         float dot = Vector3.Dot(currentDirection, desiredDirection);
         // Speed ratio, used to ease out the sudden direction change (dot from -1 to 1)
         float speedRatio = currentVelocity.magnitude / _playerSpeed;
-        float speedFactor = Mathf.Lerp(1.0f, speedRatio, _playerSettings.accelerationSpeedFactor * throttle);
+        float speedFactor = Mathf.Lerp(1.0f, speedRatio, _playerSettings.accelerationSpeedFactor * _throttle);
         // Re-mapping from dot product [-1, 1] range to [0, 1] range and smooth with speed ratio
         float t = (dot * 0.5f + 0.5f) * speedFactor;
         // Applying boost based on 'turn sharpness', speed and throttle
-        float accelerationBoost = Mathf.Lerp(1.0f, Mathf.Lerp(_playerSettings.accelerationBoost, 1.0f, t), throttle);
+        float accelerationBoost = Mathf.Lerp(1.0f, Mathf.Lerp(_playerSettings.accelerationBoost, 1.0f, t), _throttle);
         // If the movement is held or released
-        float deceleration = Mathf.Max(_playerSettings.decelerationRate, throttle);
+        float deceleration = Mathf.Max(_playerSettings.decelerationRate, _throttle);
 
-        float acceleration = _playerSettings.acceleration * accelerationBoost * deceleration;
+        _accelerationMultiplier = accelerationBoost * deceleration;
+        float acceleration = _playerSettings.acceleration * _accelerationMultiplier;
 
         //TODO: Reduce speed here
         _playerSpeed = (_playerSettings.maxSpeed - GetSpeedReduction()) * _playerSettings.speedMultiplier;
@@ -136,12 +153,10 @@ public class Player : MonoBehaviour
         Vector3 desiredVelocity = Vector3.MoveTowards(currentVelocity, desiredDirection * _playerSpeed, acceleration * deltaTime);
         AdjustAnimation(desiredVelocity.normalized, transform.forward);
         _rigidbody.velocity = desiredVelocity;
-
-        // if (_rigidbody.velocity.magnitude > 0.1f && !_audio.isPlaying)
-        //     _audio.Play();
-        // else if (_audio.isPlaying && _rigidbody.velocity.magnitude < 0.1f)
-        //     _audio.Pause();
     }
+
+
+
     public void Shoot(bool start)
     {
         _isShooting = start;

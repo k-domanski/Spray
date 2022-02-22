@@ -112,13 +112,13 @@ public class GunController : MonoBehaviour
         float width = UnityEngine.Random.Range(-time, time) / _weaponStats.accuracy;
         float height = UnityEngine.Random.Range(-time, time) / _weaponStats.accuracy;
 
-        Vector3 newDirection = Vector3.zero;
+        Vector3 offset = Vector3.zero;
         if (Mathf.Abs(gameObject.transform.forward.x) > 0.7f)
-            newDirection = aimDirection + new Vector3(width, height, 0);
+            offset += new Vector3(width, height, 0);
         if (Mathf.Abs(gameObject.transform.forward.z) > 0.7f)
-            newDirection = aimDirection + new Vector3(0, height, width);
+            offset += aimDirection + new Vector3(0, height, width);
 
-        return newDirection;
+        return (aimDirection + offset).normalized;
 
     }
     private void SetShooting()

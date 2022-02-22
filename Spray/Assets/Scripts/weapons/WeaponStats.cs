@@ -15,7 +15,6 @@ public class WeaponStats : ScriptableObject
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private float _projectileDuration;
     [SerializeField] private float _projectileRaycastRadius;
-    [SerializeField] private string _ownerLayer;
 
 
     [Header("Recoil")]
@@ -65,7 +64,6 @@ public class WeaponStats : ScriptableObject
         projectile.decalChance = decalChance;
         projectile.raycastRadius = _projectileRaycastRadius;
         projectile.damage = _damage * playerMultiplier;
-        projectile.ownerLayer = LayerMask.NameToLayer(_ownerLayer);
         projectile.Fire(direction, _projectileSpeed, _projectileDuration, _knockback);
     }
 }
