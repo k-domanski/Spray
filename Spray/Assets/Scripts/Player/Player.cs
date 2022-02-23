@@ -171,11 +171,13 @@ public class Player : MonoBehaviour
 
         Vector3 sinHeight = Vector3.up * 0.25f * Mathf.Sin(Time.time * Mathf.PI * 0.25f);
 
-        _tiltOffsetMultiplier = Mathf.MoveTowards(_tiltOffsetMultiplier, 1.0f - _throttle, deltaTime * 2.0f);
-        float pitch = 6.0f * _tiltOffsetMultiplier;
-        float roll = 6.0f * _tiltOffsetMultiplier;
+        _tiltOffsetMultiplier = Mathf.MoveTowards(_tiltOffsetMultiplier, 1.0f - _throttle, deltaTime * 1.0f);
+        float pitch = _playerSettings.tiltOffsetAngle * _tiltOffsetMultiplier;
+        float roll = _playerSettings.tiltOffsetAngle * _tiltOffsetMultiplier;
         Quaternion tiltOffset =
-            Quaternion.Euler(Mathf.Sin(Time.time * 2.25f) * pitch, 0, Mathf.Cos(Time.time * 1.33f) * roll);
+            Quaternion.Euler(Mathf.Sin(Time.time * _playerSettings.tiltOffsetPitchFrequency) * pitch,
+                            0,
+                            Mathf.Cos(Time.time * _playerSettings.tiltOffsetRollFrequency) * roll);
 
         Vector3 newPositionOffset = sinHeight;
         Quaternion newRotationOffset = tiltOffset;
