@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] private List<GunController> _guns;
     [SerializeField] private AnimationPlaybackSpeed _animationTiming;
     [SerializeField] private DeathPanel _playerDeathPanel;//TODO: move it to UIManager or somewhere
+    [SerializeField] private Transform _modelOffsetTransform;
     public PlayerSettings playerSettings => _playerSettings;
     public Rigidbody _rigidbody { get; private set; }
     public Vector3 velocity => _rigidbody.velocity;
@@ -47,6 +48,8 @@ public class Player : MonoBehaviour
     private Vector3 _desiredMoveDirection = Vector3.zero;
     private Quaternion _tiltRotation = Quaternion.identity;
     private Quaternion _lookRotation = Quaternion.identity;
+
+    private float _tiltOffsetMultiplier = 0.0f;
     #endregion
 
     #region Messages
@@ -106,6 +109,8 @@ public class Player : MonoBehaviour
         {
             _time = 0;
         }
+
+        ApplyModelOffset(Time.deltaTime);
     }
     #endregion
 
@@ -159,7 +164,24 @@ public class Player : MonoBehaviour
         _rigidbody.velocity = desiredVelocity;
     }
 
+    public void ApplyModelOffset(float deltaTime)
+    {
+        Vector3 positionOffset = _modelOffsetTransform.localPosition;
+        Quaternion rotationOffset = _modelOffsetTransform.localRotation;
 
+        Vector3 sinHeight = Vector3.up * 0.25f * Mathf.Sin(Time.time * Mathf.PI * 0.25f);
+
+        _tiltOffsetMultiplier = Mathf.MoveTowards(_tiltOffsetMultiplier, 1.0f - _throttle, deltaTime * 2.0f);
+        float pitch = 6.0f * _tiltOffsetMultiplier;
+        float roll = 6.0f * _tiltOffsetMultiplier;
+        Quaternion tiltOffset =
+            Quaternion.Euler(Mathf.Sin(Time.time * 2.25f) * pitch, 0, Mathf.Cos(Time.time * 1.33f) * roll);
+
+        Vector3 newPositionOffset = sinHeight;
+        Quaternion newRotationOffset = tiltOffset;
+        _modelOffsetTransform.localPosition = newPositionOffset;
+        _modelOffsetTransform.localRotation = newRotationOffset;
+    }
 
     public void Shoot(bool start)
     {

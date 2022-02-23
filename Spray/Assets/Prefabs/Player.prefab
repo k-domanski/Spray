@@ -5350,6 +5350,7 @@ MonoBehaviour:
   - {fileID: 5367893856227714692}
   _animationTiming: {fileID: 11400000, guid: e23d92512b21c924aaf868802f77417e, type: 2}
   _playerDeathPanel: {fileID: 0}
+  _modelOffsetTransform: {fileID: 8619212432033295155}
 --- !u!114 &5020966971749737467
 MonoBehaviour:
   m_ObjectHideFlags: 0

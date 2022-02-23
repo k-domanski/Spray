@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
         moveDirection = AdjustToCamera(_moveOffset);
         _player.Move(moveDirection, Time.deltaTime);
         _player.LookAt(aimDirection, Time.deltaTime);
+
         _fireDirection = transform.forward;
         _fireDirection.y = 0;
         _fireDirection.Normalize();
