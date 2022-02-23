@@ -101,8 +101,9 @@ public class GunController : MonoBehaviour
             _muzzleFlash.gameObject.SetActive(true);
             _canShoot = false;
             _cooldownActivationTimer = 0f;
-            // if (_shotAudio != null)
-            //     _shotAudio.Play();
+
+            if (_shotAudio != null)
+                 _shotAudio.Play();
 
             //TODO: Cache and change to list so it can be changed dynamically
             _projectileCount = (int)weaponStats.projectileCount;

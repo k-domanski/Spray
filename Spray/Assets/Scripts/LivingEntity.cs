@@ -8,6 +8,7 @@ public class LivingEntity : MonoBehaviour
     #region Properties
     [SerializeField] private float _currentHealth;
     [SerializeField] private float _maxHealth;
+    [SerializeField] private AudioSource _damageSound;
     public float maxHealth
     {
         get => _maxHealth;
@@ -57,7 +58,7 @@ public class LivingEntity : MonoBehaviour
         if (currentHealth > 0)
         {
             currentHealth -= CalculateDamage(damage);
-            
+            _damageSound.Play();
             onDamageTaken?.Invoke(damage, impactDirection);
         }
 
