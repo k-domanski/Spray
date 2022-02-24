@@ -125,6 +125,17 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
             _player.ChangeWeapon();
         }
     }
+    public void OnBuffs(InputAction.CallbackContext context)
+    {
+        //should be value from range 0 to 4 - dont know why unity cannot read int
+        var value = context.ReadValue<float>();
+        if(context.started)
+        {
+            //do something 
+            //_player.UseBuff(value);
+            Debug.Log($"Used buff/color nr: {value}");
+        }
+    }
     #region Private Methods
     private Vector3 AdjustToCamera(Vector3 dir)
     {
@@ -140,6 +151,5 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
 
         return new Matrix4x4(right, up, forward, Vector3.zero);
     }
-
     #endregion
 }
