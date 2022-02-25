@@ -25,6 +25,7 @@ public class ColorSampler : MonoBehaviour
     }
 
     public Action<ColorType, ColorType> onColorTypeChanged;
+    public Action<ColorType> onColorSampled;
 
     void Awake()
     {
@@ -75,6 +76,7 @@ public class ColorSampler : MonoBehaviour
                 {
                     var paintData = _clearBrush.GetPaintData();
                     Systems.paintManager.Clear(paintable, hit.point, paintData);
+                    onColorSampled?.Invoke(colorType);
                 }
             }
         }

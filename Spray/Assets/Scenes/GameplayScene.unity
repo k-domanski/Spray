@@ -15000,17 +15000,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687674083}
   m_CullTransparentMesh: 1
---- !u!114 &1716116628 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4965460735043273134, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
-  m_PrefabInstance: {fileID: 1827066556}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9b249569a5c6a4893d348c275aa077, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &1727193764 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2657236357002245101, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
@@ -15228,17 +15217,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1764025461}
     - target: {fileID: 5020966971749737457, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
-      propertyPath: _guns.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5020966971749737457, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: _playerDeathPanel
       value: 
       objectReference: {fileID: 40067095}
-    - target: {fileID: 5020966971749737457, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
-      propertyPath: _guns.Array.data[2]
-      value: 
-      objectReference: {fileID: 1716116628}
     - target: {fileID: 5020966971749737458, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_Name
       value: Player

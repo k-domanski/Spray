@@ -28,6 +28,10 @@ public class Player : MonoBehaviour
     public GunController secondaryWeapon { get => _guns[1]; set => _guns[1] = value; }
     public GunController currentWeapon => _currentWeapon;
     public LivingEntity livingEntity { get; private set; }
+
+    public float maxColorLevel = 100.0f;
+    public float colorIncreaseStep = 5.0f;
+    public Dictionary<ColorType, float> colorLevels { get; private set; } = new Dictionary<ColorType, float>();
     #endregion
 
     #region Private
@@ -37,6 +41,7 @@ public class Player : MonoBehaviour
     private GunController _currentWeapon;
     private GunController _secCurrentWeapon;
     private Animator _animator;
+    private ColorSampler _colorSampler;
     private bool _isShooting = false;
     private float _time = 0;
     private int _weaponIndex;
@@ -61,6 +66,7 @@ public class Player : MonoBehaviour
         _simpleShooting = GetComponent<SimpleShooting>();
         _audio = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
+        _colorSampler = GetComponent<ColorSampler>();
 
         _currentWeapon = mainWeapon;
         _secCurrentWeapon = _guns[2];
@@ -69,6 +75,11 @@ public class Player : MonoBehaviour
         _weaponName.text = _currentWeapon.name;
 
         _playerProxy.Register(this);
+
+        colorLevels.Add(ColorType.Red, 0);
+        colorLevels.Add(ColorType.Green, 0);
+        colorLevels.Add(ColorType.Blue, 0);
+        colorLevels.Add(ColorType.Yellow, 0);
     }
 
     private void Start()
@@ -82,6 +93,7 @@ public class Player : MonoBehaviour
         livingEntity.onDeath.AddListener(Die);
         _guns[0].onWeaponOverheat += ShowRightGunOverheat;
         _guns[0].onWeaponOverheat += ShowLeftGunOverheat;
+        _colorSampler.onColorSampled += AddToColorLevel;
     }
 
     private void OnDisable()
@@ -89,6 +101,7 @@ public class Player : MonoBehaviour
         livingEntity.onDeath.RemoveListener(Die);
         _guns[0].onWeaponOverheat -= ShowRightGunOverheat;
         _guns[0].onWeaponOverheat -= ShowLeftGunOverheat;
+        _colorSampler.onColorSampled -= AddToColorLevel;
     }
 
     private void OnDestroy()
@@ -205,6 +218,20 @@ public class Player : MonoBehaviour
         _currentWeapon.Equip();
 
         _weaponName.text = _currentWeapon.name;
+    }
+
+    public void AddToColorLevel(ColorType color)
+    {
+        if (!colorLevels.ContainsKey(color))
+        {
+            return;
+        }
+
+        float currentLevel = colorLevels[color];
+        float step = Mathf.Min(maxColorLevel - currentLevel, colorIncreaseStep);
+        colorLevels[color] += step;
+        //print($"Added: {step} to {color} - current {colorLevels[color]}");
+        //TODO: event on new color level or read in update
     }
     #endregion
 
