@@ -5522,11 +5522,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77227484b027ef24fafe2f3971e22a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _samplingInterval: 0.3
+  _samplingInterval: 0.1
   _raycastLayers:
     serializedVersion: 2
     m_Bits: 64
   _colors: {fileID: 11400000, guid: 983e3e506f55626499601dd440bcd5b0, type: 2}
+  _clearBrush: {fileID: 11400000, guid: 1cc31e4f818784a4cb94277fa5725aec, type: 2}
+  _samplingOffset: 1
   _samplingTexture: {fileID: 0}
   rawColor: {r: 0, g: 0, b: 0, a: 0}
   colorType: 0
