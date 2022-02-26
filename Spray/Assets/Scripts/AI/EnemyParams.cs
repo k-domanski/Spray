@@ -31,6 +31,13 @@ public class EnemyParams : ScriptableObject
     public float attackSwingTime;
     public float attackEndTime;
 
+    [Header("Charge Attack")]
+    public float chargeActivationDistance;
+    public float chargeLoadingTime;
+    public float chargeDistance;
+    public float chargeSpeed;
+    public float postChargeCooldown;
+
     [Header("Knockback")]
     public float speedRecovery;
 }

@@ -80,6 +80,16 @@ public class PursuitAction : Action
         //    enemy.transform.rotation = Quaternion.RotateTowards(enemy.transform.rotation, Quaternion.LookRotation(enemy.velocity.normalized, Vector3.up), enemy.settings.maxRotationSpeed);
     }
 
+    public override void ActionEnd(Enemy enemy)
+    {
+        
+    }
+
+    public override void ActionStart(Enemy enemy)
+    {
+        
+    }
+
     private Vector3 Queue(Enemy enemy, Vector3 steering)
     {
         Vector3 breakForce = Vector3.zero;

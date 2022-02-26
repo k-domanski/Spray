@@ -37,4 +37,13 @@ public class WanderAction : Action
 
         enemy.Move(enemy.settings.maxSpeed / 2f);
     }
+
+    public override void ActionStart(Enemy enemy)
+    {
+
+    }
+    public override void ActionEnd(Enemy enemy)
+    {
+
+    }
 }

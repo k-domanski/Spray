@@ -13,7 +13,9 @@ public class State : ScriptableObject
         {
             if (transition.decision.Decide(enemy))
             {
+                actions.ForEach (x => x.ActionEnd(enemy));
                 enemy.stateController.currentState = transition.nextState;
+                enemy.stateController.currentState.actions.ForEach (x => x.ActionStart(enemy));
             }
         }
     }

@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
     // }
     public bool canAttack => !_meleeAnimation.isAnimating;
     private MeleeAnimation _meleeAnimation;
-
+    public bool isCharging { get; set; } = false;
     private void Awake()
     {
         stateController = GetComponent<StateController>();
@@ -196,6 +196,10 @@ public class Enemy : MonoBehaviour
         _rigidbody.velocity = vel;
     }
 
+    public void SetTrigger(bool isTrigger)
+    {
+        GetComponent<CapsuleCollider>().isTrigger = isTrigger;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Player>(out var _))
