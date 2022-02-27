@@ -37,6 +37,8 @@ public class EnemyParams : ScriptableObject
     public float chargeDistance;
     public float chargeSpeed;
     public float postChargeCooldown;
+    public float chargeDamage;
+
 
     [Header("Knockback")]
     public float speedRecovery;

@@ -38,6 +38,8 @@ public class Enemy : MonoBehaviour
     public bool canAttack => !_meleeAnimation.isAnimating;
     private MeleeAnimation _meleeAnimation;
     public bool isCharging { get; set; } = false;
+    private bool _enableChargeDamage = false;
+    private bool _dealtDamageInThisCharge = false;
     private void Awake()
     {
         stateController = GetComponent<StateController>();
@@ -200,12 +202,22 @@ public class Enemy : MonoBehaviour
     {
         GetComponent<CapsuleCollider>().isTrigger = isTrigger;
     }
+    public void EnableDamage(bool enable)
+    {
+        _enableChargeDamage = enable;
+        if(!enable)
+            _dealtDamageInThisCharge = false;
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Player>(out var _))
-        {
-            // targetInMeleeRange = true;
-        }
+        if (_enableChargeDamage && !_dealtDamageInThisCharge)
+            if (other.TryGetComponent<Player>(out var player))
+            {
+                // targetInMeleeRange = true;
+                player.livingEntity.DealDamage(settings.chargeDamage, transform.forward);
+                _dealtDamageInThisCharge = true;
+                Debug.Log($"deal damage: {settings.chargeDamage}");
+            }
     }
 
     private void OnTriggerExit(Collider other)

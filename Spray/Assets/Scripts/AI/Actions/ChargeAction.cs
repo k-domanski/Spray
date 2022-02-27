@@ -28,6 +28,7 @@ public class ChargeAction : Action
                 //attack
                 _charging = true;
                 enemy.SetTrigger(true);
+                enemy.EnableDamage(true);
                 enemy.isCharging = true;
                 _destinationPoint = enemy.transform.position + (enemy.transform.forward * enemy.settings.chargeDistance);
                 _loadCharge = false;
@@ -69,10 +70,11 @@ public class ChargeAction : Action
             }
             enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, _destinationPoint, enemy.settings.chargeSpeed * Time.fixedDeltaTime);
             enemy.agent.nextPosition = enemy.transform.position;
-            if (Vector3.Distance(enemy.transform.position, _destinationPoint) <= 1f)
+            if (Vector3.Distance(enemy.transform.position, _destinationPoint) <= 0.5f)
             {
                 _charging = false;
                 enemy.SetTrigger(false);
+                enemy.EnableDamage(false);
                 _postCharge = true;
                 _timer = enemy.settings.postChargeCooldown;
             }
@@ -87,5 +89,6 @@ public class ChargeAction : Action
     {
         enemy.isCharging = false;
         enemy.SetTrigger(false);
+        enemy.EnableDamage(false);
     }
 }
