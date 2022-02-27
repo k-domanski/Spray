@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     private GunController _secCurrentWeapon;
     private Animator _animator;
     private ColorSampler _colorSampler;
+    private BuffColorLevel _buffColorLevel;
     private bool _isShooting = false;
     private float _time = 0;
     private int _weaponIndex;
@@ -67,6 +68,7 @@ public class Player : MonoBehaviour
         _audio = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
         _colorSampler = GetComponent<ColorSampler>();
+        _buffColorLevel = GetComponent<BuffColorLevel>();
 
         _currentWeapon = mainWeapon;
         _secCurrentWeapon = _guns[2];
@@ -230,8 +232,14 @@ public class Player : MonoBehaviour
         float currentLevel = colorLevels[color];
         float step = Mathf.Min(maxColorLevel - currentLevel, colorIncreaseStep);
         colorLevels[color] += step;
-        print($"Added: {step} to {color} - current {colorLevels[color]}");
+
+        //print($"Added: {step} to {color} - current {colorLevels[color]}");
         //TODO: event on new color level or read in update
+    }
+
+    public void UseBuff(float value)
+    {
+        _buffColorLevel.UseBuff(value);
     }
     #endregion
 

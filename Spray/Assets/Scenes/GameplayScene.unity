@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5020966971749737457, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
   m_PrefabInstance: {fileID: 1827066556}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 655580511}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c88f8975e4f0bf4dad61c668fdbb120, type: 3}
@@ -4235,6 +4235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 105912480019674586, guid: 2cc35ee3e1c13ce4f848d3e3b15fe70c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 105912480019674587, guid: 2cc35ee3e1c13ce4f848d3e3b15fe70c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4338,9 +4342,14 @@ PrefabInstance:
     - target: {fileID: 105912480019674591, guid: 2cc35ee3e1c13ce4f848d3e3b15fe70c, type: 3}
       propertyPath: _bloodEffectController
       value: 
-      objectReference: {fileID: 2080221450}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cc35ee3e1c13ce4f848d3e3b15fe70c, type: 3}
+--- !u!1 &655580511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5020966971749737458, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+  m_PrefabInstance: {fileID: 1827066556}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &660718413
 Mesh:
   m_ObjectHideFlags: 0
@@ -5963,107 +5972,6 @@ MonoBehaviour:
   _spawnTime: 3
   _spawnDelay: 3
   _timeOfSpawning: 120
---- !u!1 &895604897 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6306078441152599803, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
-  m_PrefabInstance: {fileID: 1827066556}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &895604899
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895604897}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 193c09527033bd04aa729f3a066ab11b, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.516
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &938973630
 GameObject:
   m_ObjectHideFlags: 0
@@ -11084,6 +10992,10 @@ PrefabInstance:
       propertyPath: _playerDeathPanel
       value: 
       objectReference: {fileID: 40067095}
+    - target: {fileID: 5020966971749737457, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: colorIncreaseStep
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5020966971749737458, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -11196,7 +11108,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8141015079975751499, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
 --- !u!1 &1840350802
 GameObject:
@@ -12260,22 +12173,24 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &2080221450 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8141015079975751499, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
-  m_PrefabInstance: {fileID: 1827066556}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad7aa6deccddb434abf761e094c28c2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2080221451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5020966971749737460, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
   m_PrefabInstance: {fileID: 1827066556}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2080221452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655580511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50cfdf6065a1a2747920dcf4c83ec588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buffLib: {fileID: 11400000, guid: 4accc81b656b08644997b1cc554ceb5b, type: 2}
 --- !u!1 &2093991662
 GameObject:
   m_ObjectHideFlags: 0
