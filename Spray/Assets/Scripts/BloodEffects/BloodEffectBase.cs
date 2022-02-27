@@ -18,7 +18,7 @@ public abstract class BloodEffectBase : ScriptableObject
             OnCurrentDuration?.Invoke(value);
         }
     }
-
+    public ColorType colorType { get; set; }
     public Sprite icon => _icon;
     public EffectType type => _type;
     [SerializeField] private float _duration;
