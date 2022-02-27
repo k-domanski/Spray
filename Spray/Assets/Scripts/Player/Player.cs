@@ -230,7 +230,7 @@ public class Player : MonoBehaviour
         float currentLevel = colorLevels[color];
         float step = Mathf.Min(maxColorLevel - currentLevel, colorIncreaseStep);
         colorLevels[color] += step;
-        //print($"Added: {step} to {color} - current {colorLevels[color]}");
+        print($"Added: {step} to {color} - current {colorLevels[color]}");
         //TODO: event on new color level or read in update
     }
     #endregion
