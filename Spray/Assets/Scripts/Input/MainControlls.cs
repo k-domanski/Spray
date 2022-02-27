@@ -80,6 +80,15 @@ public partial class @MainControlls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Buffs"",
+                    ""type"": ""Button"",
+                    ""id"": ""88845cad-a042-4707-89a5-3510a96250ea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -291,6 +300,94 @@ public partial class @MainControlls : IInputActionCollection2, IDisposable
                     ""action"": ""WeaponSwitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cdc926f1-f769-4dab-bb17-db74ed2df4ed"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""Buffs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b10e5dc6-72df-41f5-8130-2f7f663d0818"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": """",
+                    ""action"": ""Buffs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a52bd6ec-3abd-4aeb-9094-6cd1f21f7936"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": """",
+                    ""action"": ""Buffs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""412bb838-5020-407a-ada0-b0bff2bce141"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=4)"",
+                    ""groups"": """",
+                    ""action"": ""Buffs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b46f00b9-9ebd-4289-b632-163c007ad49e"",
+                    ""path"": ""<XInputController>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""Buffs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c2be554-3284-4cef-8e22-ded5c90da815"",
+                    ""path"": ""<XInputController>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": """",
+                    ""action"": ""Buffs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f43b599d-5e50-42f6-8095-3475e16e3468"",
+                    ""path"": ""<XInputController>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": """",
+                    ""action"": ""Buffs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""69a18db4-7374-4ded-9f4d-5f61966ad7eb"",
+                    ""path"": ""<XInputController>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=4)"",
+                    ""groups"": """",
+                    ""action"": ""Buffs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -305,6 +402,7 @@ public partial class @MainControlls : IInputActionCollection2, IDisposable
         m_Player_Mouse = m_Player.FindAction("Mouse", throwIfNotFound: true);
         m_Player_CameraRotate = m_Player.FindAction("CameraRotate", throwIfNotFound: true);
         m_Player_WeaponSwitch = m_Player.FindAction("WeaponSwitch", throwIfNotFound: true);
+        m_Player_Buffs = m_Player.FindAction("Buffs", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -370,6 +468,7 @@ public partial class @MainControlls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Mouse;
     private readonly InputAction m_Player_CameraRotate;
     private readonly InputAction m_Player_WeaponSwitch;
+    private readonly InputAction m_Player_Buffs;
     public struct PlayerActions
     {
         private @MainControlls m_Wrapper;
@@ -380,6 +479,7 @@ public partial class @MainControlls : IInputActionCollection2, IDisposable
         public InputAction @Mouse => m_Wrapper.m_Player_Mouse;
         public InputAction @CameraRotate => m_Wrapper.m_Player_CameraRotate;
         public InputAction @WeaponSwitch => m_Wrapper.m_Player_WeaponSwitch;
+        public InputAction @Buffs => m_Wrapper.m_Player_Buffs;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -407,6 +507,9 @@ public partial class @MainControlls : IInputActionCollection2, IDisposable
                 @WeaponSwitch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSwitch;
                 @WeaponSwitch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSwitch;
                 @WeaponSwitch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSwitch;
+                @Buffs.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBuffs;
+                @Buffs.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBuffs;
+                @Buffs.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBuffs;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -429,6 +532,9 @@ public partial class @MainControlls : IInputActionCollection2, IDisposable
                 @WeaponSwitch.started += instance.OnWeaponSwitch;
                 @WeaponSwitch.performed += instance.OnWeaponSwitch;
                 @WeaponSwitch.canceled += instance.OnWeaponSwitch;
+                @Buffs.started += instance.OnBuffs;
+                @Buffs.performed += instance.OnBuffs;
+                @Buffs.canceled += instance.OnBuffs;
             }
         }
     }
@@ -441,5 +547,6 @@ public partial class @MainControlls : IInputActionCollection2, IDisposable
         void OnMouse(InputAction.CallbackContext context);
         void OnCameraRotate(InputAction.CallbackContext context);
         void OnWeaponSwitch(InputAction.CallbackContext context);
+        void OnBuffs(InputAction.CallbackContext context);
     }
 }
