@@ -15481,6 +15481,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5020966971749737463, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020966971749737463, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5020966971749737467, guid: ed87cf368e326da4782ebefc7a3d1e7c, type: 3}
       propertyPath: _secondGunPoint
       value: 

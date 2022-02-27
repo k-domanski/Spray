@@ -68,7 +68,8 @@ public class ChargeAction : Action
                 //}
             }
             enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, _destinationPoint, enemy.settings.chargeSpeed * Time.fixedDeltaTime);
-            if (enemy.transform.position == _destinationPoint)
+            enemy.agent.nextPosition = enemy.transform.position;
+            if (Vector3.Distance(enemy.transform.position, _destinationPoint) <= 1f)
             {
                 _charging = false;
                 enemy.SetTrigger(false);
@@ -85,5 +86,6 @@ public class ChargeAction : Action
     public override void ActionEnd(Enemy enemy)
     {
         enemy.isCharging = false;
+        enemy.SetTrigger(false);
     }
 }
