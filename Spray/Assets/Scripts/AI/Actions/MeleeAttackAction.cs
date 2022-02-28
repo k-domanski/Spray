@@ -17,6 +17,16 @@ public class MeleeAttackAction : Action
         }
     }
 
+    public override void ActionEnd(Enemy enemy)
+    {
+        
+    }
+
+    public override void ActionStart(Enemy enemy)
+    {
+        
+    }
+
     private void Attack(Enemy enemy)
     {
         var target = enemy.target;
