@@ -14,6 +14,7 @@ public class EnemyParams : ScriptableObject
     public float maxQueueRadius;
     public float maxRotationSpeed;
     public float acceleration;
+    public float wanderTime;
 
     [Header("Ranged attack")]
     public float shootingRange;

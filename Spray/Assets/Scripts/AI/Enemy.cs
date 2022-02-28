@@ -37,9 +37,18 @@ public class Enemy : MonoBehaviour
     // }
     public bool canAttack => !_meleeAnimation.isAnimating;
     private MeleeAnimation _meleeAnimation;
+
+    public float wanderTimer { get; set; } = 0f;
+
     public bool isCharging { get; set; } = false;
     private bool _enableChargeDamage = false;
     private bool _dealtDamageInThisCharge = false;
+
+    public float chargeTimer { get; set; } = 0f;
+    public bool loadCharge { get; set; } = false;
+    public bool charging { get; set; } = false;
+    public bool postCharge { get; set; } = false;
+    public Vector3 destinationPoint { get; set; }
     private void Awake()
     {
         stateController = GetComponent<StateController>();
