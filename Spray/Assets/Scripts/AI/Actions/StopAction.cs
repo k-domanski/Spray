@@ -10,4 +10,14 @@ class StopAction : Action
         enemy.Move(0f);
         //enemy.velocity = Vector3.Lerp(enemy.velocity,Vector3.zero, 0.2f);
     }
+
+    public override void ActionEnd(Enemy enemy)
+    {
+        
+    }
+
+    public override void ActionStart(Enemy enemy)
+    {
+        
+    }
 }

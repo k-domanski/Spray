@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "AI/Actions/Seek")]
-class SeekAction : Action
+public class SeekAction : Action
 {
     public override void Act(Enemy enemy)
     {
@@ -24,6 +24,16 @@ class SeekAction : Action
 
         enemy.SetDestination(enemy.target.transform.position);
         enemy.Move(enemy.settings.maxSpeed / 2f);
+    }
+
+    public override void ActionEnd(Enemy enemy)
+    {
+        
+    }
+
+    public override void ActionStart(Enemy enemy)
+    {
+        
     }
 
     private Vector3 Queue(Enemy enemy, Vector3 steering)

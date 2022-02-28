@@ -4,14 +4,13 @@ using UnityEngine.AI;
 [CreateAssetMenu(menuName = "AI/Actions/Wander")]
 public class WanderAction : Action
 {
-    private float _timer;
     private Vector3 _point = Vector3.zero;
     public override void Act(Enemy enemy)
     {
         if (enemy.agent.remainingDistance < 1f)
         {
-            _timer -= Time.fixedDeltaTime;//act is in fixed update
-            if (_timer < 0f)
+            enemy.wanderTimer -= Time.fixedDeltaTime;//act is in fixed update
+            if (enemy.wanderTimer < 0f)
             {
 
                 float length = Random.Range(10, 20);
@@ -28,7 +27,7 @@ public class WanderAction : Action
                 {
                     var randomPointInNavMesh = hit.position;
                     enemy.SetDestination(randomPointInNavMesh);
-                    _timer = 5f;
+                    enemy.wanderTimer = enemy.settings.wanderTime;
                 }
             }
             enemy.Move(0);
@@ -36,5 +35,14 @@ public class WanderAction : Action
         }
 
         enemy.Move(enemy.settings.maxSpeed / 2f);
+    }
+
+    public override void ActionStart(Enemy enemy)
+    {
+
+    }
+    public override void ActionEnd(Enemy enemy)
+    {
+
     }
 }
