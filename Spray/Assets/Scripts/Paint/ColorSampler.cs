@@ -8,6 +8,8 @@ public class ColorSampler : MonoBehaviour
     [SerializeField] private float _samplingInterval = 0.1f;
     [SerializeField] private LayerMask _raycastLayers;
     [SerializeField] private ColorsLib _colors;
+    [SerializeField] private Brush _clearBrush;
+    [SerializeField] private float _samplingOffset = 0.1f;
 
     public Texture2D _samplingTexture;
     private Coroutine _coroutine;
@@ -23,6 +25,7 @@ public class ColorSampler : MonoBehaviour
     }
 
     public Action<ColorType, ColorType> onColorTypeChanged;
+    public Action<ColorType> onColorSampled;
 
     void Awake()
     {
@@ -39,9 +42,9 @@ public class ColorSampler : MonoBehaviour
         StopCoroutine(_coroutine);
     }
 
-    public void Sample()
+    public void SampleAtOffset(Vector3 offset)
     {
-        if (Physics.Raycast(transform.position + Vector3.up * 2, Vector3.down, out var hit, 1000.0f, _raycastLayers))
+        if (Physics.Raycast(transform.position + offset + Vector3.up * 2, Vector3.down, out var hit, 1000.0f, _raycastLayers))
         {
             Paintable paintable = hit.transform.GetComponent<Paintable>();
             if (paintable)
@@ -68,15 +71,32 @@ public class ColorSampler : MonoBehaviour
 
                 rawColor = _samplingTexture.GetPixel(0, 0);
                 GetColorType(rawColor);
+
+                if (colorType != ColorType.None)
+                {
+                    var paintData = _clearBrush.GetPaintData();
+                    Systems.paintManager.Clear(paintable, hit.point, paintData);
+                    onColorSampled?.Invoke(colorType);
+                }
             }
         }
+    }
+
+    public void Sample()
+    {
+        SampleAtOffset(Vector3.zero);
+        SampleAtOffset(transform.forward * _samplingOffset);
+        SampleAtOffset(transform.forward * -_samplingOffset);
+        SampleAtOffset(transform.right * _samplingOffset);
+        SampleAtOffset(transform.right * -_samplingOffset);
     }
 
     void GetColorType(Color color)
     {
         ColorType type = ColorType.None;
         float min_dist = float.MaxValue;
-        Vector3 in_color = new Vector3(color.r, color.g, color.b);
+        float alpha_mul = color.a < 0.1 ? 0 : 1;
+        Vector3 in_color = new Vector3(color.r, color.g, color.b) * alpha_mul;
         foreach (var pair in _colors.colors)
         {
             Vector3 list_color = new Vector3(pair.second.r, pair.second.g, pair.second.b);

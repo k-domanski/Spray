@@ -137,9 +137,27 @@ public class Enemy : MonoBehaviour
         if (entity != _livingEntity)
             return;
         StopAllCoroutines();
-        Systems.aiManager.enemies.Remove(this);
-        Systems.scoreSystem.AddScore(settings.score);
-        gameObject.SetActive(false);
+
+        void ShowEnemy(bool visible)
+        {
+            this.enabled = visible;
+            GetComponent<StateController>().enabled = visible;
+            GetComponent<MeshRenderer>().enabled = visible;
+            GetComponent<Collider>().enabled = visible;
+            foreach (var mr in GetComponentsInChildren<MeshRenderer>())
+            {
+                mr.enabled = visible;
+            }
+        }
+
+        ShowEnemy(false);
+        this.Delay(() =>
+        {
+            ShowEnemy(true);
+            Systems.aiManager.enemies.Remove(this);
+            Systems.scoreSystem.AddScore(settings.score);
+            gameObject.SetActive(false);
+        }, 1.0f);
     }
 
     public void SetDestination(Vector3 position)

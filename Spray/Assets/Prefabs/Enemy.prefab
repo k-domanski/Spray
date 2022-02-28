@@ -272,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 8825231522133241336}
   _particleCollision: {fileID: 4751756274334789898}
-  _particleCount: 6
+  _particleCount: 20
 --- !u!114 &2487453089657557040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHealth: 100
   _maxHealth: 100
+  _damageSound: {fileID: 0}
   canReceiveDamage: 1
   onDamageTaken:
     m_PersistentCalls:
@@ -741,6 +742,18 @@ PrefabInstance:
     - target: {fileID: 4818598674194455561, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
       propertyPath: TriggerModule.primitives.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818598674194455561, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818598674194455561, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: InitialModule.gravityModifier.minScalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818598674194455561, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
+      propertyPath: InitialModule.gravityModifier.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8205023790079611738, guid: 9ddaf4d4ee2a01d47a8ebdd5ea6bf0b2, type: 3}
       propertyPath: m_Name

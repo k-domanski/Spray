@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour, MainControlls.IPlayerActions
         if(context.started)
         {
             //do something 
-            //_player.UseBuff(value);
+            _player.UseBuff(value);
             Debug.Log($"Used buff/color nr: {value}");
         }
     }

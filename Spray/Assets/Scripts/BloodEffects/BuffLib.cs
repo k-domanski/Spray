@@ -6,4 +6,16 @@ using UnityEngine;
 public class BuffLib : ScriptableObject
 {
     public List<Pair<ColorType, List<BloodEffectBase>>> buffs;
+
+    public List<BloodEffectBase> GetBuff(ColorType colorType)
+    {
+        List<BloodEffectBase> buffList = new List<BloodEffectBase>();
+        foreach(var buff in buffs)
+        {
+            if (buff.first == colorType)
+                buffList = buff.second;
+        }
+
+        return buffList;
+    }
 }

@@ -11,7 +11,6 @@ public class BloodFX : MonoBehaviour
     public ParticleCollision particleCollision => _particleCollision;
     #endregion
 
-
     #region Messages
     #endregion
 
@@ -26,6 +25,7 @@ public class BloodFX : MonoBehaviour
         _particleSystem.transform.forward = direction;
         _particleSystem.Emit(emitParams, _particleCount);
     }
+
     [ContextMenu("Emit")]
     public void Emit()
     {

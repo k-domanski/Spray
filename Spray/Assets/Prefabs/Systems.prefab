@@ -223,8 +223,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initShader: {fileID: 4800000, guid: 3ee09800d87d21a4a890d101ff4e4505, type: 3}
   _maskShader: {fileID: 4800000, guid: 085b9b5c407cafe439575bce938051bf, type: 3}
+  _clearShader: {fileID: 4800000, guid: cd6cdd7f36bd21a42b67256e4c2a743c, type: 3}
   initMaterial: {fileID: 0}
   maskMaterial: {fileID: 0}
+  clearMaterial: {fileID: 0}
 --- !u!1 &3588618167271512439
 GameObject:
   m_ObjectHideFlags: 0
