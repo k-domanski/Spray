@@ -6,7 +6,7 @@ public class ChargeAction : Action
     private int defaultLayer = (1 << 6) + (1 << 8);
     public override void ActionStart(Enemy enemy)
     {
-        defaultLayer = LayerMask.GetMask("Level");
+        defaultLayer = LayerMask.GetMask("Level", "Entrance");
         enemy.loadCharge = false;
         enemy.charging = false;
         enemy.postCharge = false;
@@ -26,6 +26,7 @@ public class ChargeAction : Action
                 enemy.EnableDamage(true);
                 enemy.isCharging = true;
                 enemy.destinationPoint = enemy.transform.position + (enemy.transform.forward * enemy.settings.chargeDistance);
+                //enemy.destinationPoint = new Vector3(Mathf.Clamp(enemy.destinationPoint.x, -23, 23), enemy.destinationPoint.y, Mathf.Clamp(enemy.destinationPoint.z, -23, 23));
                 enemy.loadCharge = false;
             }
             else if (enemy.postCharge || !enemy.charging)
