@@ -113,8 +113,8 @@ MonoBehaviour:
   enemyBullet: {fileID: 3239901621446333897, guid: 736624a7831381640aa53a6461925655, type: 3}
   firePoint: {fileID: 8179256205479468376}
   rotationSpeed: 4
-  AttackRange: 10
-  fireRate: 1
+  AttackRange: 15
+  fireRate: 0.8
 --- !u!1 &7418682652769707484
 GameObject:
   m_ObjectHideFlags: 0
