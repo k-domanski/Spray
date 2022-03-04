@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class GunController : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class GunController : MonoBehaviour
 
     public WeaponStats weaponStats => _weaponStats;
     public float currentHeat => _currentHeat;
+    public bool laserVisible
+    {
+        get => _laserVisible;
+        set => _laserVisible = value;
+    }
     #endregion
 
     #region Private
@@ -35,8 +41,9 @@ public class GunController : MonoBehaviour
     #region Messages
     private void Awake()
     {
-        
-        TryGetComponent<LineRenderer>(out _laser);
+
+        _laser = GetComponent<LineRenderer>();
+        //TryGetComponent<LineRenderer>(out _laser);
         if (_shotAudio == null)
             _shotAudio = GetComponent<AudioSource>();
         _muzzleFlash.gameObject.SetActive(false);
@@ -47,6 +54,10 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
+        if (_laser)
+        {
+            _laser.enabled = laserVisible;
+        }
         if (_laser && _laserVisible)
         {
             _laser.SetPosition(0, _muzzlePoint.position);
@@ -69,12 +80,12 @@ public class GunController : MonoBehaviour
         }
 
         _cooldownActivationTimer += Time.deltaTime;
-        if(_cooldownActivationTimer >= _weaponStats.cooldownActivationTime)
+        if (_cooldownActivationTimer >= _weaponStats.cooldownActivationTime)
         {
             _currentHeat -= _weaponStats.cooldownSpeed * Time.deltaTime;
-            if(_currentHeat <= 0)
+            if (_currentHeat <= 0)
             {
-                if(_overHeated)
+                if (_overHeated)
                     onWeaponOverheat?.Invoke(false);
                 _overHeated = false;
                 _currentHeat = 0;
@@ -103,7 +114,7 @@ public class GunController : MonoBehaviour
             _cooldownActivationTimer = 0f;
 
             if (_shotAudio != null)
-                 _shotAudio.Play();
+                _shotAudio.Play();
 
             //TODO: Cache and change to list so it can be changed dynamically
             _projectileCount = (int)weaponStats.projectileCount;
@@ -118,9 +129,9 @@ public class GunController : MonoBehaviour
             this.Delay(() => SetShooting(), 1f / _weaponStats.fireRate);
 
             _currentHeat += _weaponStats.heatStepPerShot;
-            if(_currentHeat >= _weaponStats.maxHeatValue)
+            if (_currentHeat >= _weaponStats.maxHeatValue)
             {
-                if(!_overHeated)
+                if (!_overHeated)
                     onWeaponOverheat?.Invoke(true);
                 _overHeated = true;
             }
@@ -137,11 +148,11 @@ public class GunController : MonoBehaviour
         Vector3 direction = new Vector3();
         int angleMultiplier = 1;
 
-        for(int i =1; i < projectileCount; i++)
+        for (int i = 1; i < projectileCount; i++)
         {
             float angle = _angle * angleMultiplier;
 
-            if(i%2 == 0)
+            if (i % 2 == 0)
             {
                 direction.x = (aimDirection.x * Mathf.Cos(angle)) - (aimDirection.z * Mathf.Sin(angle));
                 direction.z = (aimDirection.x * Mathf.Sin(angle)) + (aimDirection.z * Mathf.Cos(angle));

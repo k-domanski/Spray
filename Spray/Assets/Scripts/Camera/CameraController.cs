@@ -32,6 +32,11 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (!_player.isAlive)
+        {
+            return;
+        }
+
         SetupCamera();
 
         _azimuthOffset = Mathf.MoveTowards(_azimuthOffset, _azimuthOffsetTarget, _settings.rotationSpeed * Time.deltaTime);

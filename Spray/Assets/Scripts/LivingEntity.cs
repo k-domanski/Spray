@@ -67,6 +67,12 @@ public class LivingEntity : MonoBehaviour
             Die();
         }
     }
+
+    public void Kill()
+    {
+        currentHealth = 0;
+        Die();
+    }
     #endregion
 
     #region Private Methods

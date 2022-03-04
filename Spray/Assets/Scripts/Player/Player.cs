@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     public GunController secondaryWeapon { get => _guns[1]; set => _guns[1] = value; }
     public GunController currentWeapon => _currentWeapon;
     public LivingEntity livingEntity { get; private set; }
+    public bool isAlive => !_isDead;
 
     public float maxColorLevel = 100.0f;
     public float colorIncreaseStep = 5.0f;
@@ -113,7 +114,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (_isShooting)
+        if (_isShooting && isAlive)
         {
             _time += Time.deltaTime;
             Vector3 shootDirection = _playerController.fireDirection;
@@ -210,6 +211,7 @@ public class Player : MonoBehaviour
     }
     public void ChangeWeapon()
     {
+        return;
         _weaponIndex = _weaponIndex == 0 ? 1 : 0;
         // Current Gun unequip
         _currentWeapon.Unequip();
@@ -278,8 +280,10 @@ public class Player : MonoBehaviour
         if (entity == livingEntity && !_isDead)
         {
             _isDead = true;
-            Debug.Log("YOU DIED!!!!!!!!!");
-            this.Delay(() => Systems.sceneManager.LoadScene(GameScene.Preload), 2.0f);
+            foreach (var gun in _guns)
+            {
+                gun.laserVisible = false;
+            }
             _playerDeathPanel.Show();
         }
     }
